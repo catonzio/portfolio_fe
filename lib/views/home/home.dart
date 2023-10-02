@@ -1,19 +1,22 @@
-import 'package:dcatone/views/home/home_mobile.dart';
-import 'package:dcatone/views/responsive.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:portfolio/controllers/section_controller.dart';
+import 'package:portfolio/views/home/home_desktop.dart';
+import 'package:portfolio/views/home/home_mobile.dart';
+import 'package:portfolio/views/home/home_tablet.dart';
+import 'package:portfolio/views/responsive.dart';
 
-import 'home_desktop.dart';
-import 'home_tab.dart';
-
-class Home extends StatelessWidget {
-  const Home({super.key});
+class HomePage extends StatelessWidget {
+  final String title;
+  const HomePage({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
-    return const Responsive(
-      mobile: HomeMobile(),
-      desktop: HomeDesktop(),
-      tablet: HomeTab(),
+    SectionController controller = Get.find<SectionController>(tag: title);
+    return Responsive(
+      mobile: HomeMobile(controller),
+      desktop: HomeDesktop(controller),
+      tablet: HomeTablet(controller),
     );
   }
 }

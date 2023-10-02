@@ -1,194 +1,129 @@
 import 'package:flutter/material.dart';
-import 'package:dcatone/configs/configs.dart';
-import 'package:dcatone/info/about_info.dart';
-
-import 'package:dcatone/info/utils.dart';
-import 'package:dcatone/info/work_info.dart';
-import 'package:dcatone/widgets/about_me_data.dart';
-import 'package:dcatone/widgets/community_button.dart';
-import 'package:dcatone/widgets/custom_text_heading.dart';
-import 'package:dcatone/widgets/tech_widget.dart';
-import 'dart:math' as math;
-// import 'package:universal_html/html.dart' as html;
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:portfolio/config/configs.dart';
+import 'package:portfolio/config/dimensions.dart';
+import 'package:portfolio/config/themes.dart';
+import 'package:portfolio/controllers/home_controller.dart';
+import 'package:portfolio/controllers/scheda_about_controller.dart';
+import 'package:portfolio/controllers/section_controller.dart';
+import 'package:portfolio/widgets/scheda_about_page.dart';
 
 class AboutDesktop extends StatelessWidget {
-  const AboutDesktop({Key? key}) : super(key: key);
+  final SectionController sectionController;
+  const AboutDesktop(this.sectionController, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    double columnWidthPerc = 40;
+    double padding = 32;
+    Get.put(SchedaAboutController());
 
-    return Container(
-      padding: Space.h,
-      child: Column(
-        children: [
-          const CustomSectionHeading(
-            text: '\nAbout Me',
-          ),
-          const CustomSectionSubHeading(
-            text: 'Get to know me :)',
-          ),
-          Space.y1!,
-          Row(
-            children: [
-              Expanded(
-                child: Transform(
-                  transform: Matrix4.rotationY(math.pi),
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    StaticUtils.coloredPhoto,
-                    height: height * 0.8,
-                    // fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: width < 1230 ? 2 : 1,
-                child: Container(
-                  padding: EdgeInsets.only(left: width < 1230 ? 25.0 : 0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Who am I?',
-                        style: AppText.b1!.copyWith(
-                          color: AppTheme.c!.primary,
-                        ),
-                      ),
-                      Space.y1!,
-                      Text(
-                        AboutInfo.aboutMeHeadline,
-                        style: AppText.b1b!.copyWith(
-                          fontFamily: 'Montserrat',
-                        ),
-                      ),
-                      Space.y!,
-                      Text(
-                        AboutInfo.aboutMeDetail,
-                        style: AppText.b2!.copyWith(
-                          height: 2,
-                          letterSpacing: 1.1,
-                          fontFamily: 'Montserrat',
-                          fontSize: AppDimensions.normalize(5),
-                        ),
-                        textAlign: TextAlign.justify,
-                      ),
-                      Space.y!,
-                      Divider(
-                        color: Colors.grey[800],
-                        thickness: AppDimensions.normalize(0.5),
-                      ),
-                      Space.y!,
-                      Text(
-                        'Technologies I have worked with:',
-                        style: AppText.b1!.copyWith(
-                          color: AppTheme.c!.primary,
-                        ),
-                      ),
-                      Space.y!,
-                      SizedBox(
-                        // width: width * 0.5,
-                        height: height * (0.1 * kTools.length / 8),
-                        child: GridView.count(
-                          crossAxisCount: 8,
-                          childAspectRatio: 1.6,
-                          children: kTools
-                              .map((e) => ToolTechWidget(
-                                    techName: e,
-                                  ))
-                              .toList(),
-                        ),
-                      ),
-                      // Row(
-                      //   children: kTools
-                      //       .map((e) => ToolTechWidget(
-                      //             techName: e,
-                      //           ))
-                      //       .toList(),
-                      // ),
-                      Space.y!,
-                      Divider(
-                        color: Colors.grey[800],
-                        thickness: AppDimensions.normalize(0.5),
-                      ),
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              AboutMeData(
-                                data: "Name",
-                                information: AboutInfo.name,
-                              ),
-                              AboutMeData(
-                                data: "Age",
-                                information: (DateTime.now()
-                                            .difference(DateTime(1997, 5, 14))
-                                            .inDays ~/
-                                        365)
-                                    .toString(),
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              AboutMeData(
-                                data: "Email",
-                                information: AboutInfo.email,
-                              ),
-                              AboutMeData(
-                                data: "From",
-                                information: AboutInfo.address,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Space.y1!,
-                      Row(
-                        children: [
-                          SizedBox(
-                            height: AppDimensions.normalize(13),
-                            width: AppDimensions.normalize(40),
-                            child: OutlinedButton(
-                              onPressed: () => {},
-                              // html.window.open(StaticUtils.resume, 'pdf'),
-                              child: const Text(
-                                "Resume",
-                              ),
-                            ),
-                          ),
-                          Space.x1!,
-                          Container(
-                            color: Colors.grey[900]!,
-                            width: AppDimensions.normalize(30),
-                            height: AppDimensions.normalize(0.5),
-                          ),
-                          ...WorkInfo.logos.asMap().entries.map(
-                                (e) => Expanded(
-                                  child: CommunityIconBtn(
-                                    icon: e.value,
-                                    link: WorkInfo.communityLinks[e.key],
-                                    height: WorkInfo.communityLogoHeight[e.key],
-                                  ),
-                                ),
-                              )
-                        ],
-                      ),
+    return GetX<HomeController>(
+      builder: (controller) {
+        return Container(
+          color: sectionController.bgColor,
+          alignment: Alignment.center,
+          child: Material(
+            elevation: 10,
+            color: Themes.colorScheme(context).inverseSurface,
+            borderRadius: BorderRadius.circular(16),
+            child: Container(
+                width: Dimensions.width(context, perc: 80),
+                height: Dimensions.pageHeight(context, perc: 80),
+                padding: EdgeInsets.all(padding),
+                child: SchedaAboutPage(
+                    width: Dimensions.width(context, perc: 80) - padding * 2,
+                    height:
+                        Dimensions.pageHeight(context, perc: 80) - padding * 2,
+                    titles: const [
+                      "Skills",
+                      "About me",
+                      "Content 3",
+                      "Content 4"
                     ],
-                  ),
+                    bodies: [
+                      Column(
+                        children: buildSkillsWidget(
+                                context, columnWidthPerc, padding) +
+                            buildSkillsWidget(
+                                context, columnWidthPerc, padding) +
+                            buildSkillsWidget(
+                                context, columnWidthPerc, padding),
+                      ),
+                      SizedBox(
+                        width:
+                            Dimensions.width(context, perc: columnWidthPerc) -
+                                2 * padding,
+                        child: Text(
+                            Configs.aboutMe +
+                                Configs.aboutMe +
+                                Configs.aboutMe +
+                                Configs.aboutMe,
+                            style: Themes.textTheme(context)
+                                .bodyLarge!
+                                .copyWith(
+                                    color: Themes.colorScheme(context)
+                                        .onInverseSurface)),
+                      ),
+                      const Text("Bye"),
+                      const Text("Ciao"),
+                    ]).animate(
+                    target: controller.currentSection == sectionController.title
+                        ? 1
+                        : 0)
+                // .fadeIn(delay: 100.ms, begin: 0.5),
                 ),
-              ),
-              Container(
-                width: width < 1230 ? width * 0.05 : width * 0.1,
-              ),
-            ],
-          )
-        ],
-      ),
+          ),
+        );
+      },
     );
+  }
+
+  List<Column> buildSkillsWidget(
+      BuildContext context, double columnWidthPerc, double padding) {
+    return Configs.skills
+        .map((String k, int v) => MapEntry(
+            k,
+            // TO FIX
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  k,
+                  style: Themes.textTheme(context).bodyLarge!.copyWith(
+                      color: Themes.colorScheme(context).onInverseSurface),
+                ),
+                Container(
+                  width: Dimensions.width(context, perc: columnWidthPerc) -
+                      2 * padding,
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: LinearPercentIndicator(
+                    padding: const EdgeInsets.all(0),
+                    lineHeight: Dimensions.height(context, perc: 1),
+                    percent: v / 100,
+                    animation: true,
+                    animationDuration: 1500,
+                    barRadius: const Radius.circular(8),
+                    trailing: Container(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Text(
+                          "$v%",
+                          style: Themes.textTheme(context).bodyMedium!.copyWith(
+                              color:
+                                  Themes.colorScheme(context).onInverseSurface),
+                        )),
+                    backgroundColor: Themes.colorScheme(context)
+                        .onInverseSurface
+                        .withOpacity(0.2),
+                    progressColor: Themes.colorScheme(context).inversePrimary,
+                  ),
+                )
+              ],
+            )))
+        .values
+        .toList();
   }
 }

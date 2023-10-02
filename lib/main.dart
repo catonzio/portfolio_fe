@@ -1,15 +1,22 @@
-import 'package:dcatone/views/main/main_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:dcatone/configs/core_theme.dart' as theme;
+import 'package:portfolio/config/themes.dart';
+import 'package:portfolio/controllers/home_controller.dart';
+import 'package:portfolio/controllers/project_detail_controller.dart';
+import 'package:portfolio/controllers/settings.dart';
+import 'package:portfolio/views/main_view.dart';
+import 'package:portfolio/views/project_detail/project_detail.dart';
 
-import 'controllers/app_controller.dart';
-
-void main() async {
-  await GetStorage.init('app_storage');
-
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
+}
+
+class InitialBindings extends Bindings {
+  @override
+  void dependencies() {
+    Get.put(SettingsController());
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -17,14 +24,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppController appController = Get.put(AppController());
     return GetMaterialApp(
-      title: 'Danilo Catone',
-      theme: theme.themeLight,
-      darkTheme: theme.themeDark,
-      themeMode: appController.themeMode,
-      initialRoute: "/",
-      home: MainView(),
+      title: 'Portfolio',
+      debugShowCheckedModeBanner: false,
+      theme: Themes.lightTheme(),
+      darkTheme: Themes.darkTheme(),
+      initialBinding: InitialBindings(),
+      initialRoute: '/',
+      getPages: [
+        GetPage(
+            name: '/', page: () => const MainView(), binding: HomeBindings()),
+        GetPage(
+            name: '/project-detail',
+            arguments: const {'projectName': ''},
+            transition: Transition.downToUp,
+            page: () => const ProjectDetailPage(),
+            binding: ProjectDetailBindings()),
+      ],
     );
   }
 }

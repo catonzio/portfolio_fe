@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:dcatone/views/responsive.dart';
-import 'package:dcatone/views/about/about_desktop.dart';
-import 'package:dcatone/views/about/about_mobile.dart';
-import 'package:dcatone/views/about/about_tablet.dart';
+import 'package:get/get.dart';
+import 'package:portfolio/controllers/section_controller.dart';
+import 'package:portfolio/views/about/about_desktop.dart';
+import 'package:portfolio/views/about/about_mobile.dart';
+import 'package:portfolio/views/about/about_tablet.dart';
+import 'package:portfolio/views/responsive.dart';
 
-class About extends StatelessWidget {
-  const About({Key? key}) : super(key: key);
+class AboutPage extends StatelessWidget {
+  final String title;
+  const AboutPage({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
-    return const Responsive(
-      tablet: AboutTab(),
-      mobile: AboutMobile(),
-      desktop: AboutDesktop(),
+    SectionController controller = Get.find<SectionController>(tag: title);
+
+    return Responsive(
+      mobile: AboutMobile(controller),
+      desktop: AboutDesktop(controller),
+      tablet: AboutTablet(controller),
     );
   }
 }
