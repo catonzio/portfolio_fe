@@ -1,4 +1,5 @@
 import 'package:portfolio/config/themes.dart';
+import 'package:portfolio/models/project.dart';
 import 'package:portfolio/views/about/about.dart';
 import 'package:portfolio/views/contact/contact.dart';
 import 'package:portfolio/views/home/home.dart';
@@ -95,52 +96,10 @@ class Configs {
         'python': 90,
       };
 
-  static Map<String, Map<String, dynamic>> get projectsDetails => {
-        'Eight Puzzle': {
-          'imagePath': 'assets/images/im1.jpg',
-          'title': 'Eight Puzzle',
-          'description':
-              'A fun and challenging game of the eight-puzzle where you can test your skills in rearranging tiles. Take it a step further by utilizing the A* algorithm to auto-solve the puzzle.',
-          'link': '',
-          'url': 'https://danilocatone.com/eight-puzzle',
-        },
-        'ShaLi': {
-          'imagePath': 'assets/images/im2.jpg',
-          'title': 'ShaLi',
-          'description':
-              'Shali is your go-to app for creating lists that can be easily shared and collaborated on with other users. Stay organized, share tasks, and accomplish things together effortlessly.',
-          'link': '',
-          'url': 'https://danilocatone.com/shali',
-        },
-        // 'Project3': {
-        //   'imagePath': 'assets/images/im3.jpg',
-        //   'title': 'Project3',
-        //   'description': 'Project3 description',
-        //   'link': '',
-        //   'url': 'https://danilocatone.com/eight-puzzle',
-        // },
-        // 'Project4': {
-        //   'imagePath': 'assets/images/im4.jpg',
-        //   'title': 'Project4',
-        //   'description': 'Project4 description',
-        //   'link': '',
-        //   'url': 'https://danilocatone.com/eight-puzzle',
-        // },
-        // 'Project5': {
-        //   'imagePath': 'assets/images/im1.jpg',
-        //   'title': 'Project5',
-        //   'description': 'Project5 description',
-        //   'link': '',
-        //   'url': 'https://danilocatone.com/eight-puzzle',
-        // },
-        // 'Project6': {
-        //   'imagePath': 'assets/images/im2.jpg',
-        //   'title': 'Project6',
-        //   'description': 'Project6 description',
-        //   'link': '',
-        //   'url': 'https://danilocatone.com/eight-puzzle',
-        // },
-      };
+  static final RegExp emailRegex =
+      RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
+
+  static Map<String, Project> projectsDetails = {};
 
   static String get aboutMe => """
 I'm Danilo Catone, a computer scientist, engineer, data scientist, and Flutter developer, fueled by an unquenchable thirst for science and technology. I earned my Bachelor's degree at Roma Tre and broadened my horizons during an enriching Erasmus stint in Valencia.

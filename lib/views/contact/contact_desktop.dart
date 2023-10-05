@@ -1,9 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 import 'package:portfolio/config/configs.dart';
 import 'package:portfolio/config/dimensions.dart';
 import 'package:portfolio/config/themes.dart';
+import 'package:portfolio/controllers/email_controller.dart';
 import 'package:portfolio/controllers/section_controller.dart';
 import 'dart:html' as html;
 
@@ -49,7 +51,11 @@ class ContactDesktop extends StatelessWidget {
         hintStyle: Themes.textTheme(context)
             .bodyMedium!
             .copyWith(color: Themes.colorScheme(context).onInverseSurface));
+    TextStyle defaultStyle = Themes.textTheme(context)
+        .bodyMedium!
+        .copyWith(color: Themes.colorScheme(context).onInverseSurface);
 
+    EmailController emailController = Get.put(EmailController());
     return Container(
       width: Dimensions.width(context, perc: widthP),
       height: Dimensions.height(context, perc: heightP),
@@ -82,6 +88,8 @@ class ContactDesktop extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: TextField(
+                  controller: emailController.nameController,
+                  style: defaultStyle,
                   maxLines: 1,
                   decoration:
                       defaultDecoration.copyWith(hintText: 'Enter name'),
@@ -90,6 +98,8 @@ class ContactDesktop extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: TextField(
+                  controller: emailController.emailController,
+                  style: defaultStyle,
                   maxLines: 1,
                   decoration:
                       defaultDecoration.copyWith(hintText: 'Enter email'),
@@ -98,6 +108,8 @@ class ContactDesktop extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: TextField(
+                  controller: emailController.subjectController,
+                  style: defaultStyle,
                   maxLines: 1,
                   decoration:
                       defaultDecoration.copyWith(hintText: 'Enter the subject'),
@@ -106,6 +118,8 @@ class ContactDesktop extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: TextField(
+                  controller: emailController.bodyController,
+                  style: defaultStyle,
                   minLines: 6,
                   maxLines: 15,
                   decoration:
@@ -117,7 +131,7 @@ class ContactDesktop extends StatelessWidget {
           Container(
               alignment: Alignment.center,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () => emailController.sendEmail(),
                 child: const Text("Send"),
               ))
         ],

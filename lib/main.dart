@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/themes.dart';
+import 'package:portfolio/controllers/api_controller.dart';
 import 'package:portfolio/controllers/home_controller.dart';
 import 'package:portfolio/controllers/project_detail_controller.dart';
 import 'package:portfolio/controllers/settings.dart';
@@ -16,6 +17,7 @@ class InitialBindings extends Bindings {
   @override
   void dependencies() {
     Get.put(SettingsController());
+    Get.put(ApiController());
   }
 }
 

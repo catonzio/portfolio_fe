@@ -4,6 +4,7 @@ import 'dart:ui_web';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/configs.dart';
+import 'package:portfolio/models/project.dart';
 
 class ProjectDetailBindings extends Bindings {
   @override
@@ -29,17 +30,16 @@ class ProjectDetailController extends GetxController {
       url = '';
     } else if (Get.arguments['projectName'] != null &&
         Get.arguments['projectName'] != '') {
-      Map<String, dynamic> projectDetails =
+      Project projectDetails =
           Configs.projectsDetails[Get.arguments['projectName']]!;
-      imagePath = projectDetails['imagePath'];
-      title = projectDetails['title'];
-      description = projectDetails['description'];
-      url = projectDetails['url'];
+      imagePath = projectDetails.imagePath;
+      title = projectDetails.name;
+      description = projectDetails.description;
+      url = projectDetails.url;
     }
 
     super.onInit();
   }
-
 
   Widget getIframe() {
     IFrameElement element = IFrameElement()

@@ -9,6 +9,8 @@ import 'package:portfolio/controllers/home_controller.dart';
 import 'package:portfolio/controllers/section_controller.dart';
 import 'dart:math' as math;
 
+import 'package:portfolio/models/project.dart';
+
 class ProjectsDesktop extends StatelessWidget {
   final SectionController sectionController;
   const ProjectsDesktop(this.sectionController, {super.key});
@@ -89,8 +91,7 @@ class ProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> details =
-        Configs.projectsDetails.values.toList()[index];
+    Project details = Configs.projectsDetails.values.toList()[index];
     return GetX<ProjectsController>(
       tag: index.toString(),
       builder: (controller) {
@@ -108,15 +109,15 @@ class ProjectCard extends StatelessWidget {
     ).animate().fadeIn(delay: (1000 + 200 * (index + 1)).ms, duration: 500.ms);
   }
 
-  MouseRegion getBody(BuildContext context, Map<String, dynamic> details,
-      ProjectsController controller,
+  MouseRegion getBody(
+      BuildContext context, Project details, ProjectsController controller,
       {Color? borderColor, double borderWidth = 5}) {
     return MouseRegion(
       onEnter: (event) => controller.isHovering = true,
       onExit: (event) => controller.isHovering = false,
       child: GestureDetector(
         onTap: () => Get.toNamed('/project-detail',
-            arguments: {'projectName': details['title']}),
+            arguments: {'projectName': details.name}),
         child: Card(
           elevation: 3,
           color: Themes.colorScheme(context).inverseSurface,
@@ -130,7 +131,7 @@ class ProjectCard extends StatelessWidget {
                     height: Dimensions.height(context, perc: 10),
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage(details['imagePath']!),
+                        image: AssetImage(details.imagePath),
                         fit: BoxFit.cover,
                       ),
                       border: Border.all(
@@ -141,12 +142,12 @@ class ProjectCard extends StatelessWidget {
                     )),
                 const Spacer(),
                 Text(
-                  details['title'],
+                  details.name,
                   style: Themes.textTheme(context).titleLarge!.copyWith(
                       color: Themes.colorScheme(context).onInverseSurface),
                 ),
                 const Spacer(flex: 2),
-                AutoSizeText(details['description']!,
+                AutoSizeText(details.description,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 3,
                     textAlign: TextAlign.center,
