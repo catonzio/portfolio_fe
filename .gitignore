@@ -1,3 +1,7 @@
+**/build/
+**/.metadata
+**/pubspec.lock
+
 # Miscellaneous
 *.class
 *.log

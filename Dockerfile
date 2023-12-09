@@ -24,8 +24,9 @@ RUN flutter build web --no-tree-shake-icons
 
 # Stage 2
 FROM nginx:1.21.1-alpine
-COPY --from=build-env /app/build/web /usr/share/nginx/html/portfolio
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-RUN sed -i 's/<base href="\/">/<base href="\/portfolio\/">/g' /usr/share/nginx/html/portfolio/index.html
+COPY --from=build-env /app/build/web /usr/share/nginx/html
+# COPY --from=build-env /app/build/web /usr/share/nginx/html/portfolio
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
+# RUN sed -i 's/<base href="\/">/<base href="\/portfolio\/">/g' /usr/share/nginx/html/portfolio/index.html
 
 # CMD ["flutter", "run", "-d", "web-server", "--web-port", "8080", "--web-hostname", "0.0.0.0"]
