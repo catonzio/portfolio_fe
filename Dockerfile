@@ -20,10 +20,11 @@ COPY ./app /app/
 WORKDIR /app/
 RUN flutter clean
 RUN flutter pub get
-RUN flutter build web 
+RUN flutter build web --base-href "/portfolio/"
 # --no-tree-shake-icons
 # WORKDIR /app/build/web
-
+# WORKDIR /app/build/web
+# CMD ["flutter", "run", "web-server", "--web-port", "80", "--web-hostname", "0.0.0.0"]
 # Stage 2
 FROM nginx:1.21.1-alpine
 COPY --from=build-env /app/build/web /usr/share/nginx/html
