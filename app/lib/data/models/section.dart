@@ -7,7 +7,7 @@ class Section {
   final double heightConfPerc;
   final Color bgColor;
   final String imagePath;
-  final Function(String) page;
+  final Function(Section) page;
 
   const Section({
     required this.index,
@@ -18,4 +18,6 @@ class Section {
     required this.imagePath,
     required this.page,
   });
+
+  Widget instantiatePage() => page(this);
 }

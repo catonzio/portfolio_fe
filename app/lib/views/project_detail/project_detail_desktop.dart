@@ -29,6 +29,7 @@ class ProjectDetailDesktop extends StatelessWidget {
                     Get.back(closeOverlays: true);
                   },
                   child: const Text("Back")),
+              
               Container(
                   width: context.widthP(30),
                   height: context.pageHeight(perc: 80),

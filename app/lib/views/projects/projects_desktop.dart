@@ -6,20 +6,20 @@ import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/config/themes.dart';
 import 'package:portfolio/data/controllers/home_controller.dart';
 import 'package:portfolio/data/controllers/projects_controller.dart';
-import 'package:portfolio/data/controllers/section_controller.dart';
+import 'package:portfolio/data/models/section.dart';
 import 'dart:math' as math;
 import 'package:portfolio/widgets/project_card.dart';
 
 class ProjectsDesktop extends StatelessWidget {
-  final SectionController sectionController;
-  const ProjectsDesktop(this.sectionController, {super.key});
+  final Section section;
+  const ProjectsDesktop(this.section, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetX<HomeController>(builder: (controller) {
       return Container(
           padding: const EdgeInsets.all(32),
-          color: sectionController.bgColor,
+          color: section.bgColor,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -30,7 +30,7 @@ class ProjectsDesktop extends StatelessWidget {
             ],
           ).animate(
               target:
-                  controller.currentSection == sectionController.title ? 1 : 0)
+                  controller.currentSection == section.title ? 1 : 0)
           // .fadeIn(delay: 100.ms, begin: controller.currentSectionScrollPerc),
           );
     });
@@ -39,7 +39,7 @@ class ProjectsDesktop extends StatelessWidget {
   Container getBody(BuildContext context) {
     return Container(
       // color: Colors.red,
-      color: context.colorScheme.surface.withOpacity(0.05),
+      // color: context.colorScheme.surface.withOpacity(0.05),
       alignment: Alignment.center,
       // padding: const EdgeInsets.only(top: 64),
       width: context.widthP(70),

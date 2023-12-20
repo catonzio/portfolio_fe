@@ -17,7 +17,7 @@ class Configs {
           heightConfPerc: 0,
           bgColor: Themes.black,
           imagePath: 'assets/images/portrait.jpg',
-          page: (String title) => HomePage(title: title),
+          page: (Section section) => HomePage(section: section),
         ),
         'About': Section(
           index: 1,
@@ -26,7 +26,7 @@ class Configs {
           heightConfPerc: 0,
           bgColor: Themes.lightGrey,
           imagePath: '',
-          page: (String title) => AboutPage(title: title),
+          page: (Section section) => AboutPage(section: section),
         ),
         'Statistics': Section(
           index: 2,
@@ -35,7 +35,7 @@ class Configs {
           heightConfPerc: 100,
           bgColor: Themes.electricBlue,
           imagePath: 'assets/images/counters-bg.jpg',
-          page: (String title) => StatisticsPage(title: title),
+          page: (Section section) => StatisticsPage(section: section),
         ),
         'Projects': Section(
           index: 3,
@@ -44,7 +44,7 @@ class Configs {
           heightConfPerc: 0,
           bgColor: Themes.lightGrey,
           imagePath: '',
-          page: (String title) => ProjectsPage(title: title),
+          page: (Section section) => ProjectsPage(section: section),
         ),
         'Contacts': Section(
           index: 4,
@@ -53,7 +53,7 @@ class Configs {
           heightConfPerc: 100,
           bgColor: Themes.coolGreen,
           imagePath: 'assets/images/overlay-bg.jpg',
-          page: (String title) => ContactPage(title: title),
+          page: (Section section) => ContactPage(section: section),
         ),
       };
   // static Map<String, Map<String, dynamic>> get sectionsInfo => {

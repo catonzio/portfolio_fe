@@ -6,13 +6,13 @@ import 'package:portfolio/config/configs.dart';
 import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/config/themes.dart';
 import 'package:portfolio/data/controllers/email_controller.dart';
-import 'package:portfolio/data/controllers/section_controller.dart';
+import 'package:portfolio/data/models/section.dart';
 
 import 'package:portfolio/widgets/social_link.dart';
 
 class ContactDesktop extends StatelessWidget {
-  final SectionController sectionController;
-  const ContactDesktop(this.sectionController, {super.key});
+  final Section section;
+  const ContactDesktop(this.section, {super.key});
 
   @override
   Widget build(BuildContext context) {

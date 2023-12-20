@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-// import 'package:portfolio/config/dimensions.dart';
-import 'package:portfolio/data/controllers/section_controller.dart';
+import 'package:portfolio/data/models/section.dart';
 
 class StatisticsDesktop extends StatelessWidget {
-  final SectionController sectionController;
-  const StatisticsDesktop(this.sectionController, {super.key});
+  final Section section;
+  const StatisticsDesktop(this.section, {super.key});
 
   @override
   Widget build(BuildContext context) {

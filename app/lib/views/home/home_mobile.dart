@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/data/controllers/section_controller.dart';
+import 'package:portfolio/data/models/section.dart';
 
 class HomeMobile extends StatelessWidget {
-  final SectionController sectionController;
-  const HomeMobile(this.sectionController, {super.key});
+  final Section section;
+  const HomeMobile(this.section, {super.key});
 
   @override
   Widget build(BuildContext context) {

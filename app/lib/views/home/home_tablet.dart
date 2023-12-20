@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/data/controllers/section_controller.dart';
+import 'package:portfolio/data/models/section.dart';
 
 class HomeTablet extends StatelessWidget {
-  final SectionController sectionController;
-  const HomeTablet(this.sectionController, {super.key});
+  final Section section;
+  const HomeTablet(this.section, {super.key});
 
   @override
   Widget build(BuildContext context) {

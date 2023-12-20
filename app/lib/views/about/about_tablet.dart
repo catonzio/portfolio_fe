@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/data/controllers/section_controller.dart';
+import 'package:portfolio/data/models/section.dart';
 
 class AboutTablet extends StatelessWidget {
-  final SectionController section;
+  final Section section;
   const AboutTablet(this.section, {super.key});
 
   @override

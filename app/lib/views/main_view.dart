@@ -4,7 +4,6 @@ import 'package:portfolio/config/configs.dart';
 import 'package:portfolio/config/context_extension.dart';
 // import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/data/controllers/home_controller.dart';
-import 'package:portfolio/data/controllers/section_controller.dart';
 import 'package:portfolio/widgets/navbar/navbar_desktop.dart';
 import 'package:portfolio/widgets/navbar/navbar_mobile.dart';
 import 'package:portfolio/widgets/return_up_button.dart';
@@ -101,11 +100,11 @@ class MainView extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               Configs.sectionsInfo.values.map((e) {
-                // Get.put(SectionController.fromMap(e), tag: e.title);
+                // Get.put(SectionController.fromMap(e.toMap()), tag: e.title);
                 return SizedBox(
                   width: context.width,
                   height: context.pageHeight(perc: e.heightPerc),
-                  child: e.page(e.title),
+                  child: e.instantiatePage(),
                 );
               }).toList(),
             ),
