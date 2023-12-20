@@ -1,16 +1,19 @@
-import 'package:dio/dio.dart' as dio;
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/controllers/api_controller.dart';
-import 'package:portfolio/models/email.dart';
+import 'package:portfolio/data/models/email.dart';
+import 'package:portfolio/data/repositories/email_repository.dart';
 
-class EmailController extends ApiController {
+class EmailController extends GetxController {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController subjectController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
 
-  Future<bool> sendEmail() async {
+  final EmailRepository emailRepository;
+
+  EmailController(this.emailRepository);
+
+  Future<void> sendEmail() async {
     Email email = Email(
         senderName: nameController.text.trim(),
         senderEmail: emailController.text.trim(),
@@ -19,26 +22,18 @@ class EmailController extends ApiController {
 
     if (!email.isValidEmail()) {
       Get.snackbar("Error", "The email has an invalid format");
-      return false;
     }
 
-    var emptyField = email.getEmptyField();
+    String emptyField = email.getEmptyField();
     if (emptyField.isNotEmpty) {
       Get.snackbar("Error", "The $emptyField field is empty");
-      return false;
     }
 
-    try {
-      dio.Response response =
-          await client.post("/email/send", data: email.toJson());
-      if (response.statusCode == 200) {
-        Get.snackbar("Success", "The email was sent successfully");
-        return true;
-      }
-    } catch (e) {
-      print(e);
+    bool success = await emailRepository.sendEmail(email);
+    if (success) {
+      Get.snackbar("Success", "The email was sent successfully");
+    } else {
+      Get.snackbar("Fail", "The email couldn't be sent");
     }
-    Get.snackbar("Fail", "The email couldn't be sent");
-    return false;
   }
 }

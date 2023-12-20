@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/config/configs.dart';
-import 'package:portfolio/config/dimensions.dart';
+import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/config/themes.dart';
 import 'package:portfolio/widgets/navbar/navbar_button.dart';
 // ignore: avoid_web_libraries_in_flutter
@@ -17,7 +17,7 @@ class NavbarDesktop extends StatelessWidget {
       elevation: 10,
       child: Container(
         padding: EdgeInsets.symmetric(
-            horizontal: Dimensions.width(context, perc: 10)),
+            horizontal: context.widthP(10)),
         child: Row(
           children: [
             TextButton(

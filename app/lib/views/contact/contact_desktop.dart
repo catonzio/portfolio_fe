@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/configs.dart';
-import 'package:portfolio/config/dimensions.dart';
+import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/config/themes.dart';
-import 'package:portfolio/controllers/email_controller.dart';
-import 'package:portfolio/controllers/section_controller.dart';
-import 'dart:html' as html;
+import 'package:portfolio/data/controllers/email_controller.dart';
+import 'package:portfolio/data/controllers/section_controller.dart';
+
+import 'package:portfolio/widgets/social_link.dart';
 
 class ContactDesktop extends StatelessWidget {
   final SectionController sectionController;
@@ -18,8 +19,7 @@ class ContactDesktop extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(
-          horizontal: Dimensions.width(context, perc: 15),
-          vertical: Dimensions.height(context, perc: 15)),
+          horizontal: context.widthP(15), vertical: context.heightP(15)),
       child: Material(
         elevation: 10,
         type: MaterialType.card,
@@ -55,17 +55,17 @@ class ContactDesktop extends StatelessWidget {
         .bodyMedium!
         .copyWith(color: Themes.colorScheme(context).onInverseSurface);
 
-    EmailController emailController = Get.put(EmailController());
+    EmailController emailController = Get.find<EmailController>();
     return Container(
-      width: Dimensions.width(context, perc: widthP),
-      height: Dimensions.height(context, perc: heightP),
+      width: context.widthP(widthP),
+      height: context.heightP(heightP),
       alignment: Alignment.center,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           SizedBox(
-            height: Dimensions.height(context, perc: heightP) * 0.1,
+            height: context.heightP(heightP) * 0.1,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -76,7 +76,7 @@ class ContactDesktop extends StatelessWidget {
                 ),
                 Divider(
                   thickness: 5,
-                  endIndent: Dimensions.width(context, perc: widthP) * 0.5,
+                  endIndent: context.widthP(widthP) * 0.5,
                 ),
               ],
             ),
@@ -141,15 +141,15 @@ class ContactDesktop extends StatelessWidget {
 
   Widget getSecondColumn(BuildContext context, double widthP, double heightP) {
     return Container(
-      width: Dimensions.width(context, perc: widthP),
-      height: Dimensions.height(context, perc: heightP),
+      width: context.widthP(widthP),
+      height: context.heightP(heightP),
       alignment: Alignment.center,
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
-              height: Dimensions.height(context, perc: heightP) * 0.1,
+              height: context.heightP(heightP) * 0.1,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -160,7 +160,7 @@ class ContactDesktop extends StatelessWidget {
                   ),
                   Divider(
                     thickness: 5,
-                    endIndent: Dimensions.width(context, perc: widthP) * 0.5,
+                    endIndent: context.widthP(widthP) * 0.5,
                   ),
                 ],
               ),
@@ -171,7 +171,7 @@ class ContactDesktop extends StatelessWidget {
               maxLines: 4,
             ),
             SizedBox(
-              height: Dimensions.height(context, perc: heightP) * 0.30,
+              height: context.heightP(heightP) * 0.30,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -220,65 +220,6 @@ class ContactDesktop extends StatelessWidget {
               ),
             )
           ]),
-    );
-  }
-}
-
-class SocialLink extends StatelessWidget {
-  final String title;
-  final String iconUrl;
-  final String url;
-
-  const SocialLink({
-    super.key,
-    required this.title,
-    required this.iconUrl,
-    required this.url,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return
-        // Padding(
-        //   padding: const EdgeInsets.only(right: 8),
-        //   child: Container(
-        //     width: Dimensions.width(context, perc: 3),
-        //     height: Dimensions.width(context, perc: 3),
-        //     decoration: BoxDecoration(
-        //       shape: BoxShape.circle,
-        //       color: Themes.colorScheme(context).surface.withOpacity(0.5),
-        //     ),
-        //     child: InkWell(
-        //       onTap: () => html.window.open(url, 'new tab'),
-        //       child: Tooltip(
-        //         padding: const EdgeInsets.all(8),
-        //         message: title,
-        //         child: ClipOval(
-        //           child: Image.asset(
-        //             iconUrl,
-        //             fit: BoxFit.contain,
-        //           ),
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-
-        Padding(
-      padding: const EdgeInsets.only(right: 16, top: 16),
-      child: GestureDetector(
-        onTap: () => html.window.open(url, 'new tab'),
-        child: Container(
-          width: Dimensions.width(context, perc: 1.5),
-          height: Dimensions.width(context, perc: 1.5),
-          decoration: BoxDecoration(
-            // shape: BoxShape.circle,
-            image: DecorationImage(
-              image: AssetImage(iconUrl),
-              fit: BoxFit.scaleDown,
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

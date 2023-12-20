@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'package:portfolio/config/dimensions.dart';
-import 'package:portfolio/controllers/section_controller.dart';
+import 'package:portfolio/data/controllers/section_controller.dart';
 
 class StatisticsDesktop extends StatelessWidget {
   final SectionController sectionController;

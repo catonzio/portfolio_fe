@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/controllers/section_controller.dart';
+import 'package:portfolio/data/controllers/section_controller.dart';
 
 class HomeTablet extends StatelessWidget {
   final SectionController sectionController;

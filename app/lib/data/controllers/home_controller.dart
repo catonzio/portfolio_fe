@@ -1,16 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/configs.dart';
-import 'package:portfolio/config/dimensions.dart';
-import 'package:portfolio/controllers/navabar_controller.dart';
-
-class HomeBindings extends Bindings {
-  @override
-  void dependencies() {
-    Get.put(HomeController());
-    NavbarBindings().dependencies();
-  }
-}
+import 'package:portfolio/config/context_extension.dart';
 
 class HomeController extends GetxController {
   final ScrollController scrollController = ScrollController();
@@ -82,7 +73,7 @@ class HomeController extends GetxController {
     double perc = getHeightPercsUntil(text);
 
     try {
-      scrollController.animateTo(Dimensions.pageHeight(context, perc: perc),
+      scrollController.animateTo(context.pageHeight(perc: perc),
           duration: const Duration(milliseconds: 500), curve: Curves.ease);
     } catch (e) {
       print(e);
@@ -94,7 +85,7 @@ class HomeController extends GetxController {
     double perc = index == 0
         ? 0
         : Configs.sectionsInfo.values
-            .map((e) => e['heightPerc'])
+            .map((e) => e.heightPerc)
             .toList()
             .sublist(0, index)
             .cast<double>()
@@ -106,15 +97,15 @@ class HomeController extends GetxController {
     Map<String, dynamic> sections = Configs.sectionsInfo;
     List<String> keys = sections.keys.toList();
     List<double> heightPercs =
-        sections.values.map((e) => e['heightPerc']).toList().cast<double>();
+        sections.values.map((e) => e.heightPerc).toList().cast<double>();
     List<double> confs =
-        sections.values.map((e) => e['heightConfPerc']).toList().cast<double>();
+        sections.values.map((e) => e.heightConfPerc).toList().cast<double>();
 
     for (int i = 0; i < sections.length; i++) {
       double perc = getHeightPercsUntil(keys[i]);
-      double lb = Dimensions.pageHeight(context, perc: perc);
-      double ub = Dimensions.pageHeight(context, perc: perc + heightPercs[i]);
-      double conf = Dimensions.pageHeight(context, perc: confs[i]);
+      double lb = context.pageHeight(perc: perc);
+      double ub = context.pageHeight(perc: perc + heightPercs[i]);
+      double conf = context.pageHeight(perc: confs[i]);
 
       if ((lb - conf <= currentOffset) && (currentOffset < ub + conf)) {
         currentBgSection = keys[i];

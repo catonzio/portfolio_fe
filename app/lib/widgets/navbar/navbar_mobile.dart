@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/config/dimensions.dart';
+import 'package:portfolio/config/context_extension.dart';
 
 class NavbarMobile extends StatelessWidget {
   const NavbarMobile({super.key});
@@ -7,8 +7,8 @@ class NavbarMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Dimensions.width(context, perc: 70),
-      height: Dimensions.height(context, perc: 10),
+      width: context.widthP(70),
+      height: context.heightP(10),
       color: Colors.red,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         IconButton(onPressed: () => {}, icon: const Icon(Icons.menu)),

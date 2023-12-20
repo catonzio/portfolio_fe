@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/config/dimensions.dart';
-import 'package:portfolio/controllers/project_detail_controller.dart';
+import 'package:portfolio/config/context_extension.dart';
+import 'package:portfolio/data/controllers/project_detail_controller.dart';
 
 class ProjectDetailDesktop extends StatelessWidget {
   final ProjectDetailController controller =
@@ -17,8 +17,8 @@ class ProjectDetailDesktop extends StatelessWidget {
         centerTitle: true,
       ),
       body: SizedBox(
-        width: Dimensions.width(context),
-        height: Dimensions.pageHeight(context),
+        width: context.fullWidth,
+        height: context.pageHeight(),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -30,8 +30,8 @@ class ProjectDetailDesktop extends StatelessWidget {
                   },
                   child: const Text("Back")),
               Container(
-                  width: Dimensions.width(context, perc: 30),
-                  height: Dimensions.pageHeight(context, perc: 80),
+                  width: context.widthP(30),
+                  height: context.pageHeight(perc: 80),
                   color: Colors.white,
                   child: Stack(
                     children: [

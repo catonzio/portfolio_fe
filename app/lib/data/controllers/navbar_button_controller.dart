@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/controllers/home_controller.dart';
+import 'package:portfolio/data/controllers/home_controller.dart';
 
 class NavbarButtonController extends GetxController {
   final String tag;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/controllers/section_controller.dart';
+import 'package:portfolio/data/controllers/section_controller.dart';
 import 'package:portfolio/views/projects/projects_desktop.dart';
 import 'package:portfolio/views/projects/projects_mobile.dart';
 import 'package:portfolio/views/projects/projects_tablet.dart';

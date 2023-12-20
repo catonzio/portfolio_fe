@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/config/dimensions.dart';
+import 'package:portfolio/config/context_extension.dart';
 
 class Responsive extends StatelessWidget {
   final Widget mobile;
@@ -17,9 +17,9 @@ class Responsive extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (Dimensions.isDesktop(context)) {
+        if (context.isDesktop) {
           return desktop;
-        } else if (Dimensions.isTablet(context)) {
+        } else if (context.isTabletMine) {
           return tablet;
         } else {
           return mobile;

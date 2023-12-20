@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/configs.dart';
-import 'package:portfolio/config/dimensions.dart';
-import 'package:portfolio/controllers/home_controller.dart';
-import 'package:portfolio/controllers/section_controller.dart';
+import 'package:portfolio/config/context_extension.dart';
+// import 'package:portfolio/config/context_extension.dart';
+import 'package:portfolio/data/controllers/home_controller.dart';
+import 'package:portfolio/data/controllers/section_controller.dart';
 import 'package:portfolio/widgets/navbar/navbar_desktop.dart';
 import 'package:portfolio/widgets/navbar/navbar_mobile.dart';
 import 'package:portfolio/widgets/return_up_button.dart';
@@ -16,10 +17,9 @@ class MainView extends StatelessWidget {
     return GetX<HomeController>(
       builder: (controller) {
         return Scaffold(
-          bottomNavigationBar:
-              Dimensions.isMobile(context) || Dimensions.isTablet(context)
-                  ? const NavbarMobile()
-                  : null,
+          bottomNavigationBar: (context.isMobile || context.isTabletMine)
+              ? const NavbarMobile()
+              : null,
           body: Stack(
             children: getBackgroundImages(context, controller) +
                 getSections(context, controller.scrollController),
@@ -36,19 +36,19 @@ class MainView extends StatelessWidget {
 
   List<Widget> getBackgroundImages(
       BuildContext context, HomeController controller) {
-    double height = Dimensions.pageHeight(context);
+    double height = context.pageHeight();
 
     return [
       Obx(() {
         String imagePath =
-            Configs.sectionsInfo[controller.currentBgSection]!['imagePath'];
+            Configs.sectionsInfo[controller.currentBgSection]!.imagePath;
         Color bgColor =
-            Configs.sectionsInfo[controller.currentBgSection]!['bgColor'];
+            Configs.sectionsInfo[controller.currentBgSection]!.bgColor;
 
         return Positioned(
             left: 0,
             right: 0,
-            top: Dimensions.navbarHeight(context),
+            top: context.navbarHeight,
             height: height,
             child: Container(
               decoration: BoxDecoration(
@@ -91,7 +91,7 @@ class MainView extends StatelessWidget {
         physics: const ScrollPhysics(),
         controller: controller,
         slivers: [
-          if (Dimensions.isDesktop(context))
+          if (context.isDesktop)
             const SliverAppBar(
               pinned: true,
               floating: true,
@@ -101,11 +101,11 @@ class MainView extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               Configs.sectionsInfo.values.map((e) {
-                Get.put(SectionController.fromMap(e), tag: e['title']);
+                // Get.put(SectionController.fromMap(e), tag: e.title);
                 return SizedBox(
-                  width: Dimensions.width(context),
-                  height: Dimensions.pageHeight(context, perc: e['heightPerc']),
-                  child: e['page'](e['title']),
+                  width: context.width,
+                  height: context.pageHeight(perc: e.heightPerc),
+                  child: e.page(e.title),
                 );
               }).toList(),
             ),

@@ -3,16 +3,16 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:portfolio/config/configs.dart';
-import 'package:portfolio/config/dimensions.dart';
+import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/config/themes.dart';
-import 'package:portfolio/controllers/home_controller.dart';
-import 'package:portfolio/controllers/scheda_about_controller.dart';
-import 'package:portfolio/controllers/section_controller.dart';
+import 'package:portfolio/data/controllers/home_controller.dart';
+import 'package:portfolio/data/controllers/scheda_about_controller.dart';
+import 'package:portfolio/data/models/section.dart';
 import 'package:portfolio/widgets/scheda_about_page.dart';
 
 class AboutDesktop extends StatelessWidget {
-  final SectionController sectionController;
-  const AboutDesktop(this.sectionController, {super.key});
+  final Section section;
+  const AboutDesktop(this.section, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,20 +23,19 @@ class AboutDesktop extends StatelessWidget {
     return GetX<HomeController>(
       builder: (controller) {
         return Container(
-          color: sectionController.bgColor,
+          color: section.bgColor,
           alignment: Alignment.center,
           child: Material(
             elevation: 10,
             color: Themes.colorScheme(context).inverseSurface,
             borderRadius: BorderRadius.circular(16),
             child: Container(
-                width: Dimensions.width(context, perc: 80),
-                height: Dimensions.pageHeight(context, perc: 80),
+                width: context.widthP(80),
+                height: context.pageHeight(perc: 80),
                 padding: EdgeInsets.all(padding),
                 child: SchedaAboutPage(
-                    width: Dimensions.width(context, perc: 80) - padding * 2,
-                    height:
-                        Dimensions.pageHeight(context, perc: 80) - padding * 2,
+                    width: context.widthP(80) - padding * 2,
+                    height: context.pageHeight(perc: 80) - padding * 2,
                     titles: const [
                       "Skills",
                       "About me",
@@ -53,9 +52,7 @@ class AboutDesktop extends StatelessWidget {
                                 context, columnWidthPerc, padding),
                       ),
                       SizedBox(
-                        width:
-                            Dimensions.width(context, perc: columnWidthPerc) -
-                                2 * padding,
+                        width: context.widthP(columnWidthPerc) - 2 * padding,
                         child: Text(
                             Configs.aboutMe +
                                 Configs.aboutMe +
@@ -70,7 +67,7 @@ class AboutDesktop extends StatelessWidget {
                       const Text("Bye"),
                       const Text("Ciao"),
                     ]).animate(
-                    target: controller.currentSection == sectionController.title
+                    target: controller.currentSection == section.title
                         ? 1
                         : 0)
                 // .fadeIn(delay: 100.ms, begin: 0.5),
@@ -97,12 +94,11 @@ class AboutDesktop extends StatelessWidget {
                       color: Themes.colorScheme(context).onInverseSurface),
                 ),
                 Container(
-                  width: Dimensions.width(context, perc: columnWidthPerc) -
-                      2 * padding,
+                  width: context.widthP(columnWidthPerc) - 2 * padding,
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   child: LinearPercentIndicator(
                     padding: const EdgeInsets.all(0),
-                    lineHeight: Dimensions.height(context, perc: 1),
+                    lineHeight: context.heightP(1),
                     percent: v / 100,
                     animation: true,
                     animationDuration: 1500,

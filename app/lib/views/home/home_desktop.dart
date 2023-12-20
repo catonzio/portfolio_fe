@@ -2,10 +2,9 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio/config/configs.dart';
-import 'package:portfolio/config/dimensions.dart';
+import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/config/themes.dart';
-import 'package:portfolio/controllers/section_controller.dart';
-// import 'package:portfolio/config/dimensions.dart';
+import 'package:portfolio/data/controllers/section_controller.dart';
 
 class HomeDesktop extends StatelessWidget {
   final SectionController sectionController;
@@ -38,7 +37,7 @@ class HomeDesktop extends StatelessWidget {
             ],
           ),
           SizedBox(
-            height: Dimensions.pageHeight(context, perc: 5),
+            height: context.pageHeight(perc: 5),
           ),
           // Spacer(),
           // .scale(begin: const Offset(0, 0), end: const Offset(5, 5)),

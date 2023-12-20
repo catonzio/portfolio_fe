@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:portfolio/config/configs.dart';
-import 'package:portfolio/controllers/navbar_button_controller.dart';
+import 'package:portfolio/data/controllers/navabar_controller.dart';
+import 'package:portfolio/data/controllers/navbar_button_controller.dart';
 
 class NavbarBindings extends Bindings {
   @override
@@ -11,5 +12,3 @@ class NavbarBindings extends Bindings {
     }
   }
 }
-
-class NavbarController extends GetxController {}

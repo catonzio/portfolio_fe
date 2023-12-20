@@ -4,14 +4,7 @@ import 'dart:ui_web';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/configs.dart';
-import 'package:portfolio/models/project.dart';
-
-class ProjectDetailBindings extends Bindings {
-  @override
-  void dependencies() {
-    Get.put(ProjectDetailController());
-  }
-}
+import 'package:portfolio/data/models/project.dart';
 
 class ProjectDetailController extends GetxController {
   late String imagePath;

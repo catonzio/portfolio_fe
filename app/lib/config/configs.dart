@@ -1,5 +1,6 @@
 import 'package:portfolio/config/themes.dart';
-import 'package:portfolio/models/project.dart';
+import 'package:portfolio/data/models/project.dart';
+import 'package:portfolio/data/models/section.dart';
 import 'package:portfolio/views/about/about.dart';
 import 'package:portfolio/views/contact/contact.dart';
 import 'package:portfolio/views/home/home.dart';
@@ -8,54 +9,100 @@ import 'package:portfolio/views/statistics/statistics.dart';
 
 class Configs {
   static List<String> get supportedLocales => ['en', 'it'];
-
-  static Map<String, Map<String, dynamic>> get sectionsInfo => {
-        'Home': {
-          'index': 0,
-          'page': (String title) => HomePage(title: title),
-          'heightPerc': 100,
-          'heightConfPerc': 0,
-          'title': 'Home',
-          'bgColor': Themes.black,
-          'imagePath': 'assets/images/portrait.jpg',
-        },
-        'About': {
-          'index': 1,
-          'page': (String title) => AboutPage(title: title),
-          'heightPerc': 100,
-          'heightConfPerc': 0,
-          'title': 'About',
-          'bgColor': Themes.lightGrey,
-          'imagePath': '',
-        },
-        'Statistics': {
-          'index': 2,
-          'page': (String title) => StatisticsPage(title: title),
-          'heightPerc': 25,
-          'heightConfPerc': 100,
-          'title': 'Statistics',
-          'bgColor': Themes.electricBlue,
-          'imagePath': 'assets/images/counters-bg.jpg',
-        },
-        'Projects': {
-          'index': 3,
-          'page': (String title) => ProjectsPage(title: title),
-          'heightPerc': 100,
-          'heightConfPerc': 0,
-          'title': 'Projects',
-          'bgColor': Themes.lightGrey,
-          'imagePath': '',
-        },
-        'Contacts': {
-          'index': 4,
-          'page': (String title) => ContactPage(title: title),
-          'heightPerc': 100,
-          'heightConfPerc': 100,
-          'title': 'Contacts',
-          'bgColor': Themes.coolGreen,
-          'imagePath': 'assets/images/overlay-bg.jpg',
-        },
+  static Map<String, Section> get sectionsInfo => {
+        'Home': Section(
+          index: 0,
+          title: 'Home',
+          heightPerc: 100,
+          heightConfPerc: 0,
+          bgColor: Themes.black,
+          imagePath: 'assets/images/portrait.jpg',
+          page: (String title) => HomePage(title: title),
+        ),
+        'About': Section(
+          index: 1,
+          title: 'About',
+          heightPerc: 100,
+          heightConfPerc: 0,
+          bgColor: Themes.lightGrey,
+          imagePath: '',
+          page: (String title) => AboutPage(title: title),
+        ),
+        'Statistics': Section(
+          index: 2,
+          title: 'Statistics',
+          heightPerc: 25,
+          heightConfPerc: 100,
+          bgColor: Themes.electricBlue,
+          imagePath: 'assets/images/counters-bg.jpg',
+          page: (String title) => StatisticsPage(title: title),
+        ),
+        'Projects': Section(
+          index: 3,
+          title: 'Projects',
+          heightPerc: 100,
+          heightConfPerc: 0,
+          bgColor: Themes.lightGrey,
+          imagePath: '',
+          page: (String title) => ProjectsPage(title: title),
+        ),
+        'Contacts': Section(
+          index: 4,
+          title: 'Contacts',
+          heightPerc: 100,
+          heightConfPerc: 100,
+          bgColor: Themes.coolGreen,
+          imagePath: 'assets/images/overlay-bg.jpg',
+          page: (String title) => ContactPage(title: title),
+        ),
       };
+  // static Map<String, Map<String, dynamic>> get sectionsInfo => {
+  //       'Home': {
+  //         'index': 0,
+  //         'page': (String title) => HomePage(title: title),
+  //         'heightPerc': 100,
+  //         'heightConfPerc': 0,
+  //         'title': 'Home',
+  //         'bgColor': Themes.black,
+  //         'imagePath': 'assets/images/portrait.jpg',
+  //       },
+  //       'About': {
+  //         'index': 1,
+  //         'page': (String title) => AboutPage(title: title),
+  //         'heightPerc': 100,
+  //         'heightConfPerc': 0,
+  //         'title': 'About',
+  //         'bgColor': Themes.lightGrey,
+  //         'imagePath': '',
+  //       },
+  //       'Statistics': {
+  //         'index': 2,
+  //         'page': (String title) => StatisticsPage(title: title),
+  //         'heightPerc': 25,
+  //         'heightConfPerc': 100,
+  //         'title': 'Statistics',
+  //         'bgColor': Themes.electricBlue,
+  //         'imagePath': 'assets/images/counters-bg.jpg',
+  //       },
+  //       'Projects': {
+  //         'index': 3,
+  //         'page': (String title) => ProjectsPage(title: title),
+  //         'heightPerc': 100,
+  //         'heightConfPerc': 0,
+  //         'title': 'Projects',
+  //         'bgColor': Themes.lightGrey,
+  //         'imagePath': '',
+  //       },
+  //       'Contacts': {
+  //         'index': 4,
+  //         'page': (String title) => ContactPage(title: title),
+  //         'heightPerc': 100,
+  //         'heightConfPerc': 100,
+  //         'title': 'Contacts',
+  //         'bgColor': Themes.coolGreen,
+  //         'imagePath': 'assets/images/overlay-bg.jpg',
+  //       },
+  //     };
 
   static List<String> get animatedTextsHome => [
         'Data Scientist',
@@ -99,7 +146,44 @@ class Configs {
   static final RegExp emailRegex =
       RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
 
-  static Map<String, Project> projectsDetails = {};
+  static Map<String, Project> projectsDetails = {
+    'Eight Puzzle': Project(
+      id: 1,
+      imagePath: 'assets/images/im1.jpg',
+      name: 'Eight Puzzle',
+      description:
+          'A fun and challenging game of the eight-puzzle where you can test your skills in rearranging tiles. Take it a step further by utilizing the A* algorithm to auto-solve the puzzle.',
+      url: 'https://danilocatone.com/eight-puzzle',
+      preview: true,
+    ),
+    'ShaLi': Project(
+      id: 2,
+      imagePath: 'assets/images/im2.jpg',
+      name: 'ShaLi',
+      description:
+          'A simple and lightweight library for machine learning in Python. It is designed to be easy to use and efficient, particularly for large datasets.',
+      url: 'https://danilocatone.com/shali',
+      preview: true,
+    ),
+    'Dama': Project(
+      id: 3,
+      imagePath: 'assets/images/im3.jpg',
+      name: 'Dama',
+      description:
+          'A simple and lightweight library for machine learning in Python. It is designed to be easy to use and efficient, particularly for large datasets.',
+      url: 'https://danilocatone.com/dama',
+      preview: false,
+    ),
+    'Movie Recommender': Project(
+      id: 4,
+      imagePath: 'assets/images/im4.jpg',
+      name: 'Movie Recommender',
+      description:
+          'A simple and lightweight library for machine learning in Python. It is designed to be easy to use and efficient, particularly for large datasets.',
+      url: 'https://danilocatone.com/movie-recommender',
+      preview: false,
+    ),
+  };
 
   static String get aboutMe => """
 I'm Danilo Catone, a computer scientist, engineer, data scientist, and Flutter developer, fueled by an unquenchable thirst for science and technology. I earned my Bachelor's degree at Roma Tre and broadened my horizons during an enriching Erasmus stint in Valencia.

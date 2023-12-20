@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/config/dimensions.dart';
+import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/config/themes.dart';
-import 'package:portfolio/controllers/home_controller.dart';
-import 'package:portfolio/controllers/navbar_button_controller.dart';
+import 'package:portfolio/data/controllers/home_controller.dart';
+import 'package:portfolio/data/controllers/navbar_button_controller.dart';
 import 'dart:math' as math;
 
 class NavbarButton extends StatelessWidget {
@@ -28,8 +28,7 @@ class NavbarButton extends StatelessWidget {
                     isHovered: controller.isHovering ||
                         Get.find<HomeController>().currentSection == text,
                     child: Container(
-                        width:
-                            math.min(Dimensions.width(context, perc: 10), 100),
+                        width: math.min(context.widthP(10), 100),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10)),

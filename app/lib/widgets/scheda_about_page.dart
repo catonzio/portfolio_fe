@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/themes.dart';
-import 'package:portfolio/controllers/scheda_about_controller.dart';
+import 'package:portfolio/data/controllers/scheda_about_controller.dart';
 
 class SchedaAboutPage extends StatelessWidget {
   final List<String> titles;
