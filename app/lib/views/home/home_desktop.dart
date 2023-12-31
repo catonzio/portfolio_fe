@@ -1,8 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:portfolio/config/configs.dart';
 import 'package:portfolio/config/context_extension.dart';
+import 'package:portfolio/config/info.dart';
 import 'package:portfolio/config/themes.dart';
 import 'package:portfolio/data/models/section.dart';
 
@@ -43,7 +43,7 @@ class HomeDesktop extends StatelessWidget {
           // .scale(begin: const Offset(0, 0), end: const Offset(5, 5)),
           AnimatedTextKit(
               repeatForever: true,
-              animatedTexts: Configs.animatedTextsHome
+              animatedTexts: Info.animatedTextsHome
                   .map((e) => getAnimatedText(context, e))
                   .toList()),
         ],

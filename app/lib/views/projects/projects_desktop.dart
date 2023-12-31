@@ -5,10 +5,8 @@ import 'package:portfolio/config/configs.dart';
 import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/config/themes.dart';
 import 'package:portfolio/data/controllers/home_controller.dart';
-import 'package:portfolio/data/controllers/projects_controller.dart';
 import 'package:portfolio/data/models/section.dart';
-import 'dart:math' as math;
-import 'package:portfolio/widgets/project_card.dart';
+import 'package:portfolio/widgets/custom_grid.dart';
 
 class ProjectsDesktop extends StatelessWidget {
   final Section section;
@@ -28,44 +26,42 @@ class ProjectsDesktop extends StatelessWidget {
                   .fadeIn(delay: 500.ms, duration: 500.ms),
               getBody(context)
             ],
-          ).animate(
-              target:
-                  controller.currentSection == section.title ? 1 : 0)
+          ).animate(target: controller.currentSection == section.title ? 1 : 0)
           // .fadeIn(delay: 100.ms, begin: controller.currentSectionScrollPerc),
           );
     });
   }
 
   Container getBody(BuildContext context) {
+    Size size = Size(context.widthP(90), context.pageHeight(perc: 70));
     return Container(
-      // color: Colors.red,
-      // color: context.colorScheme.surface.withOpacity(0.05),
-      alignment: Alignment.center,
-      // padding: const EdgeInsets.only(top: 64),
-      width: context.widthP(70),
-      height: context.pageHeight(perc: 70),
-      child: Configs.projectsDetails.isEmpty
-          ? Text(
-              "No project available",
-              style: context.textTheme.bodyLarge
-                  ?.copyWith(color: context.colorScheme.onInverseSurface),
-            )
-          : GridView.builder(
-              shrinkWrap: true,
-              itemCount: Configs.projectsDetails.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio:
-                      context.fullWidth / context.fullHeight / 1.3,
-                  crossAxisCount: math.min(3, Configs.projectsDetails.length),
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16),
-              itemBuilder: (context, index) {
-                Get.put(ProjectsController(), tag: index.toString());
-                return ProjectCard(
-                  index: index,
-                );
-              }),
-    );
+        alignment: Alignment.center,
+        width: size.width,
+        height: size.height,
+        child: Configs.projectsDetails.isEmpty
+            ? Text(
+                "No project available",
+                style: context.textTheme.bodyLarge
+                    ?.copyWith(color: context.colorScheme.onInverseSurface),
+              )
+            : CustomGrid.fromList(
+                elements: Configs.projectsDetails.values.toList(), nCols: 3, gridSize: size)
+        //  GridView.builder(
+        //     shrinkWrap: true,
+        //     itemCount: Configs.projectsDetails.length,
+        //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        //         childAspectRatio:
+        //             context.fullWidth / context.fullHeight / 1.3,
+        //         crossAxisCount: math.min(3, Configs.projectsDetails.length),
+        //         crossAxisSpacing: 16,
+        //         mainAxisSpacing: 16),
+        //     itemBuilder: (context, index) {
+        //       Get.put(ProjectsController(), tag: index.toString());
+        //       return ProjectCard(
+        //         index: index,
+        //       );
+        //     }),
+        );
   }
 
   Widget getTitle(BuildContext context) {

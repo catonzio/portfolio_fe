@@ -2,8 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/config/configs.dart';
 import 'package:portfolio/config/context_extension.dart';
+import 'package:portfolio/config/info.dart';
 import 'package:portfolio/config/themes.dart';
 import 'package:portfolio/data/controllers/email_controller.dart';
 import 'package:portfolio/data/models/section.dart';
@@ -182,7 +182,7 @@ class ContactDesktop extends StatelessWidget {
                         padding: EdgeInsets.only(right: 8.0),
                         child: Icon(Icons.location_city),
                       ),
-                      Text(Configs.myInfo['Address']!)
+                      Text(Info.myInfo['Address']!)
                     ],
                   ),
                   Row(
@@ -191,7 +191,7 @@ class ContactDesktop extends StatelessWidget {
                         padding: EdgeInsets.only(right: 8.0),
                         child: Icon(Icons.phone),
                       ),
-                      Text(Configs.myInfo['Phone']!)
+                      Text(Info.myInfo['Phone']!)
                     ],
                   ),
                   Row(
@@ -200,12 +200,12 @@ class ContactDesktop extends StatelessWidget {
                         padding: EdgeInsets.only(right: 8.0),
                         child: Icon(Icons.email),
                       ),
-                      Text(Configs.myInfo['Email']!)
+                      Text(Info.myInfo['Email']!)
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: Configs.socials
+                    children: Info.socials
                         .map((key, value) => MapEntry<String, Widget>(
                             key,
                             SocialLink(

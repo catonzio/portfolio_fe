@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:portfolio/config/configs.dart';
 import 'package:portfolio/config/context_extension.dart';
+import 'package:portfolio/config/info.dart';
 import 'package:portfolio/config/themes.dart';
 import 'package:portfolio/data/controllers/home_controller.dart';
 import 'package:portfolio/data/controllers/scheda_about_controller.dart';
@@ -54,10 +54,10 @@ class AboutDesktop extends StatelessWidget {
                       SizedBox(
                         width: context.widthP(columnWidthPerc) - 2 * padding,
                         child: Text(
-                            Configs.aboutMe +
-                                Configs.aboutMe +
-                                Configs.aboutMe +
-                                Configs.aboutMe,
+                            Info.aboutMe +
+                                Info.aboutMe +
+                                Info.aboutMe +
+                                Info.aboutMe,
                             style: Themes.textTheme(context)
                                 .bodyLarge!
                                 .copyWith(
@@ -67,9 +67,7 @@ class AboutDesktop extends StatelessWidget {
                       const Text("Bye"),
                       const Text("Ciao"),
                     ]).animate(
-                    target: controller.currentSection == section.title
-                        ? 1
-                        : 0)
+                    target: controller.currentSection == section.title ? 1 : 0)
                 // .fadeIn(delay: 100.ms, begin: 0.5),
                 ),
           ),
@@ -80,7 +78,7 @@ class AboutDesktop extends StatelessWidget {
 
   List<Column> buildSkillsWidget(
       BuildContext context, double columnWidthPerc, double padding) {
-    return Configs.skills
+    return Info.skills
         .map((String k, int v) => MapEntry(
             k,
             // TO FIX
