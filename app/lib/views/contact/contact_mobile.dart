@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:portfolio/data/models/section.dart';
 
@@ -9,11 +8,8 @@ class ContactMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-    	color: Colors.red,
-    	child: const Column(
-    	children: [
-    		Text("ContactMobile", style: TextStyle(fontSize: 50)),
-    	])
-    );
+        child: const Column(children: [
+      Text("ContactMobile", style: TextStyle(fontSize: 50)),
+    ]));
   }
 }

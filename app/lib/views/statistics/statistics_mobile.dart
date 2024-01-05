@@ -7,10 +7,14 @@ class StatisticsMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        color: Colors.red,
-        child: const Column(children: [
-          Text("ContactMobile", style: TextStyle(fontSize: 50)),
-        ]));
+    return const Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text("Hello"),
+        Text("Hello"),
+        Text("Hello"),
+      ],
+    );
   }
 }

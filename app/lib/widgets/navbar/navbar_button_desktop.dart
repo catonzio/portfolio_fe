@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
@@ -7,10 +8,10 @@ import 'package:portfolio/data/controllers/home_controller.dart';
 import 'package:portfolio/data/controllers/navbar_button_controller.dart';
 import 'dart:math' as math;
 
-class NavbarButton extends StatelessWidget {
+class NavbarButtonDesktop extends StatelessWidget {
   final String text;
 
-  const NavbarButton(this.text, {super.key});
+  const NavbarButtonDesktop(this.text, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +33,22 @@ class NavbarButton extends StatelessWidget {
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10)),
-                        child: Text(text.toUpperCase(),
-                            style: Themes.textTheme(context)
-                                .titleMedium!
-                                .copyWith(fontWeight: FontWeight.bold)))),
+                        child: AutoSizeText(
+                          text.toUpperCase(),
+                          style: Themes.textTheme(context)
+                              .titleMedium!
+                              .copyWith(fontWeight: FontWeight.bold),
+                          presetFontSizes: [
+                            context.titleLargeFontSize,
+                            context.titleMediumFontSize,
+                            context.titleSmallFontSize,
+                            context.bodyLargeFontSize,
+                            context.bodyMediumFontSize,
+                            context.bodySmallFontSize,
+                            context.labelSmallFontSize
+                          ],
+                          maxLines: 1,
+                        ))),
               )),
         );
       },

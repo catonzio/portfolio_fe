@@ -47,7 +47,7 @@ class MainView extends StatelessWidget {
         return Positioned(
             left: 0,
             right: 0,
-            top: context.navbarHeight,
+            top: context.isDesktop ? context.navbarHeight : 0,
             height: height,
             child: Container(
               decoration: BoxDecoration(

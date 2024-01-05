@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:portfolio/config/themes.dart';
 import 'package:portfolio/data/models/project.dart';
 import 'package:portfolio/data/models/section.dart';
@@ -18,6 +19,7 @@ class Configs {
           heightConfPerc: 0,
           bgColor: Themes.black,
           imagePath: 'assets/images/portrait.jpg',
+          icon: Icons.home,
           page: (Section section) => HomePage(section: section),
         ),
         'About': Section(
@@ -27,6 +29,7 @@ class Configs {
           heightConfPerc: 0,
           bgColor: Themes.lightGrey,
           imagePath: '',
+          icon: Icons.person,
           page: (Section section) => AboutPage(section: section),
         ),
         'Statistics': Section(
@@ -36,6 +39,7 @@ class Configs {
           heightConfPerc: 100,
           bgColor: Themes.electricBlue,
           imagePath: 'assets/images/counters-bg.jpg',
+          icon: Icons.bar_chart,
           page: (Section section) => StatisticsPage(section: section),
         ),
         'Projects': Section(
@@ -45,6 +49,7 @@ class Configs {
           heightConfPerc: 0,
           bgColor: Themes.lightGrey,
           imagePath: '',
+          icon: Icons.code,
           page: (Section section) => ProjectsPage(section: section),
         ),
         'Contacts': Section(
@@ -54,6 +59,7 @@ class Configs {
           heightConfPerc: 100,
           bgColor: Themes.coolGreen,
           imagePath: 'assets/images/overlay-bg.jpg',
+          icon: Icons.mail,
           page: (Section section) => ContactPage(section: section),
         ),
       };

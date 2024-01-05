@@ -7,6 +7,7 @@ class Section {
   final double heightConfPerc;
   final Color bgColor;
   final String imagePath;
+  final IconData icon;
   final Function(Section) page;
 
   const Section({
@@ -16,6 +17,7 @@ class Section {
     required this.heightConfPerc,
     required this.bgColor,
     required this.imagePath,
+    required this.icon,
     required this.page,
   });
 
