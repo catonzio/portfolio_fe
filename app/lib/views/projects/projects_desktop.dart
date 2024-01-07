@@ -46,21 +46,6 @@ class ProjectsDesktop extends StatelessWidget {
               )
             : CustomGrid.fromList(
                 elements: Configs.projectsDetails.values.toList(), nCols: 3, gridSize: size)
-        //  GridView.builder(
-        //     shrinkWrap: true,
-        //     itemCount: Configs.projectsDetails.length,
-        //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        //         childAspectRatio:
-        //             context.fullWidth / context.fullHeight / 1.3,
-        //         crossAxisCount: math.min(3, Configs.projectsDetails.length),
-        //         crossAxisSpacing: 16,
-        //         mainAxisSpacing: 16),
-        //     itemBuilder: (context, index) {
-        //       Get.put(ProjectsController(), tag: index.toString());
-        //       return ProjectCard(
-        //         index: index,
-        //       );
-        //     }),
         );
   }
 

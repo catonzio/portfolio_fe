@@ -1,3 +1,4 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
@@ -6,6 +7,7 @@ import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/config/themes.dart';
 import 'package:portfolio/data/controllers/home_controller.dart';
 import 'package:portfolio/data/controllers/projects_controller.dart';
+import 'package:portfolio/data/models/project.dart';
 import 'package:portfolio/data/models/section.dart';
 import 'package:portfolio/widgets/project_card.dart';
 
@@ -34,7 +36,7 @@ class ProjectsMobile extends StatelessWidget {
   }
 
   Container getBody(BuildContext context) {
-    Size size = Size(context.widthP(90), context.pageHeight(perc: 70));
+    Size size = Size(context.widthP(90), context.pageHeight(perc: 50));
     return Container(
         alignment: Alignment.center,
         width: size.width,
@@ -45,25 +47,36 @@ class ProjectsMobile extends StatelessWidget {
                 style: context.textTheme.bodyLarge
                     ?.copyWith(color: context.colorScheme.onInverseSurface),
               )
-            : ListView(
-                scrollDirection: Axis.horizontal,
-                children: Configs.projectsDetails.values.map((e) {
+            : Swiper(
+                // control: SwiperControl(),
+                pagination: SwiperPagination(
+                    builder: DotSwiperPaginationBuilder(
+                  activeColor: context.colorScheme.primary,
+                  size: context.widthP(1),
+                )),
+                autoplay: true,
+                autoplayDelay: 5000,
+                autoplayDisableOnInteraction: true,
+                duration: 1000,
+                itemCount: Configs.projectsDetails.length,
+                itemBuilder: (context, index) {
+                  Project e = Configs.projectsDetails.values.toList()[index];
                   Get.put(ProjectsController(), tag: e.id.toString());
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
                         width: size.width * 0.9,
-                        height: size.height * 0.5,
+                        height: size.height * 0.8,
                         // margin: const EdgeInsets.all(8),
                         alignment: Alignment.center,
                         child: ProjectCard(
                           details: e,
                           width: size.width * 0.9,
-                          height: size.height * 0.5,
+                          height: size.height * 0.8,
                           // index: getIndex(i, nCols, j),
                         )),
                   );
-                }).toList(),
+                },
               ));
   }
 

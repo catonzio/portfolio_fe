@@ -210,6 +210,8 @@ class ContactDesktop extends StatelessWidget {
                             key,
                             SocialLink(
                               title: key,
+                              width: context.widthP(1.5),
+                              height: context.widthP(1.5),
                               iconUrl: value['iconUrl'],
                               url: value['url'],
                             )))

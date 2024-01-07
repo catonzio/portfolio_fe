@@ -35,7 +35,7 @@ class MainView extends StatelessWidget {
 
   List<Widget> getBackgroundImages(
       BuildContext context, HomeController controller) {
-    double height = context.pageHeight();
+    // double height = context.pageHeight();
 
     return [
       Obx(() {
@@ -47,14 +47,16 @@ class MainView extends StatelessWidget {
         return Positioned(
             left: 0,
             right: 0,
-            top: context.isDesktop ? context.navbarHeight : 0,
-            height: height,
+            top: 0,
+            //context.isDesktop ? context.navbarHeight : 0,
+            // height: height,
+            bottom: 0,
             child: Container(
               decoration: BoxDecoration(
                   image: imagePath.isEmpty
                       ? null
                       : DecorationImage(
-                          image: AssetImage(imagePath), fit: BoxFit.cover)),
+                          image: AssetImage(imagePath), fit: BoxFit.fitHeight)),
               child: Container(
                   decoration: BoxDecoration(
                       color: bgColor,

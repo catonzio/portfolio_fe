@@ -26,7 +26,7 @@ class ProjectCard extends StatelessWidget {
       tag: details.id.toString(),
       builder: (controller) {
         // return Text(details.name);
-        return getBody(context, details, controller)
+        Widget body = getBody(context, details, controller)
             .animate(
           target: controller.isHovering ? 1 : 0,
           onPlay: (controller) => controller.repeat(reverse: true),
@@ -36,10 +36,13 @@ class ProjectCard extends StatelessWidget {
               ? getBody(context, details, controller, borderWidth: 2)
               : child!;
         }).scale(begin: const Offset(1, 1), end: const Offset(1.05, 1.05));
+        if (context.isDesktop) {
+          body = body.animate().fadeIn(
+              delay: (500 + 200 * (details.id + 1)).ms, duration: 500.ms);
+        }
+        return body;
       },
-    )
-        .animate()
-        .fadeIn(delay: (500 + 200 * (details.id + 1)).ms, duration: 500.ms);
+    );
   }
 
   MouseRegion getBody(
