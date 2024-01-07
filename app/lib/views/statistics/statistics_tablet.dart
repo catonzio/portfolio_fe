@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:portfolio/data/models/section.dart';
 
@@ -8,12 +7,14 @@ class StatisticsTablet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-    	color: Colors.red,
-    	child: const Column(
-    	children: [
-    		Text("ContactTablet", style: TextStyle(fontSize: 50)),
-    	])
+    return const Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text("Hello"),
+        Text("Hello"),
+        Text("Hello"),
+      ],
     );
   }
 }
