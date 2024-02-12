@@ -25,15 +25,22 @@ class ProjectsDesktop extends StatelessWidget {
                 title: "Projects",
                 baseStyle: context.textTheme.displayLarge!,
               ).animate().fadeIn(delay: 500.ms, duration: 500.ms),
-              getBody(context)
+              const ProjectsBody()
             ],
           ).animate(target: controller.currentSection == section.title ? 1 : 0)
           // .fadeIn(delay: 100.ms, begin: controller.currentSectionScrollPerc),
           );
     });
   }
+}
 
-  Container getBody(BuildContext context) {
+class ProjectsBody extends StatelessWidget {
+  const ProjectsBody({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     Size size = Size(context.widthP(90), context.pageHeight(perc: 70));
     return Container(
         alignment: Alignment.center,

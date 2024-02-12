@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/context_extension.dart';
-import 'package:portfolio/data/controllers/home_controller.dart';
-import 'package:portfolio/data/controllers/navbar_button_controller.dart';
 import 'dart:math' as math;
+
+import 'package:portfolio/data/controllers/navbar_controller.dart';
 
 class NavbarButtonDesktop extends StatelessWidget {
   final String text;
@@ -14,19 +14,18 @@ class NavbarButtonDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetX<NavbarButtonController>(
-      tag: text,
+    return GetX<NavbarController>(
       builder: (controller) {
         return InkWell(
-            onHover: (value) => controller.setIsHovering(value),
-            onTap: () => controller.scrollToSection(context),
+            onHover: (value) => controller.setIsHovering(value, text),
+            onTap: () => controller.scrollToSection(context, text),
             // onEnter: (_) => controller.setIsHovering(true),
             // onExit: (_) => controller.setIsHovering(false),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
               child: HoveredContainer(
-                  isHovered: controller.isHovering ||
-                      Get.find<HomeController>().currentSection == text,
+                  isHovered: controller.isHovering[text]!.value ||
+                      controller.homeController.currentSection == text,
                   child: Container(
                       width: math.min(context.widthP(10), 100),
                       alignment: Alignment.center,

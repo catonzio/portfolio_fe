@@ -4,6 +4,8 @@ import 'package:portfolio/config/configs.dart';
 import 'package:portfolio/config/context_extension.dart';
 
 class HomeController extends GetxController {
+  static HomeController get to => Get.find();
+
   final ScrollController scrollController = ScrollController();
 
   final RxDouble _currentOffset = 0.0.obs;
@@ -40,8 +42,9 @@ class HomeController extends GetxController {
 
   void scrollListener() {
     currentOffset = scrollController.offset;
-    debounce(_currentOffset, (_) => setCurrentSection(Get.context),
-        time: 100.milliseconds);
+    setCurrentSection(Get.context);
+    // debounce(_currentOffset, (_) => setCurrentSection(Get.context),
+    //     time: 100.milliseconds);
   }
 
   returnUp() {
@@ -71,7 +74,8 @@ class HomeController extends GetxController {
   }
 
   void scrollToSection(BuildContext context, String text) {
-    double perc = getHeightPercsUntil(text);
+    double perc =
+        getHeightPercsUntil(Configs.sectionsInfo.keys.toList().indexOf(text));
 
     try {
       scrollController.animateTo(context.pageHeight(perc: perc),
@@ -81,8 +85,8 @@ class HomeController extends GetxController {
     }
   }
 
-  double getHeightPercsUntil(String text) {
-    int index = Configs.sectionsInfo.keys.toList().indexOf(text);
+  double getHeightPercsUntil(int index) {
+    // int index = Configs.sectionsInfo.keys.toList().indexOf(text);
     double perc = index == 0
         ? 0
         : Configs.sectionsInfo.values
@@ -103,12 +107,16 @@ class HomeController extends GetxController {
         sections.values.map((e) => e.heightPerc).toList().cast<double>();
     List<double> confs =
         sections.values.map((e) => e.heightConfPerc).toList().cast<double>();
+    double pageHeight = context.pageHeight();
 
     for (int i = 0; i < sections.length; i++) {
-      double perc = getHeightPercsUntil(keys[i]);
-      double lb = context.pageHeight(perc: perc);
-      double ub = context.pageHeight(perc: perc + heightPercs[i]);
-      double conf = context.pageHeight(perc: confs[i]);
+      double perc = getHeightPercsUntil(i) / 100;
+      double lb = pageHeight * perc;
+      double ub = pageHeight * (perc + heightPercs[i] / 100);
+      double conf = pageHeight * confs[i] / 100;
+      // double lb = context.pageHeight(perc: perc);
+      // double ub = context.pageHeight(perc: perc + heightPercs[i]);
+      // double conf = context.pageHeight(perc: confs[i]);
 
       if ((lb - conf <= currentOffset) && (currentOffset < ub + conf)) {
         currentBgSection = keys[i];

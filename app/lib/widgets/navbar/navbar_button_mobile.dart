@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/data/controllers/home_controller.dart';
-import 'package:portfolio/data/controllers/navbar_button_controller.dart';
+import 'package:portfolio/data/controllers/navbar_controller.dart';
 import 'dart:math' as math;
 
 import 'package:portfolio/widgets/navbar/navbar_button_desktop.dart';
@@ -15,13 +15,13 @@ class NavbarButtonMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NavbarButtonController controller = Get.find(tag: text);
+    final NavbarController controller = Get.find(tag: text);
     return GestureDetector(
-      onTap: () => controller.scrollToSection(context),
+      onTap: () => controller.scrollToSection(context, text),
       child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
           child: Obx(() => HoveredContainer(
-                isHovered: controller.isHovering ||
+                isHovered: controller.isHovering[text]!.value ||
                     Get.find<HomeController>().currentSection == text,
                 child: Container(
                     width: math.min(context.widthP(10), 100),

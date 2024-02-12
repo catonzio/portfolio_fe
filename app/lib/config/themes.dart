@@ -43,9 +43,9 @@ class Themes {
         );
   }
 
-  static ColorScheme colorScheme(BuildContext context) =>
-      Theme.of(context).colorScheme;
+  // static ColorScheme colorScheme(BuildContext context) =>
+  //     Theme.of(context).colorScheme;
 
-  static TextTheme textTheme(BuildContext context) =>
-      Theme.of(context).textTheme;
+  // static TextTheme textTheme(BuildContext context) =>
+  //     Theme.of(context).textTheme;
 }
