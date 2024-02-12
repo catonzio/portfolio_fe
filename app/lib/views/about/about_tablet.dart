@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/config/info.dart';
-import 'package:portfolio/config/themes.dart';
 import 'package:portfolio/data/controllers/home_controller.dart';
 import 'package:portfolio/data/controllers/scheda_about_controller.dart';
 import 'package:portfolio/data/models/section.dart';
@@ -27,7 +26,7 @@ class AboutTablet extends StatelessWidget {
           alignment: Alignment.center,
           child: Material(
             elevation: 10,
-            color: Themes.colorScheme(context).inverseSurface,
+            color: context.colorScheme.inverseSurface,
             borderRadius: BorderRadius.circular(16),
             child: Container(
                 width: context.widthP(80),
@@ -58,11 +57,8 @@ class AboutTablet extends StatelessWidget {
                                 Info.aboutMe +
                                 Info.aboutMe +
                                 Info.aboutMe,
-                            style: Themes.textTheme(context)
-                                .bodyLarge!
-                                .copyWith(
-                                    color: Themes.colorScheme(context)
-                                        .onInverseSurface)),
+                            style: context.textTheme.bodyLarge!.copyWith(
+                                color: context.colorScheme.onInverseSurface)),
                       ),
                       const Text("Bye"),
                       const Text("Ciao"),
@@ -78,7 +74,7 @@ class AboutTablet extends StatelessWidget {
 
   List<Column> buildSkillsWidget(
       BuildContext context, double columnWidthPerc, double padding) {
-    return Info.skills
+    return Info.languages
         .map((String k, int v) => MapEntry(
             k,
             // TO FIX
@@ -88,8 +84,8 @@ class AboutTablet extends StatelessWidget {
               children: [
                 Text(
                   k,
-                  style: Themes.textTheme(context).bodyLarge!.copyWith(
-                      color: Themes.colorScheme(context).onInverseSurface),
+                  style: context.textTheme.bodyLarge!
+                      .copyWith(color: context.colorScheme.onInverseSurface),
                 ),
                 Container(
                   width: context.widthP(columnWidthPerc) - 2 * padding,
@@ -105,14 +101,12 @@ class AboutTablet extends StatelessWidget {
                         padding: const EdgeInsets.only(left: 8),
                         child: Text(
                           "$v%",
-                          style: Themes.textTheme(context).bodyMedium!.copyWith(
-                              color:
-                                  Themes.colorScheme(context).onInverseSurface),
+                          style: context.textTheme.bodyMedium!.copyWith(
+                              color: context.colorScheme.onInverseSurface),
                         )),
-                    backgroundColor: Themes.colorScheme(context)
-                        .onInverseSurface
-                        .withOpacity(0.2),
-                    progressColor: Themes.colorScheme(context).inversePrimary,
+                    backgroundColor:
+                        context.colorScheme.onInverseSurface.withOpacity(0.2),
+                    progressColor: context.colorScheme.inversePrimary,
                   ),
                 )
               ],

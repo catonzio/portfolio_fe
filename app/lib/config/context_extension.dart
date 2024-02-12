@@ -13,6 +13,7 @@ extension ContextExtension on BuildContext {
   bool get isDesktop => fullWidth >= 1000;
 
   double horPad(double value) => widthP(0.1) * value;
+  double verPad(double value) => heightP(0.1) * value;
   double get navbarHeight => heightP(5);
   double pageHeight({double perc = 100}) => heightP(95) * perc / 100;
 

@@ -1,9 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/config/info.dart';
-import 'package:portfolio/config/themes.dart';
 import 'package:portfolio/data/models/section.dart';
 
 class HomeDesktop extends StatelessWidget {
@@ -26,12 +26,11 @@ class HomeDesktop extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text("I am ",
-                  style: Themes.textTheme(context).displayLarge!.copyWith(
+                  style: context.textTheme.displayLarge!.copyWith(
                       color: Colors.grey[700], fontWeight: FontWeight.bold)),
               Text(
                 "Danilo Catone",
-                style: Themes.textTheme(context)
-                    .displayLarge!
+                style: context.textTheme.displayLarge!
                     .copyWith(fontWeight: FontWeight.bold),
               )
             ],
@@ -54,7 +53,7 @@ class HomeDesktop extends StatelessWidget {
   TypewriterAnimatedText getAnimatedText(BuildContext context, String text) {
     return TypewriterAnimatedText(
       text,
-      textStyle: Themes.textTheme(context).displaySmall,
+      textStyle: context.textTheme.displaySmall,
       speed: 150.ms,
       cursor: '|',
       curve: Curves.linear,

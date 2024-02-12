@@ -13,7 +13,7 @@ class Info {
         'Profile': 'Data Scientist',
         'Email': 'danilocatone@gmail.com',
         'Phone': '+39 331 623 9724',
-        'Address': 'Via Carlo Fadda 125, Rome, Italy',
+        'Address': 'Cinecittà, Rome, Italy',
       };
 
   static Map<String, Map<String, dynamic>> get socials => {
@@ -32,10 +32,27 @@ class Info {
       };
 
   static Map<String, int> get skills => {
-        'html': 90,
-        'css': 80,
-        'js': 70,
-        'python': 90,
+        'Data Science': 70,
+        'Flutter': 70,
+        'Backend': 60,
+        'Machine Learning': 60,
+      };
+
+  static Map<String, int> get languages => {
+        'Python': 90,
+        'Java': 70,
+        'Dart': 70,
+        'SQL': 60,
+        'Scala': 40,
+        'C': 30,
+        'PHP': 20,
+        'APython': 90,
+        'AJava': 70,
+        'ADart': 70,
+        'ASQL': 60,
+        'AScala': 40,
+        'AC': 30,
+        'APHP': 20,
       };
 
   static String get aboutMe => """

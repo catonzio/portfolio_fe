@@ -4,7 +4,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/config/info.dart';
-import 'package:portfolio/config/themes.dart';
 import 'package:portfolio/data/controllers/email_controller.dart';
 import 'package:portfolio/data/models/section.dart';
 
@@ -23,7 +22,7 @@ class ContactDesktop extends StatelessWidget {
       child: Material(
         elevation: 10,
         type: MaterialType.card,
-        color: Themes.colorScheme(context).surface.withOpacity(0.5),
+        color: context.colorScheme.surface.withOpacity(0.5),
         borderRadius: BorderRadius.circular(20),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -45,15 +44,13 @@ class ContactDesktop extends StatelessWidget {
 
   Widget getFirstColumn(BuildContext context, double widthP, double heightP) {
     InputDecoration defaultDecoration = InputDecoration(
-        fillColor: Themes.colorScheme(context).inverseSurface.withOpacity(0.8),
+        fillColor: context.colorScheme.inverseSurface.withOpacity(0.8),
         filled: true,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-        hintStyle: Themes.textTheme(context)
-            .bodyMedium!
-            .copyWith(color: Themes.colorScheme(context).onInverseSurface));
-    TextStyle defaultStyle = Themes.textTheme(context)
-        .bodyMedium!
-        .copyWith(color: Themes.colorScheme(context).onInverseSurface);
+        hintStyle: context.textTheme.bodyMedium!
+            .copyWith(color: context.colorScheme.onInverseSurface));
+    TextStyle defaultStyle = context.textTheme.bodyMedium!
+        .copyWith(color: context.colorScheme.onInverseSurface);
 
     EmailController emailController = Get.find<EmailController>();
     return Container(
@@ -72,7 +69,7 @@ class ContactDesktop extends StatelessWidget {
               children: [
                 Text(
                   "Send me a message",
-                  style: Themes.textTheme(context).headlineLarge,
+                  style: context.textTheme.headlineLarge,
                 ),
                 Divider(
                   thickness: 5,
@@ -156,7 +153,7 @@ class ContactDesktop extends StatelessWidget {
                 children: [
                   Text(
                     "Get in touch",
-                    style: Themes.textTheme(context).headlineLarge,
+                    style: context.textTheme.headlineLarge,
                   ),
                   Divider(
                     thickness: 5,
@@ -167,7 +164,7 @@ class ContactDesktop extends StatelessWidget {
             ),
             AutoSizeText(
               "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis dolorum dolorem soluta quidem expedita aperiam aliquid at. Totam magni ipsum suscipit amet? Autem nemo esse laboriosam ratione nobis mollitia inventore?",
-              style: Themes.textTheme(context).bodyLarge,
+              style: context.textTheme.bodyLarge,
               maxLines: 4,
             ),
             SizedBox(

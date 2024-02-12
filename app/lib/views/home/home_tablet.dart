@@ -1,11 +1,11 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/data/models/section.dart';
 
 import '../../config/info.dart';
-import '../../config/themes.dart';
 
 class HomeTablet extends StatelessWidget {
   final Section section;
@@ -27,12 +27,11 @@ class HomeTablet extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text("I am ",
-                  style: Themes.textTheme(context).displaySmall!.copyWith(
+                  style: context.textTheme.displaySmall!.copyWith(
                       color: Colors.grey[700], fontWeight: FontWeight.bold)),
               Text(
                 "Danilo Catone",
-                style: Themes.textTheme(context)
-                    .displaySmall!
+                style: context.textTheme.displaySmall!
                     .copyWith(fontWeight: FontWeight.bold),
               )
             ],
@@ -55,7 +54,7 @@ class HomeTablet extends StatelessWidget {
   TypewriterAnimatedText getAnimatedText(BuildContext context, String text) {
     return TypewriterAnimatedText(
       text,
-      textStyle: Themes.textTheme(context).headlineSmall,
+      textStyle: context.textTheme.headlineSmall,
       speed: 150.ms,
       cursor: '|',
       curve: Curves.linear,

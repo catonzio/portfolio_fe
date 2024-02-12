@@ -8,6 +8,9 @@ class SocialLink extends StatelessWidget {
   final String iconUrl;
   final String url;
 
+  static final appContainer =
+      html.window.document.getElementById('app-container');
+
   const SocialLink({
     super.key,
     required this.width,
@@ -21,7 +24,10 @@ class SocialLink extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 16, top: 16),
-      child: GestureDetector(
+      child: InkWell(
+        onHover: (value) {
+          appContainer?.style.cursor = value ? 'pointer' : 'default';
+        },
         onTap: () => html.window.open(url, 'new tab'),
         child: SizedBox(
           width: width,

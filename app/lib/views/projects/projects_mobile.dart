@@ -4,7 +4,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/configs.dart';
 import 'package:portfolio/config/context_extension.dart';
-import 'package:portfolio/config/themes.dart';
 import 'package:portfolio/data/controllers/home_controller.dart';
 import 'package:portfolio/data/controllers/projects_controller.dart';
 import 'package:portfolio/data/models/project.dart';
@@ -85,15 +84,15 @@ class ProjectsMobile extends StatelessWidget {
       children: [
         Text(
           "Projects",
-          style: Themes.textTheme(context).displayLarge!.copyWith(
+          style: context.textTheme.displayLarge!.copyWith(
               fontWeight: FontWeight.bold,
-              color: Themes.colorScheme(context).onInverseSurface),
+              color: context.colorScheme.onInverseSurface),
         ),
         SizedBox(
           width: context.widthP(10),
           child: Divider(
             thickness: 10,
-            color: Themes.colorScheme(context).inversePrimary,
+            color: context.colorScheme.inversePrimary,
           ),
         )
       ],

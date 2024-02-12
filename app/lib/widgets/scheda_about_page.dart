@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/config/themes.dart';
+import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/data/controllers/scheda_about_controller.dart';
 
 class SchedaAboutPage extends StatelessWidget {
@@ -26,8 +26,8 @@ class SchedaAboutPage extends StatelessWidget {
           children: [
             Text(
               titles[controller.count],
-              style: Themes.textTheme(context).headlineLarge!.copyWith(
-                  color: Themes.colorScheme(context).onInverseSurface),
+              style: context.textTheme.headlineLarge!
+                  .copyWith(color: context.colorScheme.onInverseSurface),
             ),
             const Divider(
               thickness: 2,
@@ -54,7 +54,7 @@ class SchedaAboutPage extends StatelessWidget {
                     child: IconButton(
                       onPressed: () => controller.decrement(),
                       icon: Icon(Icons.arrow_back,
-                          color: Themes.colorScheme(context).onInverseSurface),
+                          color: context.colorScheme.onInverseSurface),
                     ),
                   ),
                   Positioned(
@@ -63,7 +63,7 @@ class SchedaAboutPage extends StatelessWidget {
                     child: IconButton(
                       onPressed: () => controller.increment(),
                       icon: Icon(Icons.arrow_forward,
-                          color: Themes.colorScheme(context).onInverseSurface),
+                          color: context.colorScheme.onInverseSurface),
                     ),
                   ),
                   Positioned(
@@ -71,7 +71,7 @@ class SchedaAboutPage extends StatelessWidget {
                     left: 0,
                     right: 0,
                     child: Container(
-                      color: Themes.colorScheme(context).inverseSurface,
+                      color: context.colorScheme.inverseSurface,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -84,10 +84,8 @@ class SchedaAboutPage extends StatelessWidget {
                                 height: height * 0.015,
                                 decoration: BoxDecoration(
                                     color: controller.count == i
-                                        ? Themes.colorScheme(context)
-                                            .inversePrimary
-                                        : Themes.colorScheme(context)
-                                            .onInverseSurface
+                                        ? context.colorScheme.inversePrimary
+                                        : context.colorScheme.onInverseSurface
                                             .withOpacity(0.2),
                                     shape: BoxShape.circle),
                               ),

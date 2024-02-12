@@ -40,7 +40,8 @@ class HomeController extends GetxController {
 
   void scrollListener() {
     currentOffset = scrollController.offset;
-    setCurrentSection(Get.context!);
+    debounce(_currentOffset, (_) => setCurrentSection(Get.context),
+        time: 100.milliseconds);
   }
 
   returnUp() {
@@ -93,7 +94,9 @@ class HomeController extends GetxController {
     return perc;
   }
 
-  void setCurrentSection(BuildContext context) {
+  void setCurrentSection(BuildContext? context) {
+    if (context == null) return;
+
     Map<String, dynamic> sections = Configs.sectionsInfo;
     List<String> keys = sections.keys.toList();
     List<double> heightPercs =

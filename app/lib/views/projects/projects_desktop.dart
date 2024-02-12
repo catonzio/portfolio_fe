@@ -3,10 +3,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/configs.dart';
 import 'package:portfolio/config/context_extension.dart';
-import 'package:portfolio/config/themes.dart';
 import 'package:portfolio/data/controllers/home_controller.dart';
 import 'package:portfolio/data/models/section.dart';
 import 'package:portfolio/widgets/custom_grid.dart';
+import 'package:portfolio/widgets/section_title.dart';
 
 class ProjectsDesktop extends StatelessWidget {
   final Section section;
@@ -21,9 +21,10 @@ class ProjectsDesktop extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              getTitle(context)
-                  .animate()
-                  .fadeIn(delay: 500.ms, duration: 500.ms),
+              SectionTitle(
+                title: "Projects",
+                baseStyle: context.textTheme.displayLarge!,
+              ).animate().fadeIn(delay: 500.ms, duration: 500.ms),
               getBody(context)
             ],
           ).animate(target: controller.currentSection == section.title ? 1 : 0)
@@ -45,27 +46,8 @@ class ProjectsDesktop extends StatelessWidget {
                     ?.copyWith(color: context.colorScheme.onInverseSurface),
               )
             : CustomGrid.fromList(
-                elements: Configs.projectsDetails.values.toList(), nCols: 3, gridSize: size)
-        );
-  }
-
-  Widget getTitle(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          "Projects",
-          style: Themes.textTheme(context).displayLarge!.copyWith(
-              fontWeight: FontWeight.bold,
-              color: Themes.colorScheme(context).onInverseSurface),
-        ),
-        SizedBox(
-          width: context.widthP(10),
-          child: Divider(
-            thickness: 10,
-            color: Themes.colorScheme(context).inversePrimary,
-          ),
-        )
-      ],
-    );
+                elements: Configs.projectsDetails.values.toList(),
+                nCols: 3,
+                gridSize: size));
   }
 }
