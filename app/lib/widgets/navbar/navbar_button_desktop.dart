@@ -18,7 +18,7 @@ class NavbarButtonDesktop extends StatelessWidget {
       builder: (controller) {
         return InkWell(
             onHover: (value) => controller.setIsHovering(value, text),
-            onTap: () => controller.scrollToSection(context, text),
+            onTap: () => controller.scrollToSection(controller.homeController.sectionKeys[text]!.currentContext!, text),
             // onEnter: (_) => controller.setIsHovering(true),
             // onExit: (_) => controller.setIsHovering(false),
             child: Padding(

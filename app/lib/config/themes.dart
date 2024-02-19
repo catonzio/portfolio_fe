@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class Themes {
   static Color get black => const Color(0xFF000000);
   static Color get lightGrey => const Color.fromARGB(255, 232, 232, 232);
+  static Color get darkGrey => const Color.fromARGB(255, 52, 50, 50);
   static Color get electricBlue => const Color.fromARGB(255, 0, 122, 255);
   static Color get coolGreen => const Color.fromARGB(255, 52, 199, 89);
 
@@ -29,8 +30,10 @@ class Themes {
             color: black.withOpacity(0.90),
             elevation: 10,
             centerTitle: true),
-        colorScheme: base.colorScheme
-            .copyWith(background: Colors.black, inverseSurface: Colors.white)
+        colorScheme: base.colorScheme.copyWith(
+            background: Colors.black,
+            inverseSurface: Colors.white,
+            inversePrimary: darkGrey)
         // floatingActionButtonTheme: base.floatingActionButtonTheme.copyWith(
         //   backgroundColor: Colors.white,
         // ),

@@ -25,6 +25,11 @@ class HomeController extends GetxController {
   set currentSectionScrollPerc(value) =>
       _currentSectionScrollPerc.value = value;
 
+  // final List<GlobalKey> sectionKeys = List.generate(
+  //     Configs.sectionsInfo.keys.length, (index) => GlobalKey());
+  final Map<String, GlobalKey> sectionKeys = Map.fromEntries(
+      Configs.sectionsInfo.keys.map((e) => MapEntry(e, GlobalKey())));
+
   @override
   void onInit() {
     scrollController.addListener(scrollListener);
