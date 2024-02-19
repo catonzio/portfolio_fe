@@ -15,7 +15,7 @@ class NavbarButtonMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final NavbarController controller = Get.find(tag: text);
+    final NavbarController controller = Get.find();
     return GestureDetector(
       onTap: () => controller.scrollToSection(context, text),
       child: Padding(

@@ -4,6 +4,7 @@ import 'package:portfolio/config/configs.dart';
 import 'package:portfolio/config/context_extension.dart';
 // import 'package:portfolio/config/context_extension.dart';
 import 'package:portfolio/data/controllers/home_controller.dart';
+import 'package:portfolio/data/models/section.dart';
 import 'package:portfolio/widgets/navbar/navbar_desktop.dart';
 import 'package:portfolio/widgets/navbar/navbar_mobile.dart';
 import 'package:portfolio/widgets/return_up_button.dart';
@@ -26,13 +27,15 @@ class BackgroundImage extends StatelessWidget {
             top: 0,
             bottom: 0,
             child: Container(
+              width: context.width,
               decoration: BoxDecoration(
                 image: imagePath.isEmpty
                     ? null
                     : DecorationImage(
-                        image: AssetImage(imagePath), fit: BoxFit.fitHeight),
+                        image: AssetImage(imagePath), fit: BoxFit.fill),
               ),
               child: Container(
+                width: context.width,
                 decoration: BoxDecoration(
                     color: bgColor,
                     gradient: RadialGradient(
@@ -60,9 +63,12 @@ class HomeSections extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final HomeController controller = HomeController.to;
+    final List<Section> sections = Configs.sectionsInfo.values.toList();
+    final List<GlobalKey> sectionKeys = controller.sectionKeys.values.toList();
     return CustomScrollView(
       physics: const ScrollPhysics(),
-      controller: HomeController.to.scrollController,
+      controller: controller.scrollController,
       slivers: [
         if (context.isDesktop)
           const SliverAppBar(
@@ -72,16 +78,15 @@ class HomeSections extends StatelessWidget {
             flexibleSpace: NavbarDesktop(),
           ),
         SliverList(
-          delegate: SliverChildListDelegate(
-            Configs.sectionsInfo.values.map((e) {
-              // Get.put(SectionController.fromMap(e.toMap()), tag: e.title);
-              return SizedBox(
-                width: context.width,
-                height: context.pageHeight(perc: e.heightPerc),
-                child: e.instantiatePage(),
-              );
-            }).toList(),
-          ),
+          delegate: SliverChildListDelegate.fixed(
+              List.generate(sections.length, (index) {
+            Section section = sections[index];
+            return SizedBox(
+              key: sectionKeys[index],
+              height: context.pageHeight(perc: section.heightPerc),
+              child: section.instantiatePage(),
+            );
+          })),
         )
       ],
     );

@@ -7,7 +7,7 @@ class MainBindings extends Bindings {
   @override
   void dependencies() {
     EmailBindings().dependencies();
-    Get.put(HomeController());
+    Get.put(HomeController(), permanent: true);
     NavbarBindings().dependencies();
   }
 }
