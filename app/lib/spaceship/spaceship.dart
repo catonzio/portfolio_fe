@@ -12,7 +12,7 @@ class SpaceShipPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final Scroller scroller = Get.put(Scroller());
     final Size size = MediaQuery.of(context).size;
-    final String bkgImage = DateTime.now().hour.toDouble().isInBetween(10, 17)
+    final String bkgImage = DateTime.now().hour.toDouble().isInBetween(10, 20)
         ? "assets/stars_gradient.png"
         : "assets/stars_sunset.png";
     return Scaffold(
