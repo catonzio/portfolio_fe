@@ -1,0 +1,1 @@
+enum SpaceshipPosition { left, center, right }

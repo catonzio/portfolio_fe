@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/spaceship/scroller.dart';
+import 'package:portfolio/data/controllers/scroller.dart';
 
 class MenuRow extends StatelessWidget {
   const MenuRow({

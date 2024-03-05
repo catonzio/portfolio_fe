@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/spaceship/menu_row.dart';
-import 'package:portfolio/spaceship/scroller.dart';
-import 'package:portfolio/spaceship/shaceship_widget.dart';
-import 'package:portfolio/spaceship/utils.dart';
+import 'package:portfolio/config/constants.dart';
+import 'package:portfolio/ui/widgets/menu_row.dart';
+import 'package:portfolio/data/controllers/scroller.dart';
+import 'package:portfolio/ui/widgets/shaceship_widget.dart';
 
-class SpaceShipPage extends StatelessWidget {
-  const SpaceShipPage({super.key});
+class SpaceshipPage extends StatelessWidget {
+  const SpaceshipPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final Scroller scroller = Get.put(Scroller());
+    final Scroller scroller = Scroller.to;
     final Size size = MediaQuery.of(context).size;
     final String bkgImage = DateTime.now().hour.toDouble().isInBetween(10, 20)
         ? "assets/stars_gradient.png"
@@ -20,7 +20,7 @@ class SpaceShipPage extends StatelessWidget {
             controller: scroller.scrollController,
             child: Container(
               width: size.width.clamp(0, 1920),
-              height: totalHeight,
+              height: Constants.totalHeight,
               alignment: Alignment.center,
               child: Stack(
                 // fit: StackFit.expand,
@@ -29,8 +29,8 @@ class SpaceShipPage extends StatelessWidget {
                         left: 0,
                         bottom: scroller.totalScrollPerc < 0.1
                             ? scroller.scrollOffset * 0.95
-                            : totalHeight * 0.0917,
-                        height: totalHeight,
+                            : Constants.totalHeight * 0.0917,
+                        height: Constants.totalHeight,
                         child: Image.asset(
                           bkgImage,
                           fit: BoxFit.fitHeight,
