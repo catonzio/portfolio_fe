@@ -4,7 +4,7 @@ import 'package:portfolio/config/constants.dart';
 import 'package:portfolio/data/controllers/scroller.dart';
 import 'package:portfolio/data/controllers/spaceship_controller.dart';
 import 'package:portfolio/enums/spaceship_position.dart';
-import 'package:portfolio/ui/pages/spaceship_page.dart';
+import 'package:portfolio/extensions/double_extension.dart';
 import 'package:portfolio/ui/widgets/spaceship_images.dart';
 
 class SpaceshipWidget extends StatelessWidget {
