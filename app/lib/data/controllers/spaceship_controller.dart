@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:get/get.dart';
 import 'package:portfolio/config/constants.dart';
 import 'package:portfolio/enums/spaceship_position.dart';
+import 'package:portfolio/extensions/double_extension.dart';
 
 class SpaceshipController extends GetxController {
   static SpaceshipController get to => Get.find<SpaceshipController>();
@@ -24,6 +25,26 @@ class SpaceshipController extends GetxController {
         scrollOffset +
         fromGroundPerc(scrollOffset, height) *
             (height * 0.3 - Constants.totalSpaceshipHeight / 2);
+  }
+
+  double offsetX(double scrollPerc, double width) {
+    if (scrollPerc.isInBetween(0.2, 0.3)) {
+      position = SpaceshipPosition.left;
+    } else if (scrollPerc.isInBetween(0.3, 0.4)) {
+      position = SpaceshipPosition.right;
+    } else {
+      position = SpaceshipPosition.center;
+    }
+
+    final double leftX = width * 0.1 - Constants.totalSpaceshipWidth / 2;
+    final double rightX = width * 0.9 - Constants.totalSpaceshipWidth / 2;
+    final double centerX = width / 2 - Constants.totalSpaceshipWidth / 2;
+
+    return position == SpaceshipPosition.left
+        ? leftX / Constants.totalSpaceshipWidth
+        : (position == SpaceshipPosition.right
+            ? rightX / Constants.totalSpaceshipWidth
+            : centerX / Constants.totalSpaceshipWidth);
   }
 
   double left(double scrollOffset, double width, double height) {

@@ -1,5 +1,6 @@
 class Constants {
   static const double totalHeight = 38400;
+  static const double totalWidth = 1080;
 
 // static const double spaceshipBottom = 320;
   static const double spaceshipBottom = 250;

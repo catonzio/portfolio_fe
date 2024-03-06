@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/constants.dart';
+import 'package:portfolio/config/utils.dart';
 import 'package:portfolio/data/controllers/scroller.dart';
 import 'package:portfolio/data/controllers/spaceship_controller.dart';
-import 'package:portfolio/enums/spaceship_position.dart';
 import 'package:portfolio/extensions/double_extension.dart';
 import 'package:portfolio/ui/widgets/spaceship_images.dart';
 
@@ -14,42 +14,40 @@ class SpaceshipWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
     final SpaceshipController spaceship = SpaceshipController.to;
+
     return GetX<Scroller>(builder: (scroller) {
       double fromGroundPerc =
-          spaceship.fromGroundPerc(scroller.scrollOffset, size.height);
-      final double perc = scroller.totalScrollPerc;
-      if (perc.isInBetween(0.2, 0.3)) {
-        spaceship.position = SpaceshipPosition.left;
-      } else if (perc.isInBetween(0.3, 0.4)) {
-        spaceship.position = SpaceshipPosition.right;
-      } else {
-        spaceship.position = SpaceshipPosition.center;
-      }
-      print("isRight: ${spaceship.position.name}");
-
-      final double leftX = size.width * 0.1 - Constants.totalSpaceshipWidth / 2;
-      final double rightX =
-          size.width * 0.9 - Constants.totalSpaceshipWidth / 2;
-      final double centerX = size.width / 2 - Constants.totalSpaceshipWidth / 2;
+          spaceship.fromGroundPerc(scroller.scrollOffset, context.height);
+      double pageNum =
+          numScreen(scroller.scrollOffset, context.height).toDouble();
+      // print(pageNum);
 
       return Positioned(
-        bottom: spaceship.bottom(scroller.scrollOffset, size.height),
+        bottom: spaceship.bottom(scroller.scrollOffset, context.height),
         // left: spaceship.left(scroller.scrollOffset, size.width, size.height),
         height: Constants.totalSpaceshipHeight,
         width: Constants.totalSpaceshipWidth,
-        child: AnimatedSlide(
+        child: Container(
+          alignment: Alignment.center,
+          child: AnimatedSlide(
             offset: Offset(
-                spaceship.position == SpaceshipPosition.left
-                    ? leftX / Constants.totalSpaceshipWidth
-                    : (spaceship.position == SpaceshipPosition.right
-                        ? rightX / Constants.totalSpaceshipWidth
-                        : centerX / Constants.totalSpaceshipWidth),
-                0),
+                spaceship.offsetX(scroller.totalScrollPerc, context.width), 0),
             duration: const Duration(milliseconds: 500),
-            child:
-                SpaceshipImages(showFire: spaceship.showFire(fromGroundPerc))),
+            child: AnimatedScale(
+              scale: pageNum.isInBetween(0, 5)
+                  ? 1
+                  : pageNum.isInBetween(5, 8)
+                      ? 0.8
+                      : pageNum.isInBetween(8, 10)
+                          ? 0.6
+                          : 0.4,
+              duration: const Duration(milliseconds: 1000),
+              child:
+                  SpaceshipImages(showFire: spaceship.showFire(fromGroundPerc)),
+            ),
+          ),
+        ),
       );
     });
   }
