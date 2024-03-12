@@ -1,7 +1,7 @@
 import numpy as np
 from colors import apply_gradient_to_img, create_gradient, generate_gradient_colors
 from utility import clamp, softmax
-from constants import ground_percs, groung_colors, sunset_base_colors
+from constants import ground_percs, groung_colors, sunset_base_colors_v2, sunset_percs
 
 
 def create_background(h: float, w: float) -> np.ndarray:
@@ -44,28 +44,29 @@ def create_ground(background: np.ndarray, start_h: float, ground_h: float) -> No
 
 
 def create_sky(background: np.ndarray, start_h: float, sky_h: float) -> None:
-    num_colors_desired = 100
-    distributed_colors = generate_gradient_colors(
-        sunset_base_colors, num_colors_desired
-    )[::-1]
-    num_colors = len(distributed_colors)
-    # heights = [int(sky_h * perc) for perc in sky_percs]
-    percs = softmax(
-        np.array(
-            [0.5] * np.round(num_colors / 6).astype(int)
-            + [0.2] * np.round(num_colors / 6).astype(int)
-            + [0.2] * np.round(num_colors / 6).astype(int)
-            + [0.1] * np.round(num_colors / 6).astype(int)
-            + [0.05] * np.round(num_colors / 6).astype(int)
-            + [1] * np.round(num_colors / 6).astype(int)
-        )
-    )
-    # print(f"Sum of percs: {np.sum(percs)} ({len(percs)})")
-    heights = (percs * sky_h).astype(int)
+    heights = [int(sky_h * perc) for perc in sunset_percs]
 
-    blues = create_gradient(
-        distributed_colors,
-        heights,
-    )
+    colors = create_gradient(sunset_base_colors_v2, heights)
 
-    apply_gradient_to_img(background, start_h, blues)
+    apply_gradient_to_img(background, start_h, colors)
+
+
+# def create_sky(background: np.ndarray, start_h: float, sky_h: float) -> None:
+#     num_colors_desired = (len(sunset_base_colors) - 1) * 20
+#     distributed_colors = generate_gradient_colors(
+#         sunset_base_colors, num_colors_desired
+#     )[::-1]
+#     num_colors = len(distributed_colors)
+
+#     # percs = [0.5, 0.2, 0.1, 0.05, 1]
+#     # percs = np.array([[p] * np.round(num_colors / 5).astype(int) for p in percs])
+#     # percs = softmax(percs.flatten())
+#     percs = np.array([1 / len(distributed_colors)] * len(distributed_colors))
+#     heights = (percs * sky_h).astype(int)
+#     print(num_colors, len(heights))
+#     blues = create_gradient(
+#         distributed_colors,
+#         heights,
+#     )
+
+#     apply_gradient_to_img(background, start_h, blues)

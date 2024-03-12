@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/data/bindings/spaceship_bindings.dart';
-import 'package:portfolio/ui/pages/spaceship_page.dart';
-// import 'package:portfolio/trials/home_view.dart';
+import 'package:portfolio/config/themes.dart';
+import 'package:portfolio/data/bindings/initial_bindings.dart';
+import 'package:portfolio/ui/home_page.dart';
+
+// Reference sites:
+// https://shaq-portfolio.netlify.app/#about
+// http://preview.themeforest.net/item/ramsay-personal-cvresume-wordpress-theme/full_screen_preview/26080372?_ga=2.54900265.305267862.1710259304-753787713.1710259304
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,11 +20,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData.dark(
-        useMaterial3: true,
-      ),
-      initialBinding: SpaceshipBindings(),
-      home: const SpaceshipPage(),
+      theme: Themes.darkTheme(),
+      initialBinding: InitialBindings(),
+      home: const HomePage(),
     );
   }
 }

@@ -2,15 +2,17 @@ import numpy as np
 
 
 w, h = 1920, 1920 * 3
-ground_h = min(np.floor(h * 0.1), 400)
-sky_h = np.ceil(h * 0.7)
+ground_h = min(np.floor(h * 0.1).astype(int), 400)
+sky_h = np.ceil(h * 0.7).astype(int)
+empty_h = h - (ground_h + sky_h)
 
 start_ground = h - ground_h
 start_sky = h - (ground_h + sky_h)
+start_empty = 0
 
-print(f"ground_h: {ground_h}, sky_h: {sky_h}")
+print(f"ground_h: {ground_h}, sky_h: {sky_h}, empty_h: {empty_h}, h: {h}")
 print(
-    f"ground: [{start_ground}, {start_ground + ground_h}], sky: [{start_sky}, {start_sky + sky_h}]"
+    f"empty: [{start_empty}, {start_empty + empty_h}], sky: [{start_sky}, {start_sky + sky_h}], ground: [{start_ground}, {start_ground + ground_h}]"
 )
 n_stars = 300  # 30_000
 star_r = 3
@@ -62,3 +64,40 @@ sunset_base_colors = [
     (0, 0, 0),
     (0, 0, 0),
 ]
+
+sunset_base_colors_v2 = [
+    (0, 0, 0),
+    (1, 0, 21),
+    (9, 3, 73),
+    (7, 40, 121),
+    (27, 34, 100),
+    (48, 29, 125),
+    (116, 8, 70),
+    (161, 0, 42),
+    (240, 21, 1),
+    (255, 95, 1),
+]
+sunset_percs = [
+    0.1,  # 0.0978681,
+    0.1,  # 0.10816098,
+    0.1,  # 0.11953637,
+    0.1,  # 0.13210812,
+    0.1,  # 0.13210812,
+    0.1,  # 0.13210812,
+    0.1,  # 0.13210812,
+    0.1,  # 0.14600205,
+    0.1,
+    0.1
+]
+
+
+Color.fromRGBO(0, 0, 0, 1),
+Color.fromRGBO(1, 0, 21, 1),
+Color.fromRGBO(9, 3, 73, 1),
+Color.fromRGBO(7, 40, 121, 1),
+Color.fromRGBO(27, 34, 100, 1),
+Color.fromRGBO(48, 29, 125, 1),
+Color.fromRGBO(116, 8, 70, 1),
+Color.fromRGBO(161, 0, 42, 1),
+Color.fromRGBO(240, 21, 1, 1),
+Color.fromRGBO(255, 95, 1, 1),
