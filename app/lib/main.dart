@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/data/bindings/spaceship_bindings.dart';
-import 'package:portfolio/ui/pages/spaceship_page.dart';
-// import 'package:portfolio/trials/home_view.dart';
+import 'package:portfolio/config/themes.dart';
+import 'package:portfolio/data/bindings/initial_binding.dart';
+import 'package:portfolio/ui/home_page.dart';
+import 'package:portfolio/ui/trial_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,12 +16,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData.dark(
-        useMaterial3: true,
-      ),
-      initialBinding: SpaceshipBindings(),
-      home: const SpaceshipPage(),
+      title: 'Portfolio',
+      debugShowCheckedModeBanner: false,
+      theme: Themes.lightTheme(),
+      darkTheme: Themes.darkTheme(),
+      themeMode: ThemeMode.system,
+      initialBinding: InitialBinding(),
+      home: const TrialPage(),
     );
   }
 }
