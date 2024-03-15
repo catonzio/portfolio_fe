@@ -33,8 +33,8 @@ class MyTransition extends CustomTransition {
       end = const Offset(0.0, 0.0); // Slide the new page up from behind
     } else {
       isNext = true;
-      begin = const Offset(0.0, 1.0); // Start from the same position
-      end = const Offset(0.0, 0.0); // Slide the new page up from behind
+      begin = const Offset(0.0, 0.0); // Start from the same position
+      end = const Offset(0.0, -1.0); // Slide the new page up from behind
     }
     controller.currentIndex = index;
     // const curve = Curves.easeInQuart;

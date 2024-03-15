@@ -20,5 +20,12 @@ class Pages {
       transitionDuration: const Duration(milliseconds: 500),
       curve: Curves.easeInQuart,
     ),
+    Routes.trial3: GetPage(
+      name: Routes.trial3,
+      page: () => const TrialPage3(),
+      customTransition: MyTransition(index: 2),
+      transitionDuration: const Duration(milliseconds: 500),
+      curve: Curves.easeInQuart,
+    ),
   };
 }

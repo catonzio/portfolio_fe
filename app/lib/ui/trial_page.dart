@@ -28,6 +28,18 @@ class TrialPage2 extends StatelessWidget {
   }
 }
 
+class TrialPage3 extends StatelessWidget {
+  const TrialPage3({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MyPage(
+        body: Container(
+            color: Colors.green[200],
+            child: const Center(child: Text('This is a trial page 3'))));
+  }
+}
+
 // class TrialPage2 extends StatelessWidget {
 //   const TrialPage2({super.key});
 
