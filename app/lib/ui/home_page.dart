@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/data/controllers/page2_controller.dart';
-import 'package:portfolio/data/controllers/pages_controller.dart';
+import 'package:portfolio/data/controllers/page_views_controller.dart';
 
 class ActionButton extends StatelessWidget {
   final String text;
@@ -33,7 +31,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PagesController controller = Get.find<PagesController>();
+    final PageViewsController controller = Get.find<PageViewsController>();
     return Scaffold(
         appBar: AppBar(
           title: const Text('Home Page'),
@@ -83,7 +81,7 @@ class Page2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final PagesController pagesController = Get.find<PagesController>();
+    final PageViewsController pagesController = Get.find<PageViewsController>();
     final Page2Controller controller = Get.find<Page2Controller>();
 
     return Container(

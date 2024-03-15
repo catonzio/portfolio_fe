@@ -1,47 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:portfolio/config/pages.dart';
 
 class PagesController extends GetxController {
-  final RxInt _currentIndex = 0.obs;
-  int get currentIndex => _currentIndex.value;
-  set currentIndex(int value) => _currentIndex.value = value;
+  static PagesController get to => Get.find<PagesController>();
 
-  RxDouble pageValue = 0.0.obs;
-
-  final PageController pageController = PageController();
-
-  @override
-  void onInit() {
-    pageController.addListener(() {
-      currentIndex = pageController.page?.round() ?? 0;
-      pageValue.value = pageController.page ?? 0.0;
-    });
-    super.onInit();
-  }
-
-  @override
-  void dispose() {
-    pageController.dispose();
-    super.dispose();
-  }
+  int currentIndex = 0;
 
   void changePage(int index) {
-    pageController.animateToPage(
-      index,
-      duration: const Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
-    );
+    currentIndex = index;
   }
 
-  void previousPage() {
-    if (currentIndex > 0) {
-      changePage(currentIndex - 1);
+  int onChange(dynamic movement) {
+    int newIndex = 0;
+    if (movement is Offset) {
+      if (movement.dy > 0) {
+        newIndex = currentIndex + 1;
+      } else {
+        newIndex = currentIndex - 1;
+      }
+    } else if (movement is DragEndDetails) {
+      if (movement.velocity.pixelsPerSecond.dy < 0) {
+        newIndex = currentIndex + 1;
+      } else {
+        newIndex = currentIndex - 1;
+      }
     }
+    return newIndex.clamp(0, Pages.pages.length - 1);
   }
 
-  void nextPage() {
-    if (currentIndex < 2) {
-      changePage(currentIndex + 1);
-    }
-  }
+  // void onScrollEvent(Offset scrollDelta, Function(int, int) changePage) {
+  //   int newIndex;
+
+  //   if (scrollDelta.dy > 0) {
+  //     newIndex = currentIndex + 1;
+  //   } else {
+  //     newIndex = currentIndex - 1;
+  //   }
+  //   changePage(currentIndex, newIndex);
+  // }
+
+  // void onVerticalDragEnd(DragEndDetails details, Function(int, int) changePage) {
+  //   int newIndex;
+
+  //   if (details.velocity.pixelsPerSecond.dy < 0) {
+  //     newIndex = currentIndex + 1;
+  //   } else {
+  //     newIndex = currentIndex - 1;
+  //   }
+  //   changePage(currentIndex, newIndex);
+  // }
 }

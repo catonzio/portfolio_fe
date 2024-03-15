@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:portfolio/config/pages.dart';
 import 'package:portfolio/config/themes.dart';
 import 'package:portfolio/data/bindings/initial_binding.dart';
-import 'package:portfolio/ui/home_page.dart';
+// import 'package:portfolio/ui/home_page.dart';
 import 'package:portfolio/ui/trial_page.dart';
 
 void main() {
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       darkTheme: Themes.darkTheme(),
       themeMode: ThemeMode.system,
       initialBinding: InitialBinding(),
+      getPages: Pages.pages.values.toList(),
       home: const TrialPage(),
     );
   }
