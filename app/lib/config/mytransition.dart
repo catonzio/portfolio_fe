@@ -21,8 +21,6 @@ class MyTransition extends CustomTransition {
     if (controller.currentIndex == index) {
       return child;
     }
-    controller.isAnimating = true;
-
     Offset begin;
     Offset end;
     bool isNext;
@@ -45,21 +43,19 @@ class MyTransition extends CustomTransition {
         Tween(begin: begin, end: end); //.chain(CurveTween(curve: curve));
 
     var offsetAnimation = animation.drive(tween);
-    controller.isAnimating = false;
 
-    return isNext
-        ? Stack(
-            children: [
-              child,
-              SlideTransition(position: offsetAnimation, child: oldChild),
-              MyOverlay(),
-            ],
-          )
-        : Stack(
-            children: [
-              SlideTransition(position: offsetAnimation, child: child),
-              MyOverlay()
-            ],
-          );
+    return getChild(isNext, child, offsetAnimation, oldChild);
+  }
+
+  Stack getChild(bool isNext, Widget child, Animation<Offset> offsetAnimation,
+      Widget oldChild) {
+    return Stack(
+      children: [
+        if (isNext) child,
+        SlideTransition(
+            position: offsetAnimation, child: isNext ? oldChild : child),
+        const MyOverlay(),
+      ],
+    );
   }
 }

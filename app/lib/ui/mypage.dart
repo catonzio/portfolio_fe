@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/pages.dart';
+import 'package:portfolio/config/routes.dart';
 import 'package:portfolio/data/controllers/pages_controller.dart';
 
 class MyOverlay extends StatelessWidget {
@@ -40,12 +41,12 @@ class MyOverlay extends StatelessWidget {
   }
 
   Future<Object?> changePage(BuildContext context, int pageNum) =>
-      Navigator.of(context).pushNamed(Pages.pages.keys.toList()[pageNum]);
+      Navigator.of(context).pushReplacementNamed(Routes.all[pageNum]);
 }
 
 class MyPage extends StatelessWidget {
   final Widget body;
-  final bool Function() isScrollEnabled;
+  final bool Function(Offset scrollOffset) isScrollEnabled;
   final void Function()? onChangePage;
 
   const MyPage(
@@ -60,19 +61,17 @@ class MyPage extends StatelessWidget {
     return Scaffold(
       body: GestureDetector(
           onVerticalDragEnd: (details) {
-            print("Drag is animating: ${controller.isAnimating}");
-            !controller.isAnimating
-                ? changePage(context, controller, details)
-                : print("Not a drag event");
+            if (!controller.isAnimating) {
+              changePage(context, controller, details);
+            }
           },
           child: Listener(
               onPointerSignal: (event) {
-                print("Scroll is animating: ${controller.isAnimating}");
-                event is PointerScrollEvent &&
-                        !controller.isAnimating &&
-                        isScrollEnabled()
-                    ? changePage(context, controller, event.scrollDelta)
-                    : print("Not a scroll event");
+                if (event is PointerScrollEvent &&
+                    !controller.isAnimating &&
+                    isScrollEnabled(event.scrollDelta)) {
+                  changePage(context, controller, event.scrollDelta);
+                }
               },
               child: body)),
     );
@@ -87,7 +86,13 @@ class MyPage extends StatelessWidget {
         print("Calling onChangePage");
         onChangePage!();
       }
-      Navigator.of(context).pushNamed(Pages.pages.keys.toList()[newIndex]);
+      // controller.currentIndex = newIndex;
+      // controller.isAnimating = true;
+      Navigator.of(context)
+          .pushReplacementNamed(Routes.all[newIndex])
+          .whenComplete(() {
+        // controller.isAnimating = false;
+      });
     }
   }
 }

@@ -9,7 +9,7 @@ class TrialPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyPage(
-        isScrollEnabled: () => true,
+        isScrollEnabled: (_) => true,
         body: Container(
             color: Colors.red[200],
             child: const Center(child: Text('This is a trial page'))));
@@ -23,25 +23,30 @@ class TrialPage2 extends StatelessWidget {
   Widget build(BuildContext context) {
     final Trial2Controller controller = Trial2Controller.to;
     return MyPage(
-        isScrollEnabled: controller.isScrollEnabled,
-        onChangePage: () => controller.scrollController
-            .detach(controller.scrollController.position),
+        isScrollEnabled: (Offset offset) => controller.isScrollEnabled(offset),
+        // onChangePage: () => controller.scrollController
+        //     .detach(controller.scrollController.position),
         body: Container(
-          width: context.width,
-          height: context.height,
-          color: Colors.blue.shade300,
-          child: SingleChildScrollView(
-            controller: controller.scrollController,
-            // restorationId: "page2",
-            scrollDirection: Axis.vertical,
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: List.generate(100, (index) => Text("Text $index")),
-              ),
-            ),
-          ),
-        ));
+            width: context.width,
+            height: context.height,
+            color: Colors.blue.shade300,
+            child: ListView(
+              controller: controller.scrollController,
+              restorationId: "page2",
+              children: List.generate(100, (index) => Text("Text $index")),
+            )
+            // SingleChildScrollView(
+            //   controller: controller.scrollController,
+            //   restorationId: "page2",
+            //   scrollDirection: Axis.vertical,
+            //   child: Center(
+            //     child: Column(
+            //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //       children: List.generate(100, (index) => Text("Text $index")),
+            //     ),
+            //   ),
+            // ),
+            ));
   }
 }
 
@@ -51,7 +56,7 @@ class TrialPage3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyPage(
-        isScrollEnabled: () => true,
+        isScrollEnabled: (_) => true,
         body: Container(
             color: Colors.green[200],
             child: const Center(child: Text('This is a trial page 3'))));

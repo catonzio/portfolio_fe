@@ -8,26 +8,37 @@ class Trial2Controller extends GetxController {
   // final RxBool _isScrollEnabled = true.obs;
   // bool get isScrollEnabled => _isScrollEnabled.value;
   // set isScrollEnabled(bool value) => _isScrollEnabled.value = value;
+  final RxDouble _lastOffset = 0.0.obs;
+  double get lastOffset => _lastOffset.value;
+  set lastOffset(double value) => _lastOffset.value = value;
 
   final ScrollController scrollController = ScrollController(
+    debugLabel: "page2",
     keepScrollOffset: true,
-    // onAttach: (position) => print("SCROLL ATTACHED: $position"),
-    // onDetach: (position) => print("SCROLL DETACHED: $position"),
+    onAttach: (position) => print("SCROLL ATTACHED: $position"),
+    onDetach: (position) => print("SCROLL DETACHED: $position"),
   );
 
   @override
   void onInit() {
-    // scrollController.addListener(() {
-    //   if (scrollController.position.atEdge) {
-    //     isScrollEnabled = true;
-    //   } else {
-    //     isScrollEnabled = false;
-    //   }
-    // });
+    scrollController.addListener(() {
+      if (!scrollController.position.atEdge) {
+        lastOffset = scrollController.offset;
+      }
+    });
     super.onInit();
   }
 
-  bool isScrollEnabled() => scrollController.position.atEdge;
+  bool isScrollEnabled(Offset offset) {
+    if (offset.dy > 0 &&
+        scrollController.offset == scrollController.position.maxScrollExtent) {
+      return true;
+    } else if (offset.dy < 0 &&
+        scrollController.offset == scrollController.position.minScrollExtent) {
+      return true;
+    }
+    return false;
+  }
 
   @override
   void dispose() {
@@ -60,14 +71,14 @@ class PagesController extends GetxController {
     }
     int newIndex = currentIndex;
     if (movement is Offset) {
-      print(movement.dy);
+      // print(movement.dy);
       if (movement.dy > 99) {
         newIndex += 1;
       } else if (movement.dy < -99) {
         newIndex -= 1;
       }
     } else if (movement is DragEndDetails) {
-      print(movement.velocity.pixelsPerSecond.dy);
+      // print(movement.velocity.pixelsPerSecond.dy);
       if (movement.velocity.pixelsPerSecond.dy < -100) {
         newIndex += 1;
       } else if (movement.velocity.pixelsPerSecond.dy > 100) {
