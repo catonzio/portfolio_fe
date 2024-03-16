@@ -45,31 +45,49 @@ class MyOverlay extends StatelessWidget {
 
 class MyPage extends StatelessWidget {
   final Widget body;
-  const MyPage({super.key, required this.body});
+  final bool Function() isScrollEnabled;
+  final void Function()? onChangePage;
+
+  const MyPage(
+      {super.key,
+      required this.body,
+      required this.isScrollEnabled,
+      this.onChangePage});
 
   @override
   Widget build(BuildContext context) {
     final PagesController controller = PagesController.to;
     return Scaffold(
-      body: Listener(
-        onPointerSignal: (event) => event is PointerScrollEvent
-            ? changePage(context, controller, event.scrollDelta)
-            : null,
-        child: GestureDetector(
-            onVerticalDragEnd: (details) =>
-                changePage(context, controller, details),
-            child: Stack(
-              children: [
-                Positioned(top: 0, bottom: 0, left: 0, right: 0, child: body),
-                const MyOverlay()
-              ],
-            )),
-      ),
+      body: GestureDetector(
+          onVerticalDragEnd: (details) {
+            print("Drag is animating: ${controller.isAnimating}");
+            !controller.isAnimating
+                ? changePage(context, controller, details)
+                : print("Not a drag event");
+          },
+          child: Listener(
+              onPointerSignal: (event) {
+                print("Scroll is animating: ${controller.isAnimating}");
+                event is PointerScrollEvent &&
+                        !controller.isAnimating &&
+                        isScrollEnabled()
+                    ? changePage(context, controller, event.scrollDelta)
+                    : print("Not a scroll event");
+              },
+              child: body)),
     );
   }
 
-  Future<Object?> changePage(
-          BuildContext context, PagesController controller, dynamic event) =>
-      Navigator.of(context)
-          .pushNamed(Pages.pages.keys.toList()[controller.onChange(event)]);
+  void changePage(
+      BuildContext context, PagesController controller, dynamic event) {
+    if (!controller.isAnimating) {
+      int newIndex = controller.onChange(event);
+      if (newIndex == controller.currentIndex) return;
+      if (onChangePage != null) {
+        print("Calling onChangePage");
+        onChangePage!();
+      }
+      Navigator.of(context).pushNamed(Pages.pages.keys.toList()[newIndex]);
+    }
+  }
 }

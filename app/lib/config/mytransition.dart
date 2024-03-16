@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/pages.dart';
 import 'package:portfolio/data/controllers/pages_controller.dart';
+import 'package:portfolio/ui/mypage.dart';
 
 class MyTransition extends CustomTransition {
   final int index;
@@ -20,12 +21,14 @@ class MyTransition extends CustomTransition {
     if (controller.currentIndex == index) {
       return child;
     }
+    controller.isAnimating = true;
 
     Offset begin;
     Offset end;
     bool isNext;
-    Widget oldChild =
-        Pages.pages.values.elementAt(controller.currentIndex).page();
+    Widget oldChild = controller.currentIndex == -1
+        ? Container()
+        : Pages.pages.values.elementAt(controller.currentIndex).page();
 
     if (controller.currentIndex > index) {
       isNext = false;
@@ -42,14 +45,21 @@ class MyTransition extends CustomTransition {
         Tween(begin: begin, end: end); //.chain(CurveTween(curve: curve));
 
     var offsetAnimation = animation.drive(tween);
+    controller.isAnimating = false;
 
     return isNext
         ? Stack(
             children: [
               child,
               SlideTransition(position: offsetAnimation, child: oldChild),
+              MyOverlay(),
             ],
           )
-        : SlideTransition(position: offsetAnimation, child: child);
+        : Stack(
+            children: [
+              SlideTransition(position: offsetAnimation, child: child),
+              MyOverlay()
+            ],
+          );
   }
 }

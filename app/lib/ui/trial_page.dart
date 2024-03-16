@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:portfolio/data/controllers/pages_controller.dart';
 import 'package:portfolio/ui/mypage.dart';
 
 class TrialPage extends StatelessWidget {
@@ -7,6 +9,7 @@ class TrialPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyPage(
+        isScrollEnabled: () => true,
         body: Container(
             color: Colors.red[200],
             child: const Center(child: Text('This is a trial page'))));
@@ -18,13 +21,27 @@ class TrialPage2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Trial2Controller controller = Trial2Controller.to;
     return MyPage(
+        isScrollEnabled: controller.isScrollEnabled,
+        onChangePage: () => controller.scrollController
+            .detach(controller.scrollController.position),
         body: Container(
-      color: Colors.blue.shade300,
-      child: const Center(
-        child: Text('This is a trial page 2'),
-      ),
-    ));
+          width: context.width,
+          height: context.height,
+          color: Colors.blue.shade300,
+          child: SingleChildScrollView(
+            controller: controller.scrollController,
+            // restorationId: "page2",
+            scrollDirection: Axis.vertical,
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: List.generate(100, (index) => Text("Text $index")),
+              ),
+            ),
+          ),
+        ));
   }
 }
 
@@ -34,6 +51,7 @@ class TrialPage3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyPage(
+        isScrollEnabled: () => true,
         body: Container(
             color: Colors.green[200],
             child: const Center(child: Text('This is a trial page 3'))));

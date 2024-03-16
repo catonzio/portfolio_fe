@@ -55,7 +55,7 @@ class HomePage extends StatelessWidget {
           child: PageView(
             controller: controller.pageController,
             scrollDirection: Axis.vertical,
-            pageSnapping: true,
+            pageSnapping: false,
             dragStartBehavior: DragStartBehavior.down,
             children: const [Page1(), Page2(), Page3()],
           ),

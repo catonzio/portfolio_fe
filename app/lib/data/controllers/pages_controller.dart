@@ -2,28 +2,76 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/pages.dart';
 
+class Trial2Controller extends GetxController {
+  static Trial2Controller get to => Get.find<Trial2Controller>();
+
+  // final RxBool _isScrollEnabled = true.obs;
+  // bool get isScrollEnabled => _isScrollEnabled.value;
+  // set isScrollEnabled(bool value) => _isScrollEnabled.value = value;
+
+  final ScrollController scrollController = ScrollController(
+    keepScrollOffset: true,
+    // onAttach: (position) => print("SCROLL ATTACHED: $position"),
+    // onDetach: (position) => print("SCROLL DETACHED: $position"),
+  );
+
+  @override
+  void onInit() {
+    // scrollController.addListener(() {
+    //   if (scrollController.position.atEdge) {
+    //     isScrollEnabled = true;
+    //   } else {
+    //     isScrollEnabled = false;
+    //   }
+    // });
+    super.onInit();
+  }
+
+  bool isScrollEnabled() => scrollController.position.atEdge;
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void onClose() {
+    scrollController.dispose();
+    super.onClose();
+  }
+}
+
 class PagesController extends GetxController {
   static PagesController get to => Get.find<PagesController>();
 
-  int currentIndex = 0;
+  int currentIndex = -1;
+  final RxBool _isAnimating = false.obs;
+  bool get isAnimating => _isAnimating.value;
+  set isAnimating(bool value) => _isAnimating.value = value;
 
   void changePage(int index) {
     currentIndex = index;
   }
 
   int onChange(dynamic movement) {
-    int newIndex = 0;
+    if (isAnimating) {
+      return currentIndex;
+    }
+    int newIndex = currentIndex;
     if (movement is Offset) {
-      if (movement.dy > 0) {
-        newIndex = currentIndex + 1;
-      } else {
-        newIndex = currentIndex - 1;
+      print(movement.dy);
+      if (movement.dy > 99) {
+        newIndex += 1;
+      } else if (movement.dy < -99) {
+        newIndex -= 1;
       }
     } else if (movement is DragEndDetails) {
-      if (movement.velocity.pixelsPerSecond.dy < 0) {
-        newIndex = currentIndex + 1;
-      } else {
-        newIndex = currentIndex - 1;
+      print(movement.velocity.pixelsPerSecond.dy);
+      if (movement.velocity.pixelsPerSecond.dy < -100) {
+        newIndex += 1;
+      } else if (movement.velocity.pixelsPerSecond.dy > 100) {
+        newIndex -= 1;
       }
     }
     return newIndex.clamp(0, Pages.pages.length - 1);

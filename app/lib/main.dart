@@ -4,7 +4,9 @@ import 'package:portfolio/config/pages.dart';
 import 'package:portfolio/config/themes.dart';
 import 'package:portfolio/data/bindings/initial_binding.dart';
 // import 'package:portfolio/ui/home_page.dart';
-import 'package:portfolio/ui/trial_page.dart';
+// import 'package:portfolio/ui/trial_page.dart';
+
+import 'config/routes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       initialBinding: InitialBinding(),
       getPages: Pages.pages.values.toList(),
-      home: const TrialPage(),
+      initialRoute: Routes.trial,
     );
   }
 }

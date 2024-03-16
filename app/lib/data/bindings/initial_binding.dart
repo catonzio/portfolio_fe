@@ -8,7 +8,8 @@ class InitialBinding extends Bindings {
   void dependencies() {
     Get.lazyPut(() => PageViewsController());
     Get.lazyPut(() => Page2Controller());
-    Get.lazyPut(() => PagesController());
+    Get.lazyPut(() => PagesController(), fenix: true);
+    Get.lazyPut(() => Trial2Controller());
     // Get.put(Page2Controller(), permanent: true);
   }
 }
