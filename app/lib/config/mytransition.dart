@@ -19,7 +19,9 @@ class MyTransition extends CustomTransition {
       Widget child) {
     final PagesController controller = PagesController.to;
     if (controller.currentIndex == index) {
-      return child;
+      return Stack(
+        children: [child, const MyOverlay()],
+      );
     }
     Offset begin;
     Offset end;
@@ -37,7 +39,7 @@ class MyTransition extends CustomTransition {
       begin = const Offset(0.0, 0.0); // Start from the same position
       end = const Offset(0.0, -1.0); // Slide the new page up from behind
     }
-    controller.currentIndex = index;
+    controller.changePage(index);
     // const curve = Curves.easeInQuart;
     var tween =
         Tween(begin: begin, end: end); //.chain(CurveTween(curve: curve));

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:portfolio/config/constants.dart';
 import 'package:portfolio/config/mytransition.dart';
 import 'package:portfolio/config/routes.dart';
 import 'package:portfolio/data/bindings/trial2_binding.dart';
@@ -11,24 +12,22 @@ class Pages {
         name: Routes.trial2,
         page: () => const TrialPage2(),
         customTransition: MyTransition(index: 0),
-        transitionDuration: const Duration(milliseconds: 500),
+        transitionDuration: Constants.pageTransitionDuration,
         curve: Curves.easeInQuart,
         binding: Trial2Binding(),
         maintainState: true),
-        
     Routes.trial: GetPage(
       name: Routes.trial,
       page: () => const TrialPage(),
       customTransition: MyTransition(index: 1),
-      transitionDuration: const Duration(milliseconds: 500),
+      transitionDuration: Constants.pageTransitionDuration,
       curve: Curves.easeInQuart,
     ),
-    
     Routes.trial3: GetPage(
       name: Routes.trial3,
       page: () => const TrialPage3(),
       customTransition: MyTransition(index: 2),
-      transitionDuration: const Duration(milliseconds: 500),
+      transitionDuration: Constants.pageTransitionDuration,
       curve: Curves.easeInQuart,
     ),
   };

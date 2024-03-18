@@ -61,6 +61,8 @@ class PagesController extends GetxController {
   bool get isAnimating => _isAnimating.value;
   set isAnimating(bool value) => _isAnimating.value = value;
 
+  final RxList<bool> isHovering = List.generate(Pages.pages.length, (index) => false).obs;
+
   void changePage(int index) {
     currentIndex = index;
   }
@@ -70,18 +72,19 @@ class PagesController extends GetxController {
       return currentIndex;
     }
     int newIndex = currentIndex;
+    print(movement);
     if (movement is Offset) {
       // print(movement.dy);
-      if (movement.dy > 99) {
+      if (movement.dy > 10) {
         newIndex += 1;
-      } else if (movement.dy < -99) {
+      } else if (movement.dy < -10) {
         newIndex -= 1;
       }
     } else if (movement is DragEndDetails) {
       // print(movement.velocity.pixelsPerSecond.dy);
-      if (movement.velocity.pixelsPerSecond.dy < -100) {
+      if (movement.velocity.pixelsPerSecond.dy < -0) {
         newIndex += 1;
-      } else if (movement.velocity.pixelsPerSecond.dy > 100) {
+      } else if (movement.velocity.pixelsPerSecond.dy > 0) {
         newIndex -= 1;
       }
     }

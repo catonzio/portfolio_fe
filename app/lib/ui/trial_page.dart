@@ -33,7 +33,7 @@ class TrialPage2 extends StatelessWidget {
             child: ListView(
               controller: controller.scrollController,
               restorationId: "page2",
-              children: List.generate(100, (index) => Text("Text $index")),
+              children: List.generate(50, (index) => Text("Text $index")),
             )
             // SingleChildScrollView(
             //   controller: controller.scrollController,

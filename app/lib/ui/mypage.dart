@@ -1,9 +1,39 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:portfolio/config/constants.dart';
 import 'package:portfolio/config/pages.dart';
 import 'package:portfolio/config/routes.dart';
 import 'package:portfolio/data/controllers/pages_controller.dart';
+
+void changePage(BuildContext context, PagesController controller, dynamic event,
+    void Function()? onChangePage, int? newIndex) {
+  if (!controller.isAnimating) {
+    if (newIndex == null && event != null) {
+      newIndex = controller.onChange(event);
+    }
+    if (newIndex == controller.currentIndex) return;
+    if (onChangePage != null) {
+      print("Calling onChangePage");
+      onChangePage();
+    }
+    // controller.currentIndex = newIndex;
+    controller.isAnimating = true;
+
+    Future.delayed(Constants.pageTransitionDuration, () {
+      print("Setting false");
+      controller.isAnimating = false;
+    });
+    Navigator.of(context)
+        .pushReplacementNamed(Routes.all[newIndex!])
+        .whenComplete(() {
+      // controller.isAnimating = false;
+    });
+  }
+}
+
+
 
 class MyOverlay extends StatelessWidget {
   const MyOverlay({super.key});
@@ -13,35 +43,89 @@ class MyOverlay extends StatelessWidget {
     return Positioned(
       top: 0,
       left: 0,
-      height: context.height * 0.1,
+      height: context.height * 0.2,
       width: context.width,
       child: Container(
         color: Colors.black.withOpacity(0.5),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            for (var i = 0; i < Pages.pages.length; i++)
-              ElevatedButton(
-                onPressed: () => changePage(context, i),
-                child: Center(
-                  child: Text(
-                    Pages.pages.keys.toList()[i],
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              for (var i = 0; i < Pages.pages.length; i++)
+                NavButton(index: i, text: Routes.all[i])
+            ],
+          ),
         ),
       ),
     );
   }
 
-  Future<Object?> changePage(BuildContext context, int pageNum) =>
-      Navigator.of(context).pushReplacementNamed(Routes.all[pageNum]);
+  // Future<Object?> changePage(BuildContext context, int pageNum) =>
+  //     Navigator.of(context).pushReplacementNamed(Routes.all[pageNum]);
+}
+
+class NavButton extends StatelessWidget {
+  final int index;
+  final String text;
+
+  const NavButton({
+    super.key,
+    required this.index,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final PagesController controller = PagesController.to;
+    final BorderRadius borderRadius = BorderRadius.circular(10);
+
+    return Container(
+      height: context.height * 0.1 * 0.7,
+      width: context.width * 0.2,
+      padding: const EdgeInsets.all(8.0),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Material(
+              color: Colors.transparent,
+              type: MaterialType.button,
+              child: InkWell(
+                onTap: () => changePage(context, controller, null, null, index),
+                hoverColor: context.theme.colorScheme.primary.withOpacity(0.5),
+                focusColor: context.theme.colorScheme.primary.withOpacity(0.5),
+                onHover: (bool val) => controller.isHovering[index] = val,
+                borderRadius: borderRadius,
+                child: Text(
+                  text,
+                  style: context.textTheme.headlineSmall?.copyWith(
+                    color: controller.currentIndex == index
+                        ? context.theme.colorScheme.onPrimary
+                        : context.theme.colorScheme.onSurface,
+                  ),
+                ),
+              ),
+            ),
+            Obx(() {
+              return const Divider(
+                thickness: 2,
+                height: 10,
+                color: Colors.white,
+              )
+                  .animate(
+                    target: controller.isHovering[index] ? 1 : 0,
+                  )
+                  .fade(duration: 300.ms)
+                  .scaleX(begin: 0, end: 1, duration: 300.ms)
+                  .tint(
+                      begin: 0, end: 1, duration: 1000.ms, color: Colors.black);
+            })
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class MyPage extends StatelessWidget {
@@ -55,44 +139,25 @@ class MyPage extends StatelessWidget {
       required this.isScrollEnabled,
       this.onChangePage});
 
+  /// onVerticalDragEnd: (details) {
+  ///        if (!controller.isAnimating) {
+  ///          changePage(context, controller, details);
+  ///        }
+  ///      },
   @override
   Widget build(BuildContext context) {
     final PagesController controller = PagesController.to;
     return Scaffold(
-      body: GestureDetector(
-          onVerticalDragEnd: (details) {
-            if (!controller.isAnimating) {
-              changePage(context, controller, details);
+      body: Listener(
+          onPointerSignal: (event) {
+            if (event is PointerScrollEvent &&
+                !controller.isAnimating &&
+                isScrollEnabled(event.scrollDelta)) {
+              changePage(
+                  context, controller, event.scrollDelta, onChangePage, null);
             }
           },
-          child: Listener(
-              onPointerSignal: (event) {
-                if (event is PointerScrollEvent &&
-                    !controller.isAnimating &&
-                    isScrollEnabled(event.scrollDelta)) {
-                  changePage(context, controller, event.scrollDelta);
-                }
-              },
-              child: body)),
+          child: body),
     );
-  }
-
-  void changePage(
-      BuildContext context, PagesController controller, dynamic event) {
-    if (!controller.isAnimating) {
-      int newIndex = controller.onChange(event);
-      if (newIndex == controller.currentIndex) return;
-      if (onChangePage != null) {
-        print("Calling onChangePage");
-        onChangePage!();
-      }
-      // controller.currentIndex = newIndex;
-      // controller.isAnimating = true;
-      Navigator.of(context)
-          .pushReplacementNamed(Routes.all[newIndex])
-          .whenComplete(() {
-        // controller.isAnimating = false;
-      });
-    }
   }
 }
