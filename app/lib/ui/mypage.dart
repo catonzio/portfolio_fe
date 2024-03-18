@@ -22,18 +22,13 @@ void changePage(BuildContext context, PagesController controller, dynamic event,
     controller.isAnimating = true;
 
     Future.delayed(Constants.pageTransitionDuration, () {
-      print("Setting false");
       controller.isAnimating = false;
+      controller.changePage(newIndex!);
     });
-    Navigator.of(context)
-        .pushReplacementNamed(Routes.all[newIndex!])
-        .whenComplete(() {
-      // controller.isAnimating = false;
-    });
+
+    Navigator.of(context).pushReplacementNamed(Routes.all[newIndex!]);
   }
 }
-
-
 
 class MyOverlay extends StatelessWidget {
   const MyOverlay({super.key});
@@ -81,8 +76,8 @@ class NavButton extends StatelessWidget {
     final BorderRadius borderRadius = BorderRadius.circular(10);
 
     return Container(
-      height: context.height * 0.1 * 0.7,
-      width: context.width * 0.2,
+      height: context.height * 0.1 * 1,
+      width: context.width * 0.1,
       padding: const EdgeInsets.all(8.0),
       child: Center(
         child: Column(
@@ -93,18 +88,9 @@ class NavButton extends StatelessWidget {
               type: MaterialType.button,
               child: InkWell(
                 onTap: () => changePage(context, controller, null, null, index),
-                hoverColor: context.theme.colorScheme.primary.withOpacity(0.5),
-                focusColor: context.theme.colorScheme.primary.withOpacity(0.5),
                 onHover: (bool val) => controller.isHovering[index] = val,
                 borderRadius: borderRadius,
-                child: Text(
-                  text,
-                  style: context.textTheme.headlineSmall?.copyWith(
-                    color: controller.currentIndex == index
-                        ? context.theme.colorScheme.onPrimary
-                        : context.theme.colorScheme.onSurface,
-                  ),
-                ),
+                child: Text(text, style: context.textTheme.headlineSmall),
               ),
             ),
             Obx(() {
@@ -114,12 +100,13 @@ class NavButton extends StatelessWidget {
                 color: Colors.white,
               )
                   .animate(
-                    target: controller.isHovering[index] ? 1 : 0,
+                    target: controller.isHovering[index] ||
+                            controller.currentIndex == index
+                        ? 1
+                        : 0,
                   )
-                  .fade(duration: 300.ms)
-                  .scaleX(begin: 0, end: 1, duration: 300.ms)
-                  .tint(
-                      begin: 0, end: 1, duration: 1000.ms, color: Colors.black);
+                  .fade(duration: 400.ms)
+                  .scaleX(begin: 0, end: 1, duration: 400.ms);
             })
           ],
         ),
@@ -157,7 +144,12 @@ class MyPage extends StatelessWidget {
                   context, controller, event.scrollDelta, onChangePage, null);
             }
           },
-          child: body),
+          child: Stack(
+            children: [
+              body,
+              const MyOverlay(),
+            ],
+          )),
     );
   }
 }

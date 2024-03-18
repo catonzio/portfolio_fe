@@ -5,39 +5,24 @@ import 'package:portfolio/config/pages.dart';
 class Trial2Controller extends GetxController {
   static Trial2Controller get to => Get.find<Trial2Controller>();
 
-  // final RxBool _isScrollEnabled = true.obs;
-  // bool get isScrollEnabled => _isScrollEnabled.value;
-  // set isScrollEnabled(bool value) => _isScrollEnabled.value = value;
   final RxDouble _lastOffset = 0.0.obs;
   double get lastOffset => _lastOffset.value;
   set lastOffset(double value) => _lastOffset.value = value;
 
   final ScrollController scrollController = ScrollController(
     debugLabel: "page2",
-    keepScrollOffset: true,
-    onAttach: (position) => print("SCROLL ATTACHED: $position"),
-    onDetach: (position) => print("SCROLL DETACHED: $position"),
+    onAttach: (position) => print("SCROLL ATTACHED: ${position.debugLabel}"),
+    onDetach: (position) => print("SCROLL DETACHED: ${position.debugLabel}"),
   );
 
   @override
-  void onInit() {
+  void onReady() {
+    super.onReady();
     scrollController.addListener(() {
       if (!scrollController.position.atEdge) {
         lastOffset = scrollController.offset;
       }
     });
-    super.onInit();
-  }
-
-  bool isScrollEnabled(Offset offset) {
-    if (offset.dy > 0 &&
-        scrollController.offset == scrollController.position.maxScrollExtent) {
-      return true;
-    } else if (offset.dy < 0 &&
-        scrollController.offset == scrollController.position.minScrollExtent) {
-      return true;
-    }
-    return false;
   }
 
   @override
@@ -51,17 +36,32 @@ class Trial2Controller extends GetxController {
     scrollController.dispose();
     super.onClose();
   }
+
+  bool isScrollEnabled(Offset offset) {
+    if (offset.dy > 0 &&
+        scrollController.offset == scrollController.position.maxScrollExtent) {
+      return true;
+    } else if (offset.dy < 0 &&
+        scrollController.offset == scrollController.position.minScrollExtent) {
+      return true;
+    }
+    return false;
+  }
 }
 
 class PagesController extends GetxController {
   static PagesController get to => Get.find<PagesController>();
 
-  int currentIndex = -1;
+  final RxInt _currentIndex = 0.obs;
+  int get currentIndex => _currentIndex.value;
+  set currentIndex(int value) => _currentIndex.value = value;
+
   final RxBool _isAnimating = false.obs;
   bool get isAnimating => _isAnimating.value;
   set isAnimating(bool value) => _isAnimating.value = value;
 
-  final RxList<bool> isHovering = List.generate(Pages.pages.length, (index) => false).obs;
+  final RxList<bool> isHovering =
+      List.generate(Pages.pages.length, (index) => false).obs;
 
   void changePage(int index) {
     currentIndex = index;
@@ -90,26 +90,4 @@ class PagesController extends GetxController {
     }
     return newIndex.clamp(0, Pages.pages.length - 1);
   }
-
-  // void onScrollEvent(Offset scrollDelta, Function(int, int) changePage) {
-  //   int newIndex;
-
-  //   if (scrollDelta.dy > 0) {
-  //     newIndex = currentIndex + 1;
-  //   } else {
-  //     newIndex = currentIndex - 1;
-  //   }
-  //   changePage(currentIndex, newIndex);
-  // }
-
-  // void onVerticalDragEnd(DragEndDetails details, Function(int, int) changePage) {
-  //   int newIndex;
-
-  //   if (details.velocity.pixelsPerSecond.dy < 0) {
-  //     newIndex = currentIndex + 1;
-  //   } else {
-  //     newIndex = currentIndex - 1;
-  //   }
-  //   changePage(currentIndex, newIndex);
-  // }
 }

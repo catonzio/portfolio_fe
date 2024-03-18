@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/pages.dart';
 import 'package:portfolio/data/controllers/pages_controller.dart';
-import 'package:portfolio/ui/mypage.dart';
 
 class MyTransition extends CustomTransition {
   final int index;
@@ -19,9 +18,10 @@ class MyTransition extends CustomTransition {
       Widget child) {
     final PagesController controller = PagesController.to;
     if (controller.currentIndex == index) {
-      return Stack(
-        children: [child, const MyOverlay()],
-      );
+      return child;
+      // return Stack(
+      //   children: [child, const MyOverlay()],
+      // );
     }
     Offset begin;
     Offset end;
@@ -39,13 +39,12 @@ class MyTransition extends CustomTransition {
       begin = const Offset(0.0, 0.0); // Start from the same position
       end = const Offset(0.0, -1.0); // Slide the new page up from behind
     }
-    controller.changePage(index);
+
     // const curve = Curves.easeInQuart;
-    var tween =
-        Tween(begin: begin, end: end); //.chain(CurveTween(curve: curve));
+    var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve!));
 
     var offsetAnimation = animation.drive(tween);
-
+    
     return getChild(isNext, child, offsetAnimation, oldChild);
   }
 
@@ -56,7 +55,7 @@ class MyTransition extends CustomTransition {
         if (isNext) child,
         SlideTransition(
             position: offsetAnimation, child: isNext ? oldChild : child),
-        const MyOverlay(),
+        // const MyOverlay(),
       ],
     );
   }

@@ -1,3 +1,3 @@
 class Constants {
-  static const Duration pageTransitionDuration = Duration(milliseconds: 1000);
+  static const Duration pageTransitionDuration = Duration(milliseconds: 600);
 }
