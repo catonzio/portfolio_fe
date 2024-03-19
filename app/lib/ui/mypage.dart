@@ -23,7 +23,7 @@ void changePage(BuildContext context, PagesController controller, dynamic event,
 
     Future.delayed(Constants.pageTransitionDuration, () {
       controller.isAnimating = false;
-      controller.changePage(newIndex!);
+      // controller.changePage(newIndex!);
     });
 
     Navigator.of(context).pushReplacementNamed(Routes.all[newIndex!]);

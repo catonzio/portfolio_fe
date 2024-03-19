@@ -75,9 +75,9 @@ class PagesController extends GetxController {
     print(movement);
     if (movement is Offset) {
       // print(movement.dy);
-      if (movement.dy > 10) {
+      if (movement.dy > 80) {
         newIndex += 1;
-      } else if (movement.dy < -10) {
+      } else if (movement.dy < -80) {
         newIndex -= 1;
       }
     } else if (movement is DragEndDetails) {
