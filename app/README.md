@@ -1,4 +1,4 @@
-# portfolio
+# app
 
 A new Flutter project.
 
