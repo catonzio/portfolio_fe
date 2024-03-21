@@ -44,7 +44,7 @@ class MyTransition extends CustomTransition {
     var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve!));
 
     var offsetAnimation = animation.drive(tween);
-    
+
     return getChild(isNext, child, offsetAnimation, oldChild);
   }
 

@@ -38,10 +38,6 @@ class MyApp extends StatelessWidget {
       onReady: () => print("App Ready"),
       routingCallback: (value) =>
           PagesController.to.changePage(Routes.all.indexOf(value!.current)),
-      onGenerateRoute: (settings) {
-        PagesController.to.currentIndex =
-            Routes.all.indexWhere((element) => element == settings.name);
-      },
       initialRoute: Routes.all[0],
     );
   }
