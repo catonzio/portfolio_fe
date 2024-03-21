@@ -1,5 +1,5 @@
-import 'package:app/app/routes/app_pages.dart';
-import 'package:app/app/shared/ui/navbutton.dart';
+import 'package:portfolio/app/routes/app_pages.dart';
+import 'package:portfolio/app/shared/ui/navbutton.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

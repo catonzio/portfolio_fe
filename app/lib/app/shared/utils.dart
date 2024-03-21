@@ -1,7 +1,7 @@
-import 'package:app/app/config/constants.dart';
-import 'package:app/app/routes/app_pages.dart';
-import 'package:app/app/shared/controllers/pages_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/app/config/constants.dart';
+import 'package:portfolio/app/routes/app_pages.dart';
+import 'package:portfolio/app/shared/controllers/pages_controller.dart';
 
 void changePage(BuildContext context, PagesController controller, dynamic event,
     void Function()? onChangePage, int? newIndex) {

@@ -1,6 +1,6 @@
-import 'package:app/app/config/constants.dart';
-import 'package:app/app/shared/controllers/pages_controller.dart';
-import 'package:app/app/shared/utils.dart';
+import 'package:portfolio/app/config/constants.dart';
+import 'package:portfolio/app/shared/controllers/pages_controller.dart';
+import 'package:portfolio/app/shared/utils.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';

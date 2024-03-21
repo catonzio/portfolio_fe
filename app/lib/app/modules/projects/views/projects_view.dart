@@ -1,7 +1,7 @@
-import 'package:app/app/shared/ui/mypage.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:portfolio/app//shared/ui/mypage.dart';
 
 import '../controllers/projects_controller.dart';
 

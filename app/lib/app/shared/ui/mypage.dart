@@ -1,6 +1,6 @@
-import 'package:app/app/shared/controllers/pages_controller.dart';
-import 'package:app/app/shared/ui/myoverlay.dart';
-import 'package:app/app/shared/utils.dart';
+import 'package:portfolio/app/shared/controllers/pages_controller.dart';
+import 'package:portfolio/app/shared/ui/myoverlay.dart';
+import 'package:portfolio/app/shared/utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 

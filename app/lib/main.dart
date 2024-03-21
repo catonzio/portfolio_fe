@@ -1,8 +1,8 @@
-import 'package:app/app/config/themes.dart';
-import 'package:app/app/shared/bindings/initial_binding.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:portfolio/app//config/themes.dart';
+import 'package:portfolio/app//shared/bindings/initial_binding.dart';
 
 import 'app/routes/app_pages.dart';
 
