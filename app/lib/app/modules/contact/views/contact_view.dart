@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:portfolio/app//shared/ui/mypage.dart';
+import 'package:portfolio/app/modules/contact/views/contact_desktop_view.dart';
+import 'package:portfolio/app/modules/contact/views/contact_mobile_view.dart';
+import 'package:portfolio/app/shared/ui/responsive.dart';
 
 import '../controllers/contact_controller.dart';
 
@@ -10,9 +13,10 @@ class ContactView extends GetView<ContactController> {
   @override
   Widget build(BuildContext context) {
     return MyPage(
-        body: Container(
-            color: Colors.yellow[200],
-            child: const Center(child: Text('This is the contact page'))),
+        body: const Responsive(
+          mobile: ContactMobileView(),
+          desktop: ContactDesktopView(),
+        ),
         isScrollEnabled: (_) => true);
   }
 }

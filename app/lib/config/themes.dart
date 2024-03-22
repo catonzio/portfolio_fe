@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Themes {
   static ThemeData darkTheme() {
@@ -16,6 +17,19 @@ class Themes {
             MaterialStateProperty.all(theme.colorScheme.secondary),
         interactive: true,
         crossAxisMargin: 2,
+      ),
+      appBarTheme: theme.appBarTheme.copyWith(
+          // backgroundColor: theme.colorScheme.surface.withOpacity(0.1),
+          elevation: 1,
+          scrolledUnderElevation: 0,
+          systemOverlayStyle: SystemUiOverlayStyle.light),
+      bottomNavigationBarTheme: theme.bottomNavigationBarTheme.copyWith(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: theme.colorScheme.surface,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey[700],
+        showUnselectedLabels: true,
+        elevation: 0,
       ),
     );
     return theme;

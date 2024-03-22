@@ -10,6 +10,7 @@ abstract class Routes {
   static const about = _Paths.about;
   static const projects = _Paths.projects;
   static const contact = _Paths.contact;
+  static const unknown = _Paths.unknown;
 
   static const all = [
     home,
@@ -25,4 +26,5 @@ abstract class _Paths {
   static const about = '/about';
   static const projects = '/projects';
   static const contact = '/contact';
+  static const unknown = '/404';
 }

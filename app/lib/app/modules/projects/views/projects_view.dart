@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:portfolio/app//shared/ui/mypage.dart';
+import 'package:portfolio/app/modules/projects/views/project_mobile_view.dart';
+import 'package:portfolio/app/modules/projects/views/projects_desktop_view.dart';
+import 'package:portfolio/app/shared/ui/responsive.dart';
 
 import '../controllers/projects_controller.dart';
 
@@ -10,9 +13,10 @@ class ProjectsView extends GetView<ProjectsController> {
   @override
   Widget build(BuildContext context) {
     return MyPage(
-        body: Container(
-            color: Colors.blue[200],
-            child: const Center(child: Text('This is the projects page'))),
+        body: const Responsive(
+          mobile: ProjectsMobileView(),
+          desktop: ProjectsDesktopView(),
+        ),
         isScrollEnabled: (_) => true);
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/app/config/constants.dart';
+import 'package:portfolio/config/constants.dart';
 import 'package:portfolio/app/routes/app_pages.dart';
 import 'package:portfolio/app/shared/controllers/pages_controller.dart';
 

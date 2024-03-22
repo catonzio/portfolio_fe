@@ -20,6 +20,13 @@ class PagesController extends GetxController {
     currentIndex = index;
   }
 
+  void setHovering(int index, bool value) {
+    for (int i = 0; i < isHovering.length; i++) {
+      isHovering[i] = false;
+    }
+    isHovering[index] = value;
+  }
+
   int onChange(dynamic movement) {
     if (isAnimating) {
       return currentIndex;

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:portfolio/app//shared/ui/mypage.dart';
+import 'package:portfolio/app/modules/home/views/home_desktop_view.dart';
+import 'package:portfolio/app/modules/home/views/home_mobile_view.dart';
+import 'package:portfolio/app/shared/ui/responsive.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -10,9 +13,10 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return MyPage(
-        body: Container(
-            color: Colors.red[200],
-            child: const Center(child: Text('This is the home page'))),
+        body: const Responsive(
+          mobile: HomeMobileView(),
+          desktop: HomeDesktopView(),
+        ),
         isScrollEnabled: (_) => true);
   }
 }

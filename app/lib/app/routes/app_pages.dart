@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/app//config/constants.dart';
+import 'package:portfolio/config/constants.dart';
+import 'package:portfolio/app/modules/unknown/views/unknown_view.dart';
 
 import '../modules/about/bindings/about_binding.dart';
 import '../modules/about/views/about_view.dart';
@@ -18,12 +19,20 @@ class AppPages {
 
   static const initial = Routes.home;
 
+  static GetPage unknownRoute = GetPage(
+    name: _Paths.unknown,
+    page: () => const UnknownView(),
+    transition: Transition.size,
+    transitionDuration: Constants.pageTransitionDuration,
+    curve: Curves.easeInCirc,
+  );
+
   static final routes = [
     GetPage(
       name: _Paths.home,
       page: () => const HomeView(),
       binding: HomeBinding(),
-      transition: Transition.cupertino,
+      transition: Transition.size,
       transitionDuration: Constants.pageTransitionDuration,
       curve: Curves.easeInCirc,
     ),
@@ -31,7 +40,7 @@ class AppPages {
       name: _Paths.about,
       page: () => const AboutView(),
       binding: AboutBinding(),
-      transition: Transition.cupertino,
+      transition: Transition.size,
       transitionDuration: Constants.pageTransitionDuration,
       curve: Curves.easeInCirc,
     ),
@@ -39,7 +48,7 @@ class AppPages {
       name: _Paths.projects,
       page: () => const ProjectsView(),
       binding: ProjectsBinding(),
-      transition: Transition.cupertino,
+      transition: Transition.size,
       transitionDuration: Constants.pageTransitionDuration,
       curve: Curves.easeInCirc,
     ),
@@ -47,7 +56,7 @@ class AppPages {
       name: _Paths.contact,
       page: () => const ContactView(),
       binding: ContactBinding(),
-      transition: Transition.cupertino,
+      transition: Transition.size,
       transitionDuration: Constants.pageTransitionDuration,
       curve: Curves.easeInCirc,
     ),
