@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/config/colors.dart';
 
 class Themes {
   static ThemeData darkTheme() {
@@ -20,9 +21,12 @@ class Themes {
       ),
       appBarTheme: theme.appBarTheme.copyWith(
           // backgroundColor: theme.colorScheme.surface.withOpacity(0.1),
+          shadowColor: Colors.transparent,
+          surfaceTintColor: Colors.transparent,
+          foregroundColor: Colors.transparent,
+          color: Colors.transparent,
           elevation: 1,
-          scrolledUnderElevation: 0,
-          systemOverlayStyle: SystemUiOverlayStyle.light),
+          scrolledUnderElevation: 0),
       bottomNavigationBarTheme: theme.bottomNavigationBarTheme.copyWith(
         type: BottomNavigationBarType.fixed,
         backgroundColor: theme.colorScheme.surface,
@@ -39,6 +43,15 @@ class Themes {
     ThemeData theme = ThemeData.light(
       useMaterial3: true,
     );
+    theme = theme.copyWith(
+        textTheme: GoogleFonts.poppinsTextTheme(theme.textTheme),
+        colorScheme: theme.colorScheme.copyWith(
+          primaryContainer: AppColors.darkGrey,
+          surface: AppColors.whiteBackground,
+          onSurface: AppColors.onWhiteBackground,
+          surfaceVariant: AppColors.darkBackground,
+          onSurfaceVariant: AppColors.onDarkBackground,
+        ));
     return theme;
   }
 }

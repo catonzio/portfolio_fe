@@ -17,6 +17,7 @@ class AboutView extends GetView<AboutController> {
           mobile: AboutMobileView(),
           desktop: AboutDesktopView(),
         ),
-        isScrollEnabled: (_) => true);
+        isScrollEnabled: (Offset offset) =>
+            AboutController.to.isScrollEnabled(offset));
   }
 }

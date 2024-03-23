@@ -1,11 +1,19 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AboutController extends GetxController {
-  //TODO: Implement AboutController
+  static AboutController get to => Get.find<AboutController>();
 
-  final count = 0.obs;
+  final ScrollController scrollController = ScrollController();
 
-
-
-  void increment() => count.value++;
+  bool isScrollEnabled(Offset offset) {
+    if (offset.dy > 0 &&
+        scrollController.offset == scrollController.position.maxScrollExtent) {
+      return true;
+    } else if (offset.dy < 0 &&
+        scrollController.offset == scrollController.position.minScrollExtent) {
+      return true;
+    }
+    return false;
+  }
 }

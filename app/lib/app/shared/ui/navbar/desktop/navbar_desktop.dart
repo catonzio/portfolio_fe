@@ -17,7 +17,8 @@ class NavbarDesktop extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: context.theme.colorScheme.surface.withOpacity(0.7),
+      backgroundColor: context.theme.colorScheme.surface.withOpacity(0.9),
+      scrolledUnderElevation: 0,
       title: TitleWidget(controller: controller),
       toolbarHeight: preferredSize.height,
       actions: [
