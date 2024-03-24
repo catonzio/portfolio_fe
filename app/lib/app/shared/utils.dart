@@ -11,7 +11,6 @@ void changePage(BuildContext context, PagesController controller, dynamic event,
     }
     if (newIndex == controller.currentIndex) return;
     if (onChangePage != null) {
-      print("Calling onChangePage");
       onChangePage();
     }
     // controller.currentIndex = newIndex;

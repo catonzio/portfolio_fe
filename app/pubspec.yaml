@@ -28,3 +28,6 @@ flutter:
     - family: Mova
       fonts:
         - asset: assets/fonts/Mova.otf
+    - family: Beckman
+      fonts:
+        - asset: assets/fonts/Beckman.otf

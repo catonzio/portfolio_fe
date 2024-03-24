@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/app/shared/ui/asd.dart';
+import 'package:portfolio/app/shared/ui/triangle_painter.dart';
 import 'package:portfolio/config/colors.dart';
 import 'package:portfolio/config/text_styles.dart';
 

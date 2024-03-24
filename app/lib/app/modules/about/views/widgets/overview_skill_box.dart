@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class OverviewSkillBox extends StatelessWidget {
   final double width;
@@ -10,7 +9,12 @@ class OverviewSkillBox extends StatelessWidget {
   final IconData? icon;
 
   const OverviewSkillBox(
-      {super.key, required this.width, required this.height, this.iconPath, this.icon, required this.title})
+      {super.key,
+      required this.width,
+      required this.height,
+      this.iconPath,
+      this.icon,
+      required this.title})
       : assert((iconPath != null) ^ (icon != null));
 
   @override
@@ -48,14 +52,10 @@ class OverviewSkillBox extends StatelessWidget {
                     size: 60,
                     color: Colors.white,
                   ),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.poppins(
-                color: Colors.grey,
-                fontSize: 25,
-              ),
-            ),
+            Text(title,
+                textAlign: TextAlign.center,
+                style: context.textTheme.headlineSmall
+                    ?.copyWith(color: Colors.grey)),
           ],
         ),
       ),

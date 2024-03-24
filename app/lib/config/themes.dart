@@ -44,7 +44,7 @@ class Themes {
       useMaterial3: true,
     );
     theme = theme.copyWith(
-        textTheme: GoogleFonts.poppinsTextTheme(theme.textTheme),
+        textTheme: GoogleFonts.poppinsTextTheme(),
         colorScheme: theme.colorScheme.copyWith(
           primaryContainer: AppColors.darkGrey,
           surface: AppColors.whiteBackground,

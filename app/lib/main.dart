@@ -14,7 +14,6 @@ void main() {
       debugShowCheckedModeBanner: false,
       title: "Portfolio",
       theme: Themes.lightTheme(),
-      darkTheme: Themes.darkTheme(),
       themeMode: ThemeMode.light,
       initialBinding: InitialBinding(),
       initialRoute: AppPages.initial,

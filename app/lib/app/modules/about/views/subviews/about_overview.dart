@@ -3,8 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/app/modules/about/views/widgets/overview_skill_box.dart';
+import 'package:portfolio/config/constants.dart';
+import 'package:portfolio/config/text_styles.dart';
 
 class AboutOverview extends StatelessWidget {
   const AboutOverview({
@@ -28,21 +29,17 @@ class AboutOverview extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text("About me",
-                style: GoogleFonts.poppins(
-                    fontSize: 60, fontWeight: FontWeight.bold)),
+            Text("Overview",
+                style: TextStyles.sectionTitle),
             DefaultTextStyle(
-              style: GoogleFonts.poppins(fontSize: 20),
-              child: const Column(
+              style: context.theme.textTheme.titleLarge!,
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                      "I'm a passionate data scientist and software engineer at IBM, specializing in Python and Flutter."),
-                  Text(
-                      "With a knack for crafting innovative solutions, I thrive on pushing boundaries in technology."),
-                  Text(
-                      "Explore my portfolio to see how I blend creativity with technical expertise.")
-                ],
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: Constants.aboutOverview
+                    .split("\n")
+                    .map((String text) => Text(text.trim()))
+                    .toList()
               ),
             ),
             Center(
@@ -52,42 +49,18 @@ class AboutOverview extends StatelessWidget {
                 alignment: WrapAlignment.center,
                 spacing: wrapSpacing,
                 runSpacing: wrapSpacing,
-                children: [
-                  const OverviewSkillBox(
+                children: Constants.overviewSkillBoxes.map((skill) {
+                  final int index = Constants.overviewSkillBoxes.indexOf(skill);
+                  return OverviewSkillBox(
                     width: skillBowWidth,
                     height: skillBoxHeight,
-                    iconPath: "assets/images/developer.png",
-                    title: "Developer",
+                    iconPath: skill["iconPath"]!,
+                    title: skill["title"]!,
                   )
                       .animate()
-                      .moveX(delay: 500.ms, begin: beginMove * 2, end: 0),
-                  const OverviewSkillBox(
-                    width: skillBowWidth,
-                    height: skillBoxHeight,
-                    iconPath: "assets/images/software_engineer.png",
-                    title: "Software Engineer",
-                  )
-                      .animate()
-                      .fade(delay: 1500.ms)
-                      .moveX(begin: beginMove, end: 0),
-                  const OverviewSkillBox(
-                    width: skillBowWidth,
-                    height: skillBoxHeight,
-                    iconPath: "assets/images/architect.png",
-                    title: "Architect",
-                  )
-                      .animate()
-                      .fade(delay: 2500.ms)
-                      .moveX(begin: beginMove, end: 0),
-                  const OverviewSkillBox(
-                          width: skillBowWidth,
-                          height: skillBoxHeight,
-                          icon: Icons.brightness_auto_rounded,
-                          title: "Data Scientist")
-                      .animate()
-                      .fade(delay: 3500.ms)
-                      .moveX(begin: beginMove, end: 0)
-                ],
+                      .fade(delay: (1000 * index + 500).ms)
+                      .moveX(begin: beginMove, end: 0);
+                }).toList(),
               ),
             )
           ],

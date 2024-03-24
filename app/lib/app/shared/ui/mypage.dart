@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:portfolio/app/extensions/context_ext.dart';
 import 'package:portfolio/app/shared/controllers/pages_controller.dart';
 import 'package:portfolio/app/shared/ui/navbar/desktop/navbar_desktop.dart';
@@ -26,6 +27,7 @@ class MyPage extends StatelessWidget {
           ? null
           : const NavbarDesktop(), // AppBar().animate(target: context.isMobile ? 0 : 1).fade(),
       bottomNavigationBar: context.isMobile ? const NavbarMobile() : null,
+      backgroundColor: context.theme.colorScheme.surface,
       body: Listener(
           onPointerSignal: (event) {
             if (event is PointerScrollEvent &&
