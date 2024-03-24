@@ -118,10 +118,10 @@ class WorkExperienceRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
+    final List<Widget> widgetsList = [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SizedBox(
             height: 80,
             width: 300,
             child: Card(
@@ -139,19 +139,33 @@ class WorkExperienceRow extends StatelessWidget {
                     style: TextStyles.workExperienceBoxSubtitle),
               ),
             )),
-        Container(
-          width: 100,
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          width: 50,
+          height: 50,
           decoration: const BoxDecoration(
             color: AppColors.lightGrey,
             shape: BoxShape.circle,
             image: DecorationImage(
               image: AssetImage("assets/images/architect.png"),
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           ),
-          child: const Text("Hello"),
-        )
-      ],
+          // child: const Text("Hello"),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child:
+            Text(workExperience.date, style: TextStyles.workExperienceDuration),
+      )
+    ];
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children:
+          workExperience.id.isOdd ? widgetsList : widgetsList.reversed.toList(),
     );
   }
 }

@@ -31,4 +31,10 @@ class TextStyles {
       fontSize: 16,
       fontWeight: FontWeight.bold,
       fontFamily: "Beckman");
+
+  static const workExperienceDuration = TextStyle(
+      color: Colors.grey,
+      fontSize: 16,
+      fontWeight: FontWeight.bold,
+      fontFamily: "Beckman");
 }
