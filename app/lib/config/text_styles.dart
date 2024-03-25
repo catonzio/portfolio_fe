@@ -4,13 +4,20 @@ import 'package:portfolio/config/colors.dart';
 
 class TextStyles {
   static final TextStyle presentationTitle = GoogleFonts.poppins(
-    fontSize: 50,
+    fontSize: 60,
     fontWeight: FontWeight.w900,
   );
 
   static final TextStyle sectionTitle = GoogleFonts.poppins(
     fontSize: 65,
     fontWeight: FontWeight.w900,
+  );
+
+  static const TextStyle appBarSection = TextStyle(
+    color: AppColors.darkBackground,
+    fontSize: 25,
+    fontFamily: "Mova",
+    fontWeight: FontWeight.normal,
   );
 
   static const TextStyle name = TextStyle(

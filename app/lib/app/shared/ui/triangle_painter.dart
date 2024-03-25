@@ -11,7 +11,7 @@ class TrianglePainter extends CustomPainter {
 
     final path = Path();
 
-    path.moveTo(width, 0); // Top right corner
+    path.moveTo(width, -height / 3); // Top right corner
     path.lineTo(width / 3, height);
     path.lineTo(width, height); // Top left corner
     path.close();

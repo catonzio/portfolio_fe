@@ -1,7 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/app/modules/about/work_experience_model.dart';
+import 'package:portfolio/app/modules/about/views/widgets/work_experience_row.dart';
 import 'package:portfolio/app/shared/ui/triangle_painter.dart';
 import 'package:portfolio/config/colors.dart';
 import 'package:portfolio/config/constants.dart';
@@ -27,26 +28,26 @@ class WorkExperienceView extends StatelessWidget {
             ),
             elevation: 0,
             child: Container(
-              height: context.height * 0.8,
+              height: context.height * 1.6,
               decoration: BoxDecoration(
-                color: context.theme.colorScheme.surface,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(150),
-                  bottomRight: Radius.circular(150),
-                ),
-              ),
+                  color: context.theme.colorScheme.surface,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(150),
+                    bottomRight: Radius.circular(150),
+                  ),
+                  image: const DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage("assets/images/work_experience_bg.png"),
+                  )),
               child: Stack(
+                fit: StackFit.expand,
                 children: [
-                  Positioned(
-                      top: 20,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
+                  Positioned.fill(
                       child: CustomPaint(
-                        painter: TrianglePainter(
-                            color: context.theme.colorScheme.surfaceVariant
-                                .withOpacity(0.95)),
-                      )),
+                    painter: TrianglePainter(
+                        color: context.theme.colorScheme.surfaceVariant
+                            .withOpacity(0.95)),
+                  )),
                   Positioned(
                       top: context.height * 0.07,
                       left: context.width * 0.15,
@@ -73,7 +74,10 @@ class WorkExperienceContent extends StatelessWidget {
         AutoSizeText("Work Experience",
             maxLines: 1, style: TextStyles.sectionTitle),
         const Expanded(
-          child: WorkExperienceTimeline(),
+          child: Padding(
+            padding: EdgeInsets.only(top: 64),
+            child: WorkExperienceTimeline(),
+          ),
         )
       ],
     );
@@ -103,84 +107,13 @@ class WorkExperienceTimeline extends StatelessWidget {
                 ...Constants.workExperiences.map((e) => WorkExperienceRow(
                       workExperience: e,
                     )),
-              ],
+              ]
+                  .animate(interval: 500.ms)
+                  .fade(delay: 500.ms, duration: 1000.ms),
             ),
           ),
         ),
       ],
-    );
-  }
-}
-
-class WorkExperienceRow extends StatelessWidget {
-  final WorkExperience workExperience;
-
-  const WorkExperienceRow({
-    super.key,
-    required this.workExperience,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final double centerCircleSize =
-        Size(context.width * 0.07, context.height * 0.07).shortestSide;
-    final double elementsPadding = context.width * 0.005;
-    final List<Widget> widgetsList = [
-      Padding(
-        padding: EdgeInsets.all(elementsPadding),
-        child: SizedBox(
-            height: context.height * 0.1,
-            width: context.width * 0.2,
-            child: PhysicalModel(
-              elevation: 3,
-              color: context.theme.colorScheme.secondaryContainer,
-              borderRadius: BorderRadius.circular(8),
-              child: ListTile(
-                contentPadding: EdgeInsets.all(elementsPadding),
-                isThreeLine: true,
-                title: AutoSizeText(workExperience.company.toUpperCase(),
-                    maxLines: 1, style: TextStyles.workExperienceBoxTitle),
-                subtitle: AutoSizeText(workExperience.role.toUpperCase(),
-                    maxLines: 1, style: TextStyles.workExperienceBoxSubtitle),
-              ),
-            )),
-      ),
-      Padding(
-          padding: EdgeInsets.all(elementsPadding),
-          child: SizedBox(
-            width: centerCircleSize,
-            height: centerCircleSize,
-            child: const Card(
-              color: AppColors.lightGrey,
-              elevation: 3,
-              clipBehavior: Clip.antiAlias,
-              shape: CircleBorder(),
-              child: CircleAvatar(
-                backgroundImage: AssetImage("assets/images/architect.png"),
-              ),
-            ),
-          )),
-      Container(
-        width: context.width * 0.21,
-        alignment: workExperience.id.isOdd
-            ? Alignment.centerLeft
-            : Alignment.centerRight,
-        padding: EdgeInsets.all(elementsPadding),
-        child: AutoSizeText(workExperience.date,
-            maxLines: 1, style: TextStyles.workExperienceDuration),
-      )
-    ];
-    return SizedBox(
-      width: context.width * 0.55,
-      child: Row(
-        mainAxisAlignment: workExperience.id.isOdd
-            ? MainAxisAlignment.center
-            : MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: workExperience.id.isOdd
-            ? widgetsList
-            : widgetsList.reversed.toList(),
-      ),
     );
   }
 }

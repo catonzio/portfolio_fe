@@ -13,8 +13,8 @@ class AboutDesktopView extends StatelessWidget {
       controller: controller.scrollController,
       child: const Column(
         children: [
-          WorkExperienceView(),
           AboutOverview(),
+          WorkExperienceView(),
         ],
       ),
     );

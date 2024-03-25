@@ -21,7 +21,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Portfolio",
+      title: "Danilo | Portfolio",
       theme: Themes.lightTheme(),
       themeMode: ThemeMode.light,
       initialBinding: InitialBinding(),

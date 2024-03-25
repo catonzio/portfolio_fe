@@ -29,18 +29,24 @@ class AboutOverview extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text("Overview",
-                style: TextStyles.sectionTitle),
+            Text("Overview", style: TextStyles.sectionTitle)
+                .animate()
+                .fade(delay: 500.ms, duration: 1000.ms)
+                .flipV(duration: 250.ms)
+                .moveY(
+                    delay: 500.ms,
+                    begin: -context.height * 0.05,
+                    end: 0,
+                    duration: 250.ms),
             DefaultTextStyle(
               style: context.theme.textTheme.titleLarge!,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: Constants.aboutOverview
-                    .split("\n")
-                    .map((String text) => Text(text.trim()))
-                    .toList()
-              ),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: Constants.aboutOverview
+                      .split("\n")
+                      .map((String text) => Text(text.trim()))
+                      .toList()),
             ),
             Center(
               child: Wrap(

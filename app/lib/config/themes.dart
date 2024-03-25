@@ -44,24 +44,28 @@ class Themes {
       useMaterial3: true,
     );
     theme = theme.copyWith(
-      textTheme: GoogleFonts.poppinsTextTheme(theme.textTheme),
-      colorScheme: theme.colorScheme.copyWith(
-        primaryContainer: AppColors.darkGrey,
-        secondaryContainer: AppColors.darkWhite,
-        surface: AppColors.whiteBackground,
-        onSurface: AppColors.onWhiteBackground,
-        surfaceVariant: AppColors.darkBackground,
-        onSurfaceVariant: AppColors.onDarkBackground,
-      ),
-      bottomNavigationBarTheme: theme.bottomNavigationBarTheme.copyWith(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: theme.colorScheme.surface,
-        selectedItemColor: Colors.grey,
-        unselectedItemColor: AppColors.onWhiteBackground,
-        showUnselectedLabels: true,
-        elevation: 0,
-      ),
-    );
+        textTheme: GoogleFonts.poppinsTextTheme(theme.textTheme),
+        colorScheme: theme.colorScheme.copyWith(
+          primaryContainer: AppColors.darkGrey,
+          secondaryContainer: AppColors.darkWhite,
+          surface: AppColors.whiteBackground,
+          onSurface: AppColors.onWhiteBackground,
+          surfaceVariant: AppColors.darkBackground,
+          onSurfaceVariant: AppColors.onDarkBackground,
+        ),
+        bottomNavigationBarTheme: theme.bottomNavigationBarTheme.copyWith(
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: theme.colorScheme.surface,
+          selectedItemColor: Colors.grey,
+          unselectedItemColor: AppColors.onWhiteBackground,
+          showUnselectedLabels: true,
+          elevation: 0,
+        ),
+        scrollbarTheme: theme.scrollbarTheme.copyWith(
+          thumbVisibility: MaterialStateProperty.all(true),
+          trackVisibility: MaterialStateProperty.all(true),
+          thumbColor: MaterialStateProperty.all(AppColors.darkGrey),
+        ));
     return theme;
   }
 }

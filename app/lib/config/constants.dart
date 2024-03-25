@@ -57,6 +57,34 @@ class Constants {
         role: "Intern",
         date: "Sep 2019 - Dec 2019",
         description:
-            "Developed machine learning models to predict customer behavior and improve business processes.")
+            "Developed machine learning models to predict customer behavior and improve business processes."),
+    // WorkExperience(
+    //     id: 5,
+    //     company: "IBM",
+    //     role: "Data Scientist",
+    //     date: "Feb 2023 - Present",
+    //     description:
+    //         "Developed machine learning models to predict customer behavior and improve business processes."),
+    // WorkExperience(
+    //     id: 6,
+    //     company: "Whitehall Reply",
+    //     role: "Backend Engineer",
+    //     date: "Nov 2022 - Feb 2023",
+    //     description:
+    //         "Developed and maintained software solutions for clients, including web applications and APIs."),
+    // WorkExperience(
+    //     id: 7,
+    //     company: "RES Media",
+    //     role: "Full Stack Engineer",
+    //     date: "Aug 2022 - Jan 2023",
+    //     description:
+    //         "Developed machine learning models to predict customer behavior and improve business processes."),
+    // WorkExperience(
+    //     id: 8,
+    //     company: "BigProfiles",
+    //     role: "Intern",
+    //     date: "Sep 2019 - Dec 2019",
+    //     description:
+    //         "Developed machine learning models to predict customer behavior and improve business processes.")
   ];
 }
