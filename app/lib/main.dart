@@ -9,8 +9,17 @@ import 'app/routes/app_pages.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    GetMaterialApp(
+  runApp(const App());
+}
+
+class App extends StatelessWidget {
+  const App({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Portfolio",
       theme: Themes.lightTheme(),
@@ -21,6 +30,6 @@ void main() {
       unknownRoute: AppPages.unknownRoute,
       routingCallback: (value) =>
           PagesController.to.changePage(Routes.all.indexOf(value!.current)),
-    ),
-  );
+    );
+  }
 }

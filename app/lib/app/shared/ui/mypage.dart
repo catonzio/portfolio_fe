@@ -37,7 +37,14 @@ class MyPage extends StatelessWidget {
                   context, controller, event.scrollDelta, onChangePage, null);
             }
           },
-          child: body),
+          child: GestureDetector(
+            onVerticalDragEnd: (details) {
+              if (!controller.isAnimating) {
+                changePage(context, controller, details, onChangePage, null);
+              }
+            },
+            child: body,
+          )),
     );
   }
 }

@@ -27,13 +27,13 @@ class TextStyles {
       fontFamily: "Beckman");
 
   static const workExperienceBoxSubtitle = TextStyle(
-      color: Colors.grey,
+      color: AppColors.lightGrey,
       fontSize: 16,
       fontWeight: FontWeight.bold,
       fontFamily: "Beckman");
 
   static const workExperienceDuration = TextStyle(
-      color: Colors.grey,
+      color: AppColors.lightGrey,
       fontSize: 16,
       fontWeight: FontWeight.bold,
       fontFamily: "Beckman");

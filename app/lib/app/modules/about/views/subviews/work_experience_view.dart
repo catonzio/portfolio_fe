@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/app/modules/about/work_experience_model.dart';
@@ -69,7 +70,8 @@ class WorkExperienceContent extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Work Experience", style: TextStyles.sectionTitle),
+        AutoSizeText("Work Experience",
+            maxLines: 1, style: TextStyles.sectionTitle),
         const Expanded(
           child: WorkExperienceTimeline(),
         )
@@ -93,14 +95,16 @@ class WorkExperienceTimeline extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              ...Constants.workExperiences.map((e) => WorkExperienceRow(
-                    workExperience: e,
-                  ))
-            ],
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ...Constants.workExperiences.map((e) => WorkExperienceRow(
+                      workExperience: e,
+                    )),
+              ],
+            ),
           ),
         ),
       ],
@@ -118,54 +122,65 @@ class WorkExperienceRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double centerCircleSize =
+        Size(context.width * 0.07, context.height * 0.07).shortestSide;
+    final double elementsPadding = context.width * 0.005;
     final List<Widget> widgetsList = [
       Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(elementsPadding),
         child: SizedBox(
-            height: 80,
-            width: 300,
-            child: Card(
+            height: context.height * 0.1,
+            width: context.width * 0.2,
+            child: PhysicalModel(
               elevation: 3,
-              color: context.theme.colorScheme.surface,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
+              color: context.theme.colorScheme.secondaryContainer,
+              borderRadius: BorderRadius.circular(8),
               child: ListTile(
-                // contentPadding: const EdgeInsets.all(8),
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-                title: Text(workExperience.company.toUpperCase(),
-                    style: TextStyles.workExperienceBoxTitle),
-                subtitle: Text(workExperience.role.toUpperCase(),
-                    style: TextStyles.workExperienceBoxSubtitle),
+                contentPadding: EdgeInsets.all(elementsPadding),
+                isThreeLine: true,
+                title: AutoSizeText(workExperience.company.toUpperCase(),
+                    maxLines: 1, style: TextStyles.workExperienceBoxTitle),
+                subtitle: AutoSizeText(workExperience.role.toUpperCase(),
+                    maxLines: 1, style: TextStyles.workExperienceBoxSubtitle),
               ),
             )),
       ),
       Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          width: 50,
-          height: 50,
-          decoration: const BoxDecoration(
-            color: AppColors.lightGrey,
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              image: AssetImage("assets/images/architect.png"),
-              fit: BoxFit.fill,
+          padding: EdgeInsets.all(elementsPadding),
+          child: SizedBox(
+            width: centerCircleSize,
+            height: centerCircleSize,
+            child: const Card(
+              color: AppColors.lightGrey,
+              elevation: 3,
+              clipBehavior: Clip.antiAlias,
+              shape: CircleBorder(),
+              child: CircleAvatar(
+                backgroundImage: AssetImage("assets/images/architect.png"),
+              ),
             ),
-          ),
-          // child: const Text("Hello"),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child:
-            Text(workExperience.date, style: TextStyles.workExperienceDuration),
+          )),
+      Container(
+        width: context.width * 0.21,
+        alignment: workExperience.id.isOdd
+            ? Alignment.centerLeft
+            : Alignment.centerRight,
+        padding: EdgeInsets.all(elementsPadding),
+        child: AutoSizeText(workExperience.date,
+            maxLines: 1, style: TextStyles.workExperienceDuration),
       )
     ];
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children:
-          workExperience.id.isOdd ? widgetsList : widgetsList.reversed.toList(),
+    return SizedBox(
+      width: context.width * 0.55,
+      child: Row(
+        mainAxisAlignment: workExperience.id.isOdd
+            ? MainAxisAlignment.center
+            : MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: workExperience.id.isOdd
+            ? widgetsList
+            : widgetsList.reversed.toList(),
+      ),
     );
   }
 }
