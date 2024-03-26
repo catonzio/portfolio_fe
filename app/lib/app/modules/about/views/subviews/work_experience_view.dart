@@ -28,7 +28,7 @@ class WorkExperienceView extends StatelessWidget {
             ),
             elevation: 0,
             child: Container(
-              height: context.height * 1.6,
+              height: context.height * 0.9,
               decoration: BoxDecoration(
                   color: context.theme.colorScheme.surface,
                   borderRadius: const BorderRadius.only(
@@ -44,7 +44,7 @@ class WorkExperienceView extends StatelessWidget {
                 children: [
                   Positioned.fill(
                       child: CustomPaint(
-                    painter: TrianglePainter(
+                    painter: WorkExperiencePainter(
                         color: context.theme.colorScheme.surfaceVariant
                             .withOpacity(0.95)),
                   )),

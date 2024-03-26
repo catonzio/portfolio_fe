@@ -13,6 +13,12 @@ class TextStyles {
     fontWeight: FontWeight.w900,
   );
 
+  static final TextStyle negativeSectionTitle = GoogleFonts.poppins(
+    fontSize: 65,
+    fontWeight: FontWeight.w900,
+    color: AppColors.darkWhite,
+  );
+
   static const TextStyle appBarSection = TextStyle(
     color: AppColors.darkBackground,
     fontSize: 25,

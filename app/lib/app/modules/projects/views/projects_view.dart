@@ -12,11 +12,12 @@ class ProjectsView extends GetView<ProjectsController> {
   const ProjectsView({super.key});
   @override
   Widget build(BuildContext context) {
+    final ProjectsController controller = ProjectsController.to;
     return MyPage(
         body: const Responsive(
           mobile: ProjectsMobileView(),
           desktop: ProjectsDesktopView(),
         ),
-        isScrollEnabled: (_) => true);
+        isScrollEnabled: (Offset offset) => controller.isScrollEnabled(offset));
   }
 }

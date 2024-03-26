@@ -48,6 +48,8 @@ class Themes {
         colorScheme: theme.colorScheme.copyWith(
           primaryContainer: AppColors.darkGrey,
           secondaryContainer: AppColors.darkWhite,
+          onPrimaryContainer: AppColors.darkWhite,
+          onSecondaryContainer: AppColors.darkGrey,
           surface: AppColors.whiteBackground,
           onSurface: AppColors.onWhiteBackground,
           surfaceVariant: AppColors.darkBackground,

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:get/get.dart';
 import 'package:portfolio/app/extensions/context_ext.dart';
 import 'package:portfolio/app/shared/controllers/pages_controller.dart';
@@ -32,6 +34,8 @@ class MyPage extends StatelessWidget {
           onPointerSignal: (event) {
             if (event is PointerScrollEvent &&
                 !controller.isAnimating &&
+                (event.scrollDelta.direction == pi / 2 ||
+                    event.scrollDelta.direction == -pi / 2) &&
                 isScrollEnabled(event.scrollDelta)) {
               changePage(
                   context, controller, event.scrollDelta, onChangePage, null);

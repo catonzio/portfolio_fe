@@ -42,9 +42,9 @@ class PagesController extends GetxController {
       }
     } else if (movement is DragEndDetails) {
       // print(movement.velocity.pixelsPerSecond.dy);
-      if (movement.velocity.pixelsPerSecond.dy < -0) {
+      if (movement.velocity.pixelsPerSecond.dy < -80) {
         newIndex += 1;
-      } else if (movement.velocity.pixelsPerSecond.dy > 0) {
+      } else if (movement.velocity.pixelsPerSecond.dy > 80) {
         newIndex -= 1;
       }
     }

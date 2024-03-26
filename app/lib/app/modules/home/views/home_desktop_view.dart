@@ -20,7 +20,7 @@ class HomeDesktopView extends StatelessWidget {
           colorBlendMode: BlendMode.hardLight,
         ),
         CustomPaint(
-          painter: TrianglePainter(color: AppColors.blackOpacity),
+          painter: HomeTrianglePainter(color: AppColors.blackOpacity),
         ),
         Positioned(
             top: context.height * (0.4 - 0.25 / 2),

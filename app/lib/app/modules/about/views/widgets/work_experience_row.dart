@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/app/modules/about/work_experience_model.dart';
 import 'package:portfolio/config/colors.dart';
@@ -47,13 +48,19 @@ class WorkExperienceRow extends StatelessWidget {
           child: SizedBox(
             width: centerCircleSize,
             height: centerCircleSize,
-            child: const Card(
-              color: AppColors.lightGrey,
+            child: Card(
+              color: AppColors.darkGrey,
               elevation: 3,
               clipBehavior: Clip.antiAlias,
-              shape: CircleBorder(),
-              child: CircleAvatar(
-                backgroundImage: AssetImage("assets/images/architect.png"),
+              borderOnForeground: true,
+              shape: const CircleBorder(
+                  side: BorderSide(color: Color(0xFF969696), width: 3)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset(
+                  "assets/images/architect.png",
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
           )),
