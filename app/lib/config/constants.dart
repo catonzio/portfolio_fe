@@ -73,36 +73,36 @@ class Constants {
         id: 0,
         name: "Portfolio",
         description: "A Flutter web application showcasing my work and skills.",
-        imagePath: "assets/images/portfolio.png"),
+        imagePath: "assets/images/architect.png"),
     Project(
         id: 1,
         name: "Weather App",
         description:
             "A Flutter mobile application that displays the current weather.",
-        imagePath: "assets/images/weather_app.png"),
+        imagePath: "assets/images/developer.png"),
     Project(
         id: 2,
         name: "Chat App",
         description:
             "A Flutter web application that allows users to chat with each other.",
-        imagePath: "assets/images/chat_app.png"),
+        imagePath: "assets/images/myself.png"),
     Project(
         id: 3,
         name: "E-Commerce App",
         description:
             "A Flutter mobile application that allows users to buy and sell products.",
-        imagePath: "assets/images/ecommerce_app.png"),
+        imagePath: "assets/images/work_experience_bg.png"),
     Project(
         id: 4,
         name: "Blog App",
         description:
             "A Flutter web application that allows users to write and publish blog posts.",
-        imagePath: "assets/images/blog_app.png"),
+        imagePath: "assets/images/logo.png"),
     Project(
         id: 5,
         name: "Social Media App",
         description:
             "A Flutter mobile application that allows users to connect with each other.",
-        imagePath: "assets/images/social_media_app.png"),
+        imagePath: "assets/images/developer.png"),
   ];
 }
