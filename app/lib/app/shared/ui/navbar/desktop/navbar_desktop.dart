@@ -19,7 +19,10 @@ class NavbarDesktop extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       backgroundColor: context.theme.colorScheme.surface.withOpacity(0.9),
       scrolledUnderElevation: 0,
-      title: TitleWidget(controller: controller),
+      title: Container(
+          width: context.width * 0.2,
+          alignment: Alignment.centerRight,
+          child: TitleWidget(controller: controller)),
       toolbarHeight: preferredSize.height,
       actions: [
         for (int i = 1; i < Routes.numRoutes; i++)
@@ -28,6 +31,9 @@ class NavbarDesktop extends StatelessWidget implements PreferredSizeWidget {
             text: AppPages.routes[i].name.replaceAll("/", "").toUpperCase(),
             index: i,
           ),
+        SizedBox(
+          width: context.width * 0.1,
+        )
       ],
     ); //.animate(target: context.isMobile ? 0 : 1).fade(duration: 1000.ms);
   }

@@ -1,41 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:portfolio/app/modules/home/views/widgets/presentation_text.dart';
 import 'package:portfolio/app/shared/ui/triangle_painter.dart';
 import 'package:portfolio/config/colors.dart';
-import 'package:portfolio/config/text_styles.dart';
 
 class HomeDesktopView extends StatelessWidget {
   const HomeDesktopView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: context.theme.colorScheme.surface,
-      height: context.height,
-      width: context.width,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset("assets/images/home_background.png"),
-          CustomPaint(
-            painter: TrianglePainter(color: AppColors.blackOpacity),
-          ),
-          Positioned(
-              top: context.height * (0.4 - 0.3 / 2),
-              left: context.width * 0.1,
-              height: context.height * 0.3,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text("HI, I'M", style: TextStyles.presentationTitle),
-                  const Text("DANILO CATONE", style: TextStyles.name),
-                  Text("I'm a Flutter Developer",
-                      style: context.textTheme.headlineLarge),
-                ],
-              ))
-        ],
-      ),
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        Image.asset(
+          "assets/images/black_home_background.png",
+          fit: BoxFit.cover,
+          color: context.theme.colorScheme.surface.withOpacity(0.8),
+          colorBlendMode: BlendMode.hardLight,
+        ),
+        CustomPaint(
+          painter: HomeTrianglePainter(color: AppColors.blackOpacity),
+        ),
+        Positioned(
+            top: context.height * (0.4 - 0.25 / 2),
+            left: context.width * 0.2,
+            height: context.height * 0.25,
+            child: const PresentationText().animate().moveX(
+                delay: 250.ms,
+                begin: -context.width,
+                end: 0,
+                curve: Curves.easeInOut,
+                duration: 1000.ms)),
+        Positioned(
+                bottom: 0,
+                right: context.width * 0.1,
+                width: context.width * 0.25,
+                child: Image.asset("assets/images/myself.png"))
+            .animate()
+            .moveY(
+                delay: 1000.ms,
+                begin: context.height,
+                end: context.height * 0.1,
+                curve: Curves.easeInOut,
+                duration: 500.ms)
+      ],
     );
   }
 }

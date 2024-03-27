@@ -4,13 +4,26 @@ import 'package:portfolio/config/colors.dart';
 
 class TextStyles {
   static final TextStyle presentationTitle = GoogleFonts.poppins(
-    fontSize: 50,
+    fontSize: 60,
     fontWeight: FontWeight.w900,
   );
 
   static final TextStyle sectionTitle = GoogleFonts.poppins(
     fontSize: 65,
     fontWeight: FontWeight.w900,
+  );
+
+  static final TextStyle negativeSectionTitle = GoogleFonts.poppins(
+    fontSize: 65,
+    fontWeight: FontWeight.w900,
+    color: AppColors.darkWhite,
+  );
+
+  static const TextStyle appBarSection = TextStyle(
+    color: AppColors.darkBackground,
+    fontSize: 25,
+    fontFamily: "Mova",
+    fontWeight: FontWeight.normal,
   );
 
   static const TextStyle name = TextStyle(
@@ -27,13 +40,13 @@ class TextStyles {
       fontFamily: "Beckman");
 
   static const workExperienceBoxSubtitle = TextStyle(
-      color: Colors.grey,
+      color: AppColors.lightGrey,
       fontSize: 16,
       fontWeight: FontWeight.bold,
       fontFamily: "Beckman");
 
   static const workExperienceDuration = TextStyle(
-      color: Colors.grey,
+      color: AppColors.lightGrey,
       fontSize: 16,
       fontWeight: FontWeight.bold,
       fontFamily: "Beckman");

@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/app/modules/about/views/widgets/overview_skill_box.dart';
 import 'package:portfolio/config/constants.dart';
+import 'package:portfolio/config/shared_animations.dart';
 import 'package:portfolio/config/text_styles.dart';
 
 class AboutOverview extends StatelessWidget {
@@ -29,18 +30,22 @@ class AboutOverview extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text("Overview",
-                style: TextStyles.sectionTitle),
+            Text("Overview", style: TextStyles.sectionTitle)
+                .animate(
+                  effects: GlobalAnimations.titleAppearence,
+                )
+                .animate(
+                    effects: GlobalAnimations.titleShimmer,
+                    onPlay: (controller) => controller.repeat(reverse: false)),
             DefaultTextStyle(
               style: context.theme.textTheme.titleLarge!,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: Constants.aboutOverview
-                    .split("\n")
-                    .map((String text) => Text(text.trim()))
-                    .toList()
-              ),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: Constants.aboutOverview
+                      .split("\n")
+                      .map((String text) => Text(text.trim()))
+                      .toList()),
             ),
             Center(
               child: Wrap(

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:portfolio/config/constants.dart';
 import 'package:portfolio/app/shared/controllers/pages_controller.dart';
 import 'package:portfolio/app/shared/utils.dart';
+import 'package:portfolio/config/text_styles.dart';
 
 class NavbarButtonDesktop extends StatelessWidget {
   const NavbarButtonDesktop({
@@ -33,9 +34,12 @@ class NavbarButtonDesktop extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(text,
-                          style: context.textTheme.titleLarge
-                              ?.copyWith(fontWeight: FontWeight.bold))
+                  Text(
+                    text,
+                    style: TextStyles.appBarSection,
+                  )
+                      // style: context.textTheme.titleLarge
+                      //     ?.copyWith(fontWeight: FontWeight.bold))
                       .animate(
                         target: controller.isHovering[index] ||
                                 controller.currentIndex == index

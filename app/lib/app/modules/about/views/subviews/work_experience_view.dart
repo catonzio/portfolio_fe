@@ -1,6 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/app/modules/about/work_experience_model.dart';
+import 'package:portfolio/app/modules/about/views/widgets/work_experience_row.dart';
 import 'package:portfolio/app/shared/ui/triangle_painter.dart';
 import 'package:portfolio/config/colors.dart';
 import 'package:portfolio/config/constants.dart';
@@ -26,26 +28,26 @@ class WorkExperienceView extends StatelessWidget {
             ),
             elevation: 0,
             child: Container(
-              height: context.height * 0.8,
+              height: context.height * 0.9,
               decoration: BoxDecoration(
-                color: context.theme.colorScheme.surface,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(150),
-                  bottomRight: Radius.circular(150),
-                ),
-              ),
+                  color: context.theme.colorScheme.surface,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(150),
+                    bottomRight: Radius.circular(150),
+                  ),
+                  image: const DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage("assets/images/work_experience_bg.png"),
+                  )),
               child: Stack(
+                fit: StackFit.expand,
                 children: [
-                  Positioned(
-                      top: 20,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
+                  Positioned.fill(
                       child: CustomPaint(
-                        painter: TrianglePainter(
-                            color: context.theme.colorScheme.surfaceVariant
-                                .withOpacity(0.95)),
-                      )),
+                    painter: WorkExperiencePainter(
+                        color: context.theme.colorScheme.surfaceVariant
+                            .withOpacity(0.95)),
+                  )),
                   Positioned(
                       top: context.height * 0.07,
                       left: context.width * 0.15,
@@ -69,9 +71,13 @@ class WorkExperienceContent extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Work Experience", style: TextStyles.sectionTitle),
+        AutoSizeText("Work Experience",
+            maxLines: 1, style: TextStyles.sectionTitle),
         const Expanded(
-          child: WorkExperienceTimeline(),
+          child: Padding(
+            padding: EdgeInsets.only(top: 64),
+            child: WorkExperienceTimeline(),
+          ),
         )
       ],
     );
@@ -93,79 +99,21 @@ class WorkExperienceTimeline extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              ...Constants.workExperiences.map((e) => WorkExperienceRow(
-                    workExperience: e,
-                  ))
-            ],
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ...Constants.workExperiences.map((e) => WorkExperienceRow(
+                      workExperience: e,
+                    )),
+              ]
+                  .animate(interval: 500.ms)
+                  .fade(delay: 500.ms, duration: 1000.ms),
+            ),
           ),
         ),
       ],
-    );
-  }
-}
-
-class WorkExperienceRow extends StatelessWidget {
-  final WorkExperience workExperience;
-
-  const WorkExperienceRow({
-    super.key,
-    required this.workExperience,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final List<Widget> widgetsList = [
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-            height: 80,
-            width: 300,
-            child: Card(
-              elevation: 3,
-              color: context.theme.colorScheme.surface,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: ListTile(
-                // contentPadding: const EdgeInsets.all(8),
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-                title: Text(workExperience.company.toUpperCase(),
-                    style: TextStyles.workExperienceBoxTitle),
-                subtitle: Text(workExperience.role.toUpperCase(),
-                    style: TextStyles.workExperienceBoxSubtitle),
-              ),
-            )),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          width: 50,
-          height: 50,
-          decoration: const BoxDecoration(
-            color: AppColors.lightGrey,
-            shape: BoxShape.circle,
-            image: DecorationImage(
-              image: AssetImage("assets/images/architect.png"),
-              fit: BoxFit.fill,
-            ),
-          ),
-          // child: const Text("Hello"),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child:
-            Text(workExperience.date, style: TextStyles.workExperienceDuration),
-      )
-    ];
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children:
-          workExperience.id.isOdd ? widgetsList : widgetsList.reversed.toList(),
     );
   }
 }

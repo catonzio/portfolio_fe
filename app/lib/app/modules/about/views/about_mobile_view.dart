@@ -6,7 +6,7 @@ class AboutMobileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.green[700],
+        color: Colors.yellow[700],
         child: const Center(child: Text('This is the about page MOBILE')));
   }
 }
