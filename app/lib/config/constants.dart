@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:portfolio/app/modules/about/work_experience_model.dart';
 import 'package:portfolio/app/modules/projects/project_model.dart';
+import 'package:portfolio/config/colors.dart';
 
 class Constants {
   static const Duration pageTransitionDuration = Duration(milliseconds: 400);
@@ -22,20 +24,52 @@ class Constants {
       "iconPath": "assets/images/architect.png",
       "title": "Architect",
     },
-    {"iconPath": "assets/images/architect.png", "title": "Data Scientist"}
+    {
+      "iconPath": "assets/images/architect.png",
+      "title": "Data Scientist",
+    }
   ];
 
   static const String aboutOverview = """
-      I'm a passionate data scientist and software engineer at IBM, specializing in Python and Flutter.
-      With a knack for crafting innovative solutions, I thrive on pushing boundaries in technology.
-      Explore my portfolio to see how I blend creativity with technical expertise.
+I'm a passionate data scientist and software engineer at IBM, specializing in Python and Flutter.
+With a knack for crafting innovative solutions, I thrive on pushing boundaries in technology.
+Explore my portfolio to see how I blend creativity with technical expertise.
   """;
 
   static const String projectsDescription = """
-      I have worked on a variety of projects, ranging from web applications to machine learning models.
-      Here are a few examples of my work. 
-      Click on a project to learn more about it.
+I have worked on a variety of projects, ranging from web applications to machine learning models.
+Here are a few examples of my work. 
+Click on a project to learn more about it.
   """;
+
+  static const String contactInfoString = """
+I'm always open to new opportunities and collaborations. 
+Feel free to reach out to me using the form below.
+""";
+
+  static const List<Map<String, dynamic>> contactInfo = [
+    {
+      "icon": Icon(
+        Icons.email,
+        color: AppColors.darkWhite,
+      ),
+      "text": "danilocatone@gmail.com"
+    },
+    {
+      "icon": Icon(
+        Icons.phone_android,
+        color: AppColors.darkWhite,
+      ),
+      "text": "+39 331 623 9724"
+    },
+    {
+      "icon": Icon(
+        Icons.location_on,
+        color: AppColors.darkWhite,
+      ),
+      "text": "Rome, Italy"
+    }
+  ];
 
   static List<WorkExperience> workExperiences = [
     WorkExperience(

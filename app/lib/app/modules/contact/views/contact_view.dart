@@ -12,11 +12,12 @@ class ContactView extends GetView<ContactController> {
   const ContactView({super.key});
   @override
   Widget build(BuildContext context) {
+    final ContactController controller = ContactController.to;
     return MyPage(
         body: const Responsive(
           mobile: ContactMobileView(),
           desktop: ContactDesktopView(),
         ),
-        isScrollEnabled: (_) => true);
+        isScrollEnabled: (_) => controller.isScrollEnabled(_));
   }
 }

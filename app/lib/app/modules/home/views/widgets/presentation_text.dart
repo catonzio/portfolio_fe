@@ -1,8 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/config/text_styles.dart';
-
 
 class PresentationText extends StatelessWidget {
   const PresentationText({
@@ -22,24 +22,28 @@ class PresentationText extends StatelessWidget {
           pause: const Duration(milliseconds: 1500),
           displayFullTextOnTap: true,
           animatedTexts: [
-            TyperAnimatedText(
+            TypewriterAnimatedText(
               "Data Scientist",
-              speed: const Duration(milliseconds: 80),
+              speed: 150.ms,
+              cursor: "|",
               textStyle: context.textTheme.headlineLarge,
             ),
-            TyperAnimatedText(
+            TypewriterAnimatedText(
               "Flutter Developer",
-              speed: const Duration(milliseconds: 80),
+              speed: 150.ms,
+              cursor: "|",
               textStyle: context.textTheme.headlineLarge,
             ),
-            TyperAnimatedText(
+            TypewriterAnimatedText(
               "Software Engineer",
-              speed: const Duration(milliseconds: 80),
+              speed: 150.ms,
+              cursor: "|",
               textStyle: context.textTheme.headlineLarge,
             ),
-            TyperAnimatedText(
+            TypewriterAnimatedText(
               "A friend 👋🏼😊",
-              speed: const Duration(milliseconds: 80),
+              speed: 150.ms,
+              cursor: "|",
               textStyle: context.textTheme.headlineLarge,
             ),
           ],
