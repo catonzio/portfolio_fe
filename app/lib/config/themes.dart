@@ -1,3 +1,4 @@
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/config/colors.dart';
@@ -70,4 +71,10 @@ class Themes {
         ));
     return theme;
   }
+
+  static ExpandableThemeData expandableTheme = const ExpandableThemeData(
+      iconColor: AppColors.onDarkBackground,
+      sizeCurve: Curves.easeInOutSine,
+      animationDuration: Duration(milliseconds: 500),
+      crossFadePoint: 0.5);
 }

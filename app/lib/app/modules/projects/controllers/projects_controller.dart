@@ -30,10 +30,10 @@ class ProjectsController extends GetxController {
       controller.expanded = false;
     }
     expandableControllers[currentIndex].expanded = true;
-    final int currentHovering = isHovering.indexOf(true);
-    if (currentHovering != -1) {
-      expandableControllers[currentHovering].expanded = true;
-    }
+    // final int currentHovering = isHovering.indexOf(true);
+    // if (currentHovering != -1) {
+    //   expandableControllers[currentHovering].expanded = true;
+    // }
   }
 
   bool isScrollEnabled(Offset offset) {

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:portfolio/app//shared/ui/mypage.dart';
-import 'package:portfolio/app/modules/contact/views/contact_desktop_view.dart';
-import 'package:portfolio/app/modules/contact/views/contact_mobile_view.dart';
+import 'package:portfolio/app/modules/contact/views/desktop/contact_desktop_view.dart';
+import 'package:portfolio/app/modules/contact/views/mobile/contact_mobile_view.dart';
 import 'package:portfolio/app/shared/ui/responsive.dart';
 
 import '../controllers/contact_controller.dart';
