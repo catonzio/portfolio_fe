@@ -1,0 +1,104 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
+import 'package:portfolio/app/modules/about/views/desktop/widgets/overview_skill_box.dart';
+import 'package:portfolio/config/constants.dart';
+import 'package:portfolio/config/shared_animations.dart';
+import 'package:portfolio/config/text_styles.dart';
+
+class AboutOverview extends StatelessWidget {
+  const AboutOverview({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: context.theme.colorScheme.surface,
+      width: min(context.width, 1250),
+      height: context.height * 0.9,
+      child: const Padding(
+        padding: EdgeInsets.all(64),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            AboutTitleDesktop(),
+            AboutTextDesktop(),
+            AboutBoxesDesktop()
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AboutTitleDesktop extends StatelessWidget {
+  const AboutTitleDesktop({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text("Overview", style: TextStyles.sectionTitle)
+        .animate(
+          effects: GlobalAnimations.titleAppearence,
+        )
+        .animate(
+            effects: GlobalAnimations.titleShimmer,
+            onPlay: (controller) => controller.repeat(reverse: false));
+  }
+}
+
+class AboutTextDesktop extends StatelessWidget {
+  const AboutTextDesktop({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTextStyle(
+      style: context.theme.textTheme.titleLarge!,
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: Constants.aboutOverview
+              .split("\n")
+              .map((String text) => Text(text.trim()))
+              .toList()),
+    );
+  }
+}
+
+class AboutBoxesDesktop extends StatelessWidget {
+  const AboutBoxesDesktop({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    const double skillBowWidth = 180;
+    const double skillBoxHeight = 180;
+    const double wrapSpacing = 24;
+    const double beginMove = -(skillBowWidth + wrapSpacing);
+    return Center(
+      child: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        runAlignment: WrapAlignment.center,
+        alignment: WrapAlignment.center,
+        spacing: wrapSpacing,
+        runSpacing: wrapSpacing,
+        children: Constants.overviewSkillBoxes.map((skill) {
+          final int index = Constants.overviewSkillBoxes.indexOf(skill);
+          return OverviewSkillBox(
+            width: skillBowWidth,
+            height: skillBoxHeight,
+            iconPath: skill["iconPath"]!,
+            title: skill["title"]!,
+          )
+              .animate()
+              .fade(delay: (1000 * index + 500).ms)
+              .moveX(begin: beginMove, end: 0);
+        }).toList(),
+      ),
+    );
+  }
+}

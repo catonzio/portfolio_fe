@@ -27,7 +27,7 @@ class Constants {
     {
       "iconPath": "assets/images/architect.png",
       "title": "Data Scientist",
-    }
+    },
   ];
 
   static const String aboutOverview = """

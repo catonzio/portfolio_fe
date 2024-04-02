@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class HomeTrianglePainter extends CustomPainter {
   final Color color;
-  const HomeTrianglePainter({required this.color});
+  final bool isDesktop;
+
+  const HomeTrianglePainter({required this.color, required this.isDesktop});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -11,8 +13,9 @@ class HomeTrianglePainter extends CustomPainter {
 
     final path = Path();
 
-    path.moveTo(width, -height / 3); // Top right corner
-    path.lineTo(width / 3, height);
+    path.moveTo(
+        width, isDesktop ? -height / 3 : -height / 10); // Top right corner
+    path.lineTo(isDesktop ? width / 3 : width / 3, height);
     path.lineTo(width, height); // Top left corner
     path.close();
 
@@ -29,7 +32,9 @@ class HomeTrianglePainter extends CustomPainter {
 
 class WorkExperiencePainter extends CustomPainter {
   final Color color;
-  const WorkExperiencePainter({required this.color});
+  final bool isDesktop;
+
+  const WorkExperiencePainter({required this.color, required this.isDesktop});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -39,7 +44,7 @@ class WorkExperiencePainter extends CustomPainter {
     final path = Path();
 
     path.moveTo(width, 0); // Top right corner
-    path.lineTo(width - width / 5, 0);
+    path.lineTo(width - (isDesktop ? width / 5 : width / 10), 0);
     path.lineTo(width / 3, height);
     path.lineTo(width, height); // Top left corner
     path.close();

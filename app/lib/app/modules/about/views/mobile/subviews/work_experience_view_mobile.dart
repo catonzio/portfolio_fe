@@ -2,14 +2,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/app/modules/about/views/widgets/work_experience_row.dart';
+import 'package:portfolio/app/modules/about/views/mobile/widgets/work_experience_row_mobile.dart';
 import 'package:portfolio/app/shared/ui/triangle_painter.dart';
 import 'package:portfolio/config/colors.dart';
 import 'package:portfolio/config/constants.dart';
-import 'package:portfolio/config/text_styles.dart';
+import 'package:portfolio/config/text_styles_mobile.dart';
 
-class WorkExperienceView extends StatelessWidget {
-  const WorkExperienceView({super.key});
+class WorkExperienceViewMobile extends StatelessWidget {
+  const WorkExperienceViewMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,9 @@ class WorkExperienceView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 80),
           child: Material(
             color: context.theme.colorScheme.surfaceVariant,
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(150),
-              bottomRight: Radius.circular(150),
-            ),
-            elevation: 0,
+            elevation: 3,
             child: Container(
-              height: context.height * 0.9,
+              height: context.height * 0.2 * Constants.workExperiences.length,
               decoration: BoxDecoration(
                   color: context.theme.colorScheme.surface,
                   borderRadius: const BorderRadius.only(
@@ -46,13 +42,14 @@ class WorkExperienceView extends StatelessWidget {
                       child: CustomPaint(
                     painter: WorkExperiencePainter(
                         color: context.theme.colorScheme.surfaceVariant
-                            .withOpacity(0.95)),
+                            .withOpacity(0.95),
+                        isDesktop: false),
                   )),
                   Positioned(
-                      top: context.height * 0.07,
+                      top: context.height * 0.05,
                       left: context.width * 0.15,
                       right: context.width * 0.15,
-                      bottom: context.height * 0.07,
+                      bottom: context.height * 0.05,
                       child: const WorkExperienceContent())
                 ],
               ),
@@ -72,7 +69,7 @@ class WorkExperienceContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         AutoSizeText("Work Experience",
-            maxLines: 1, style: TextStyles.sectionTitle),
+            maxLines: 1, style: TextStylesMobile.sectionTitle),
         const Expanded(
           child: Padding(
             padding: EdgeInsets.only(top: 64),
@@ -89,22 +86,36 @@ class WorkExperienceTimeline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double centerCircleSize =
+        Size(context.width * 0.12, context.height * 0.12)
+            .shortestSide
+            .clamp(40, 60);
+
     return Stack(
       children: [
-        const Center(
-          child: VerticalDivider(
+        Positioned(
+          top: 0,
+          bottom: 0,
+          left: centerCircleSize / 2 - 1,
+          child: const VerticalDivider(
             thickness: 4,
+            indent: 0,
+            endIndent: 0,
+            width: 4,
             color: AppColors.lightGrey,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 24),
-          child: Center(
+        Positioned(
+          top: 0,
+          bottom: 0,
+          left: 0,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ...Constants.workExperiences.map((e) => WorkExperienceRow(
+                ...Constants.workExperiences.map((e) => WorkExperienceRowMobile(
                       workExperience: e,
                     )),
               ]

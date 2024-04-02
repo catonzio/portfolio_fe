@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/app/modules/home/views/widgets/presentation_text.dart';
+import 'package:portfolio/app/modules/home/views/desktop/widgets/presentation_text.dart';
 import 'package:portfolio/app/shared/ui/triangle_painter.dart';
 import 'package:portfolio/config/colors.dart';
 
@@ -17,10 +17,11 @@ class HomeDesktopView extends StatelessWidget {
           "assets/images/black_home_background.png",
           fit: BoxFit.cover,
           color: context.theme.colorScheme.surface.withOpacity(0.8),
-          colorBlendMode: BlendMode.hardLight,
+          colorBlendMode: BlendMode.xor,
         ),
         CustomPaint(
-          painter: HomeTrianglePainter(color: AppColors.blackOpacity),
+          painter: HomeTrianglePainter(
+              color: AppColors.blackOpacity, isDesktop: true),
         ),
         Positioned(
             top: context.height * (0.4 - 0.25 / 2),

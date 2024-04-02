@@ -16,7 +16,7 @@ class GlobalAnimations {
 
   static final titleShimmer = <Effect>[
     ShimmerEffect(
-      delay: 1000.ms,
+      delay: 1500.ms,
       color: AppColors.lightGrey,
       duration: 2000.ms,
     ),
