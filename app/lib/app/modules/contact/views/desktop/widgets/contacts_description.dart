@@ -13,7 +13,7 @@ class ContactsDescription extends StatelessWidget {
     return SizedBox(
       height: context.height * 0.5,
       child: Padding(
-        padding: const EdgeInsets.all(32.0),
+        padding: const EdgeInsets.fromLTRB(32.0, 0, 32.0, 32.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,

@@ -33,7 +33,7 @@ class WorkExperienceViewMobile extends StatelessWidget {
                   ),
                   image: const DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage("assets/images/work_experience_bg.png"),
+                    image: AssetImage("assets/images/backgrounds/work_experience_bg.png"),
                   )),
               child: Stack(
                 fit: StackFit.expand,

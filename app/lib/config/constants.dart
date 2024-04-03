@@ -13,19 +13,19 @@ class Constants {
 
   static const List<Map<String, String>> overviewSkillBoxes = [
     {
-      "iconPath": "assets/images/developer.png",
+      "iconPath": "assets/images/skills/developer.png",
       "title": "Developer",
     },
     {
-      "iconPath": "assets/images/software_engineer.png",
+      "iconPath": "assets/images/skills/software_engineer.png",
       "title": "Software Engineer",
     },
     {
-      "iconPath": "assets/images/architect.png",
+      "iconPath": "assets/images/skills/architect.png",
       "title": "Architect",
     },
     {
-      "iconPath": "assets/images/architect.png",
+      "iconPath": "assets/images/skills/architect.png",
       "title": "Data Scientist",
     },
   ];
@@ -77,6 +77,7 @@ Feel free to reach out to me using the form below.
         company: "IBM",
         role: "Data Scientist",
         date: "Feb 2023 - Present",
+        logoPath: "assets/images/logos/ibm_logo.png",
         description:
             "Developed machine learning models to predict customer behavior and improve business processes."),
     WorkExperience(
@@ -84,6 +85,7 @@ Feel free to reach out to me using the form below.
         company: "Whitehall Reply",
         role: "Backend Engineer",
         date: "Nov 2022 - Feb 2023",
+        logoPath: "assets/images/logos/reply_logo.png",
         description:
             "Developed and maintained software solutions for clients, including web applications and APIs."),
     WorkExperience(
@@ -91,6 +93,7 @@ Feel free to reach out to me using the form below.
         company: "RES Media",
         role: "Full Stack Engineer",
         date: "Aug 2022 - Jan 2023",
+        logoPath: "assets/images/logos/res_media_logo.png",
         description:
             "Developed machine learning models to predict customer behavior and improve business processes."),
     WorkExperience(
@@ -98,6 +101,7 @@ Feel free to reach out to me using the form below.
         company: "BigProfiles",
         role: "Intern",
         date: "Sep 2019 - Dec 2019",
+        logoPath: "assets/images/logos/big_profiles_logo.png",
         description:
             "Developed machine learning models to predict customer behavior and improve business processes."),
   ];
@@ -107,13 +111,13 @@ Feel free to reach out to me using the form below.
         id: 0,
         name: "Portfolio",
         description: "A Flutter web application showcasing my work and skills.",
-        imagePath: "assets/images/architect.png"),
+        imagePath: "assets/images/skills/architect.png"),
     Project(
         id: 1,
         name: "Weather App",
         description:
             "A Flutter mobile application that displays the current weather.",
-        imagePath: "assets/images/developer.png"),
+        imagePath: "assets/images/skills/developer.png"),
     Project(
         id: 2,
         name: "Chat App",
@@ -125,18 +129,18 @@ Feel free to reach out to me using the form below.
         name: "E-Commerce App",
         description:
             "A Flutter mobile application that allows users to buy and sell products.",
-        imagePath: "assets/images/work_experience_bg.png"),
+        imagePath: "assets/images/backgrounds/work_experience_bg.png"),
     Project(
         id: 4,
         name: "Blog App",
         description:
             "A Flutter web application that allows users to write and publish blog posts.",
-        imagePath: "assets/images/logo.png"),
+        imagePath: "assets/images/logos/logo.png"),
     Project(
         id: 5,
         name: "Social Media App",
         description:
             "A Flutter mobile application that allows users to connect with each other.",
-        imagePath: "assets/images/developer.png"),
+        imagePath: "assets/images/skills/developer.png"),
   ];
 }

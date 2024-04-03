@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/app/modules/projects/controllers/projects_controller.dart';
 import 'package:portfolio/app/modules/projects/project_model.dart';
+import 'package:portfolio/app/modules/projects/views/widgets/project_box.dart';
 import 'package:portfolio/config/colors.dart';
 import 'package:portfolio/config/themes.dart';
 
 class ProjectBox extends StatelessWidget {
   final Project project;
-  const ProjectBox({super.key, required this.project});
+  final double height;
+  const ProjectBox({super.key, required this.project, required this.height});
 
   @override
   Widget build(BuildContext context) {
     final ProjectsController controller = ProjectsController.to;
-    var collapsedWidth = context.width * 0.07;
-    var expandedWidth = context.width * 0.2;
+    var collapsedWidth = context.width * 0.1;
+    final double expandedWidth = (context.width * 0.4).clamp(100, 500);
 
     return InkWell(
       onTap: () => controller.onTap(project.id!),
@@ -37,78 +39,17 @@ class ProjectBox extends StatelessWidget {
               return ExpandablePanel(
                 theme: Themes.expandableTheme,
                 controller: controller.expandableControllers[project.id!],
-                collapsed: CollapsedProjectBoxDesktop(
-                    collapsedWidth: collapsedWidth, project: project),
-                expanded: ExpandedProjectBoxDesktop(
-                    expandedWidth: expandedWidth, project: project),
+                collapsed: CollapsedProjectBox(
+                    collapsedWidth: collapsedWidth,
+                    isDesktop: true,
+                    project: project),
+                expanded: ExpandedProjectBox(
+                    expandedWidth: expandedWidth,
+                    expandedHeight: height,
+                    isDesktop: true,
+                    project: project),
               );
             })),
-      ),
-    );
-  }
-}
-
-class CollapsedProjectBoxDesktop extends StatelessWidget {
-  const CollapsedProjectBoxDesktop({
-    super.key,
-    required this.collapsedWidth,
-    required this.project,
-  });
-
-  final double collapsedWidth;
-  final Project project;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: collapsedWidth,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        image: DecorationImage(
-            image: AssetImage(project.imagePath!),
-            fit: BoxFit.cover,
-            opacity: 0.3),
-      ),
-      alignment: AlignmentDirectional.bottomEnd,
-      child: RotatedBox(
-          quarterTurns: -1,
-          child: Text(
-            project.name!.toUpperCase(),
-            style: context.theme.textTheme.headlineLarge!.copyWith(
-                color: context.theme.colorScheme.onSurfaceVariant,
-                fontWeight: FontWeight.bold),
-          )),
-    );
-  }
-}
-
-class ExpandedProjectBoxDesktop extends StatelessWidget {
-  const ExpandedProjectBoxDesktop({
-    super.key,
-    required this.expandedWidth,
-    required this.project,
-  });
-
-  final double expandedWidth;
-  final Project project;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: expandedWidth,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        image: DecorationImage(
-            image: AssetImage(project.imagePath!),
-            fit: BoxFit.cover,
-            opacity: 0.3),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("Title: ${project.name}"),
-          Text("Project Description: ${project.description}"),
-        ],
       ),
     );
   }

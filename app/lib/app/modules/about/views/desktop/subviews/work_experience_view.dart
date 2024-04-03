@@ -28,7 +28,7 @@ class WorkExperienceView extends StatelessWidget {
             ),
             elevation: 0,
             child: Container(
-              height: context.height * 0.18 * Constants.workExperiences.length,
+              height: context.height * 0.23 * Constants.workExperiences.length,
               decoration: BoxDecoration(
                   color: context.theme.colorScheme.surface,
                   borderRadius: const BorderRadius.only(
@@ -37,7 +37,7 @@ class WorkExperienceView extends StatelessWidget {
                   ),
                   image: const DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage("assets/images/work_experience_bg.png"),
+                    image: AssetImage("assets/images/backgrounds/work_experience_bg.png"),
                   )),
               child: Stack(
                 fit: StackFit.expand,

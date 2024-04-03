@@ -4,6 +4,7 @@ class WorkExperience {
   final String role;
   final String date;
   final String description;
+  final String logoPath;
 
   WorkExperience({
     required this.id,
@@ -11,6 +12,7 @@ class WorkExperience {
     required this.role,
     required this.date,
     required this.description,
+    required this.logoPath, // Added attribute
   });
 
   WorkExperience.fromJson(Map<String, dynamic> json)
@@ -18,7 +20,8 @@ class WorkExperience {
         company = json['company'],
         role = json['role'],
         date = json['date'],
-        description = json['description'];
+        description = json['description'],
+        logoPath = json['logoPath']; // Added attribute
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
@@ -27,6 +30,7 @@ class WorkExperience {
     data['role'] = role;
     data['date'] = date;
     data['description'] = description;
+    data['logoPath'] = logoPath; // Added attribute
     return data;
   }
 }

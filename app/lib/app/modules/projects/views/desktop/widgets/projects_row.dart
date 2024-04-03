@@ -1,9 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/app/modules/projects/views/desktop/widgets/projects_box_desktop.dart';
+import 'package:portfolio/app/modules/projects/views/mobile/widgets/projects_column.dart';
 import 'package:portfolio/config/constants.dart';
 
 class ProjectsRow extends StatelessWidget {
@@ -11,14 +10,15 @@ class ProjectsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double height = context.height * 0.4;
     return SizedBox(
-      height: context.height * 0.4,
+      height: height,
       child: ScrollConfiguration(
         behavior: MyScrollBehavior(),
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: Constants.projects
-              .map((e) => ProjectBox(project: e))
+              .map((e) => ProjectBox(project: e, height: height,))
               .toList()
               .animate(delay: 500.ms, interval: 500.ms)
               .fade()
@@ -27,14 +27,4 @@ class ProjectsRow extends StatelessWidget {
       ),
     );
   }
-}
-
-class MyScrollBehavior extends MaterialScrollBehavior {
-  // Override behavior methods and getters like dragDevices
-  @override
-  Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-        PointerDeviceKind.trackpad
-      };
 }

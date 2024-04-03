@@ -14,7 +14,7 @@ class HomeMobileView extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         Image.asset(
-          "assets/images/black_home_background.png",
+          "assets/images/backgrounds/black_home_background.png",
           fit: BoxFit.fitHeight,
           color: context.theme.colorScheme.surface.withOpacity(0.8),
           colorBlendMode: BlendMode.xor,

@@ -20,7 +20,7 @@ class NavbarDesktop extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: context.theme.colorScheme.surface.withOpacity(0.9),
       scrolledUnderElevation: 0,
       title: Container(
-          width: context.width * 0.2,
+          width: context.width * 0.25,
           alignment: Alignment.centerRight,
           child: TitleWidget(controller: controller)),
       toolbarHeight: preferredSize.height,
@@ -61,7 +61,7 @@ class TitleWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Image.asset(
-                "assets/images/logo.png",
+                "assets/images/logos/logo.png",
                 width: 50,
               ),
               Text(

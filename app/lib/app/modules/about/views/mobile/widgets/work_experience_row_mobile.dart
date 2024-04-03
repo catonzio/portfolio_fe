@@ -35,8 +35,8 @@ class WorkExperienceRowMobile extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Image.asset(
-              "assets/images/architect.png",
-              fit: BoxFit.contain,
+              workExperience.logoPath,
+              fit: BoxFit.scaleDown,
             ),
           ),
         ),

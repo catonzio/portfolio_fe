@@ -56,10 +56,11 @@ class WorkExperienceRow extends StatelessWidget {
               shape: const CircleBorder(
                   side: BorderSide(color: Color(0xFF969696), width: 3)),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Image.asset(
-                  "assets/images/architect.png",
-                  fit: BoxFit.contain,
+                  workExperience.logoPath,
+                  fit: BoxFit.scaleDown,
+                  color: AppColors.darkWhite,
                 ),
               ),
             ),

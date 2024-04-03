@@ -50,7 +50,7 @@ class ContactMobileView extends StatelessWidget {
   List<Widget> getBackgroundImage(BuildContext context) {
     return [
       Image.asset(
-        'assets/images/cinecitta.png',
+        'assets/images/backgrounds/cinecitta.png',
         fit: BoxFit.cover,
         color: context.theme.colorScheme.surfaceVariant,
         colorBlendMode: BlendMode.color,

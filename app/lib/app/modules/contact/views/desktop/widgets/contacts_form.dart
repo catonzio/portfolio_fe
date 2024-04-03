@@ -20,14 +20,14 @@ class ContactsForm extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.fromLTRB(8.0, 0, 8.0, 8.0),
                   child: ContactsInput(labelText: "Name"),
                 ),
               ),
               Expanded(
                 flex: 4,
                 child: Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.fromLTRB(8.0, 0, 8.0, 8.0),
                   child: ContactsInput(labelText: "Email"),
                 ),
               ),
