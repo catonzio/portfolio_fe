@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/app/modules/contact/views/desktop/widgets/contacts_description.dart';
-import 'package:portfolio/app/modules/contact/views/desktop/widgets/contacts_form.dart';
+import 'package:portfolio/app/modules/contact/views/widgets/contacts_description.dart';
+import 'package:portfolio/app/modules/contact/views/widgets/contacts_form.dart';
 import 'package:portfolio/config/colors.dart';
 import 'package:portfolio/config/constants.dart';
 import 'package:portfolio/config/shared_animations.dart';
@@ -41,6 +41,7 @@ class ContactDesktopView extends StatelessWidget {
                                 controller.repeat(reverse: false)),
                     Text(Constants.contactInfoString.trim()),
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Expanded(flex: 5, child: ContactsDescription()),
                         Expanded(

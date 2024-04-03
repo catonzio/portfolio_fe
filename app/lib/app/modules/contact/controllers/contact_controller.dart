@@ -51,9 +51,8 @@ class ContactController extends GetxController {
   }
 
   void sendEmail() {
-    // Validate returns true if the form is valid, or false otherwise.
     if (formKey.currentState!.validate()) {
-      print("Valid form");
+      // TODO send email
     }
   }
 

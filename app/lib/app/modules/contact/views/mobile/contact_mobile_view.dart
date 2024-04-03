@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/app/modules/contact/views/desktop/widgets/contacts_form.dart';
-import 'package:portfolio/app/modules/contact/views/mobile/widgets/contacts_description_mobile.dart';
+import 'package:portfolio/app/modules/contact/views/widgets/contacts_description.dart';
+import 'package:portfolio/app/modules/contact/views/widgets/contacts_form.dart';
 import 'package:portfolio/config/colors.dart';
 import 'package:portfolio/config/constants.dart';
 import 'package:portfolio/config/shared_animations.dart';
@@ -34,7 +34,7 @@ class ContactMobileView extends StatelessWidget {
                   effects: GlobalAnimations.titleAppearence,
                 ),
                 Text(Constants.contactInfoString.trim()),
-                const ContactsDescriptionMobile(),
+                const ContactsDescription(),
                 const ContactsForm()
                     .animate()
                     .fade(delay: 1000.ms, duration: 500.ms)

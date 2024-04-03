@@ -14,7 +14,7 @@ class HomeDesktopView extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         Image.asset(
-          "assets/images/backgrounds/black_home_background.png",
+          "assets/images/backgrounds/black_home_background_orig.png",
           fit: BoxFit.cover,
           color: context.theme.colorScheme.surface.withOpacity(0.8),
           colorBlendMode: BlendMode.xor,
@@ -26,7 +26,7 @@ class HomeDesktopView extends StatelessWidget {
         Positioned(
             top: context.height * (0.4 - 0.25 / 2),
             left: context.width * 0.2,
-            height: context.height * 0.25,
+            height: context.height * 0.3,
             child: const PresentationText().animate().moveX(
                 delay: 250.ms,
                 begin: -context.width,

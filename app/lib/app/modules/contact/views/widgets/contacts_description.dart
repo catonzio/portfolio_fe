@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:get/get.dart';
 import 'package:portfolio/config/constants.dart';
 
 class ContactsDescription extends StatelessWidget {
@@ -11,12 +10,12 @@ class ContactsDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.height * 0.5,
+      // height: context.height * 0.5,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(32.0, 0, 32.0, 32.0),
+        padding: const EdgeInsets.fromLTRB(0.0, 0, 32.0, 32.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             mainAxisSize: MainAxisSize.max,
             children: Constants.contactInfo
                 .map((Map<String, dynamic> mapText) => ContactsDescriptionRow(
@@ -27,9 +26,7 @@ class ContactsDescription extends StatelessWidget {
                 .animate(delay: 1000.ms, interval: 500.ms)
                 .fade(duration: 500.ms)),
       ),
-    )
-        // const ProjectsRow()
-        ;
+    );
   }
 }
 
@@ -48,7 +45,7 @@ class ContactsDescriptionRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(8.0),
           child: icon,
         ),
         Text(text)

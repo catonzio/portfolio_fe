@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/app/modules/projects/project_model.dart';
+import 'package:portfolio/app/shared/ui/widgets/social_buttons.dart';
 import 'package:portfolio/config/colors.dart';
+import 'package:portfolio/config/constants.dart';
 
 class CollapsedProjectBox extends StatelessWidget {
   final double? collapsedWidth;
@@ -61,30 +63,26 @@ class ExpandedProjectBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle titleStyle = isDesktop
-        ? context.textTheme.headlineLarge!.copyWith(
-            color: context.theme.colorScheme.onSurfaceVariant,
-            fontWeight: FontWeight.bold,
-          )
-        : context.textTheme.titleLarge!.copyWith(
-            color: context.theme.colorScheme.onSurfaceVariant,
-            fontWeight: FontWeight.bold,
-          );
-    final TextStyle descriptionStyle = isDesktop
-        ? context.textTheme.bodyLarge!.copyWith(
-            color: context.theme.colorScheme.onSurfaceVariant,
-          )
-        : context.textTheme.bodySmall!.copyWith(
-            color: context.theme.colorScheme.onSurfaceVariant,
-          );
+    final TextStyle titleStyle = (isDesktop
+            ? context.textTheme.headlineLarge
+            : context.textTheme.titleLarge)!
+        .copyWith(
+      color: context.theme.colorScheme.onSurfaceVariant,
+      fontWeight: FontWeight.bold,
+    );
+    final TextStyle descriptionStyle =
+        (isDesktop ? context.textTheme.bodyLarge : context.textTheme.bodySmall)!
+            .copyWith(
+      color: context.theme.colorScheme.onSurfaceVariant,
+    );
 
-    var buttonStyle = isDesktop
-        ? context.textTheme.titleMedium!.copyWith(
-            color: context.theme.colorScheme.onPrimaryContainer,
-          )
-        : context.textTheme.bodyMedium!.copyWith(
-            color: context.theme.colorScheme.onPrimaryContainer,
-          );
+    var buttonStyle = (isDesktop
+            ? context.textTheme.titleMedium
+            : context.textTheme.bodyMedium)!
+        .copyWith(
+      color: context.theme.colorScheme.onPrimaryContainer,
+    );
+
     return Container(
       height: expandedHeight,
       width: expandedWidth,
@@ -136,20 +134,14 @@ class ExpandedProjectBox extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      child: Container(
-                        height: expandedHeight! * 0.12,
-                        decoration: BoxDecoration(
-                            color: context.theme.colorScheme.primaryContainer,
-                            shape: BoxShape.circle),
-                        padding: const EdgeInsets.all(8),
-                        alignment: Alignment.center,
-                        child: const Icon(Icons.gite),
-                      ),
-                    ),
-                  )
+                  if (project.githubUrl != null)
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: LinkButton(
+                          url: project.githubUrl!,
+                          imagePath: Constants.socialLinks['github']!.iconPath!,
+                          height: expandedHeight! * 0.12),
+                    )
                 ],
               )
             ],

@@ -32,7 +32,7 @@ class PagesController extends GetxController {
       return currentIndex;
     }
     int newIndex = currentIndex;
-    print(movement);
+    
     if (movement is Offset) {
       // print(movement.dy);
       if (movement.dy > 80) {

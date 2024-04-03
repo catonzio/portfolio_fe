@@ -11,11 +11,11 @@ class ContactsForm extends StatelessWidget {
     final ContactController controller = ContactController.to;
     return Form(
       key: controller.formKey,
-      child: Column(
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Row(
+          Row(
             children: [
               Expanded(
                 flex: 4,
@@ -33,11 +33,11 @@ class ContactsForm extends StatelessWidget {
               ),
             ],
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(8.0),
             child: ContactsInput(labelText: "Subject"),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(8.0),
             child: ContactsInput(
               labelText: "Message",
@@ -46,36 +46,49 @@ class ContactsForm extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: InkWell(
-              onTap: controller.sendEmail,
-              child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.lightGrey,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  padding: const EdgeInsets.all(8),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        "Send message",
-                        style: context.textTheme.bodyLarge,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Icon(
-                          Icons.email_rounded,
-                          color: context.textTheme.bodyLarge?.color,
-                        ),
-                      )
-                    ],
-                  )),
-            ),
+            padding: EdgeInsets.all(8.0),
+            child: SendEmailButton(),
           ),
         ],
       ),
+    );
+  }
+}
+
+class SendEmailButton extends StatelessWidget {
+  const SendEmailButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final ContactController controller = ContactController.to;
+
+    return InkWell(
+      onTap: controller.sendEmail,
+      child: Container(
+          decoration: BoxDecoration(
+            color: AppColors.lightGrey,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          padding: const EdgeInsets.all(8),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                "Send message",
+                style: context.textTheme.bodyLarge,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.email_rounded,
+                  color: context.textTheme.bodyLarge?.color,
+                ),
+              )
+            ],
+          )),
     );
   }
 }

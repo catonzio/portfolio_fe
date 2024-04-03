@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/app/modules/about/work_experience_model.dart';
 import 'package:portfolio/app/modules/projects/project_model.dart';
+import 'package:portfolio/app/shared/models/social_data.dart';
 import 'package:portfolio/config/colors.dart';
 
 class Constants {
@@ -71,6 +72,21 @@ Feel free to reach out to me using the form below.
     }
   ];
 
+  static Map<String, SocialData> socialLinks = {
+    "linkedin": SocialData(
+      id: 1,
+      name: "LinkedIn",
+      iconPath: "assets/icons/linkedin.png",
+      url: "https://www.linkedin.com/in/danilo-catone-660aa1174/",
+    ),
+    "github": SocialData(
+      id: 2,
+      name: "GitHub",
+      iconPath: "assets/icons/github.png",
+      url: "https://www.github.com/catonzio",
+    ),
+  };
+
   static List<WorkExperience> workExperiences = [
     WorkExperience(
         id: 0,
@@ -108,39 +124,57 @@ Feel free to reach out to me using the form below.
 
   static List<Project> projects = [
     Project(
-        id: 0,
-        name: "Portfolio",
-        description: "A Flutter web application showcasing my work and skills.",
-        imagePath: "assets/images/skills/architect.png"),
+      id: 0,
+      name: "Portfolio",
+      description: "A Flutter web application showcasing my work and skills.",
+      imagePath: "assets/images/skills/architect.png",
+      url: "https://danilocatone.com/eight-puzzle",
+      githubUrl: "https://github.com/catonzio/eight_puzzle",
+    ),
     Project(
-        id: 1,
-        name: "Weather App",
-        description:
-            "A Flutter mobile application that displays the current weather.",
-        imagePath: "assets/images/skills/developer.png"),
+      id: 1,
+      name: "Weather App",
+      description:
+          "A Flutter mobile application that displays the current weather.",
+      imagePath: "assets/images/skills/developer.png",
+      url: "https://danilocatone.com/eight-puzzle",
+      githubUrl: "https://github.com/catonzio/eight_puzzle",
+    ),
     Project(
-        id: 2,
-        name: "Chat App",
-        description:
-            "A Flutter web application that allows users to chat with each other.",
-        imagePath: "assets/images/myself.png"),
+      id: 2,
+      name: "Chat App",
+      description:
+          "A Flutter web application that allows users to chat with each other.",
+      imagePath: "assets/images/myself.png",
+      url: "https://danilocatone.com/eight-puzzle",
+      githubUrl: "https://github.com/catonzio/eight_puzzle",
+    ),
     Project(
-        id: 3,
-        name: "E-Commerce App",
-        description:
-            "A Flutter mobile application that allows users to buy and sell products.",
-        imagePath: "assets/images/backgrounds/work_experience_bg.png"),
+      id: 3,
+      name: "E-Commerce App",
+      description:
+          "A Flutter mobile application that allows users to buy and sell products.",
+      imagePath: "assets/images/backgrounds/work_experience_bg.png",
+      url: "https://danilocatone.com/eight-puzzle",
+      githubUrl: "https://github.com/catonzio/eight_puzzle",
+    ),
     Project(
-        id: 4,
-        name: "Blog App",
-        description:
-            "A Flutter web application that allows users to write and publish blog posts.",
-        imagePath: "assets/images/logos/logo.png"),
+      id: 4,
+      name: "Blog App",
+      description:
+          "A Flutter web application that allows users to write and publish blog posts.",
+      imagePath: "assets/images/logos/logo.png",
+      url: "https://danilocatone.com/eight-puzzle",
+      githubUrl: "https://github.com/catonzio/eight_puzzle",
+    ),
     Project(
-        id: 5,
-        name: "Social Media App",
-        description:
-            "A Flutter mobile application that allows users to connect with each other.",
-        imagePath: "assets/images/skills/developer.png"),
+      id: 5,
+      name: "Social Media App",
+      description:
+          "A Flutter mobile application that allows users to connect with each other.",
+      imagePath: "assets/images/skills/developer.png",
+      url: "https://danilocatone.com/eight-puzzle",
+      githubUrl: "https://github.com/catonzio/eight_puzzle",
+    ),
   ];
 }

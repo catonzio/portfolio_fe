@@ -13,9 +13,32 @@ class HomeMobileView extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
+        // Container(
+        //   decoration: BoxDecoration(
+        //     image: DecorationImage(
+        //       image: const AssetImage(
+        //           "assets/images/backgrounds/black_home_background.png"),
+        //       fit: BoxFit.cover,
+
+        //       colorFilter: ColorFilter.mode(
+        //         context.theme.colorScheme.surface.withOpacity(0.8),
+        //         BlendMode.xor,
+        //       ),
+        //     ),
+        //   ),
+        // child: Image.asset(
+        //   "assets/images/backgrounds/black_home_background.png",
+        //   fit: BoxFit.cover,
+        //   color: context.theme.colorScheme.surface.withOpacity(0.8),
+        //   colorBlendMode: BlendMode.xor,
+        // ),
+        // ),
         Image.asset(
           "assets/images/backgrounds/black_home_background.png",
-          fit: BoxFit.fitHeight,
+          fit: BoxFit.cover,
+          // color: Colors.blue.withOpacity(0.8),
+          // colorBlendMode: BlendMode.multiply,
+          // alignment: Alignment.topCenter,
           color: context.theme.colorScheme.surface.withOpacity(0.8),
           colorBlendMode: BlendMode.xor,
         ),
