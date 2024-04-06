@@ -27,27 +27,33 @@ class PagesController extends GetxController {
     isHovering[index] = value;
   }
 
-  int onChange(dynamic movement) {
+  int onChange(Offset movement) {
     if (isAnimating) {
       return currentIndex;
     }
     int newIndex = currentIndex;
-    
-    if (movement is Offset) {
-      // print(movement.dy);
-      if (movement.dy > 80) {
-        newIndex += 1;
-      } else if (movement.dy < -80) {
-        newIndex -= 1;
-      }
-    } else if (movement is DragEndDetails) {
-      // print(movement.velocity.pixelsPerSecond.dy);
-      if (movement.velocity.pixelsPerSecond.dy < -80) {
-        newIndex += 1;
-      } else if (movement.velocity.pixelsPerSecond.dy > 80) {
-        newIndex -= 1;
-      }
+
+    if (movement.dy > 80) {
+      newIndex += 1;
+    } else if (movement.dy < -80) {
+      newIndex -= 1;
     }
+
+    // if (movement is Offset) {
+    //   // print(movement.dy);
+    //   if (movement.dy > 80) {
+    //     newIndex += 1;
+    //   } else if (movement.dy < -80) {
+    //     newIndex -= 1;
+    //   }
+    // } else if (movement is DragEndDetails) {
+    //   // print(movement.velocity.pixelsPerSecond.dy);
+    //   if (movement.velocity.pixelsPerSecond.dy < -80) {
+    //     newIndex += 1;
+    //   } else if (movement.velocity.pixelsPerSecond.dy > 80) {
+    //     newIndex -= 1;
+    //   }
+    // }
     return newIndex.clamp(0, Routes.numRoutes - 1);
   }
 }

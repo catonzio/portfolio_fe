@@ -54,7 +54,7 @@ class TitleWidget extends StatelessWidget {
       child: InkWell(
           hoverColor: Colors.transparent,
           focusColor: Colors.transparent,
-          onTap: () => changePage(context, controller, null, null, 0),
+          onTap: () => changePage(context, controller, Offset.zero, null, 0),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,

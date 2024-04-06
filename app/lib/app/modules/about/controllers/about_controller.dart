@@ -6,6 +6,14 @@ class AboutController extends GetxController {
 
   final ScrollController scrollController = ScrollController();
 
+  @override
+  void onInit() {
+    scrollController.addListener(() {
+      print(scrollController.offset);
+    });
+    super.onInit();
+  }
+
   bool isScrollEnabled(Offset offset) {
     if (offset.dy > 0 &&
         scrollController.offset == scrollController.position.maxScrollExtent) {

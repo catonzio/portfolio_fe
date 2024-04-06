@@ -10,6 +10,7 @@ import '../controllers/about_controller.dart';
 
 class AboutView extends GetView<AboutController> {
   const AboutView({super.key});
+  
   @override
   Widget build(BuildContext context) {
     return MyPage(
@@ -18,6 +19,6 @@ class AboutView extends GetView<AboutController> {
           desktop: AboutDesktopView(),
         ),
         isScrollEnabled: (Offset offset) =>
-            AboutController.to.isScrollEnabled(offset));
+            controller.isScrollEnabled(offset));
   }
 }

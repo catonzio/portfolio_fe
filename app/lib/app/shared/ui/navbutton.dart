@@ -37,7 +37,7 @@ class NavButton extends StatelessWidget {
               color: Colors.transparent,
               type: MaterialType.button,
               child: InkWell(
-                onTap: () => changePage(context, controller, null, null, index),
+                onTap: () => changePage(context, controller, Offset.zero, null, index),
                 onHover: (bool val) => controller.isHovering[index] = val,
                 borderRadius: borderRadius,
                 child: AutoSizeText(text,

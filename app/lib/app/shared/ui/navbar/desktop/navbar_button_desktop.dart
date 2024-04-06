@@ -28,7 +28,7 @@ class NavbarButtonDesktop extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Obx(() => InkWell(
               hoverColor: Colors.transparent,
-              onTap: () => changePage(context, controller, null, null, index),
+              onTap: () => changePage(context, controller, Offset.zero, null, index),
               onHover: (value) => controller.setHovering(index, value),
               child: Column(
                 mainAxisSize: MainAxisSize.max,

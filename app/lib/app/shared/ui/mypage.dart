@@ -30,7 +30,16 @@ class MyPage extends StatelessWidget {
           : const NavbarDesktop(), // AppBar().animate(target: context.isMobile ? 0 : 1).fade(),
       bottomNavigationBar: context.isMobile ? const NavbarMobile() : null,
       backgroundColor: context.theme.colorScheme.surface,
-      body: Listener(
+      body: GestureDetector(
+        onTap: () => print('tap'),
+        onHorizontalDragEnd: (details) => print('horizontal drag end'),
+        onVerticalDragEnd: (DragEndDetails details) {
+          Offset event = -details.velocity.pixelsPerSecond;
+          if (!controller.isAnimating && isScrollEnabled(event)) {
+            changePage(context, controller, event, onChangePage, null);
+          }
+        },
+        child: Listener(
           onPointerSignal: (event) {
             if (event is PointerScrollEvent &&
                 !controller.isAnimating &&
@@ -41,14 +50,9 @@ class MyPage extends StatelessWidget {
                   context, controller, event.scrollDelta, onChangePage, null);
             }
           },
-          child: GestureDetector(
-            onVerticalDragEnd: (details) {
-              if (!controller.isAnimating) {
-                changePage(context, controller, details, onChangePage, null);
-              }
-            },
-            child: body,
-          )),
+          child: body,
+        ),
+      ),
     );
   }
 }

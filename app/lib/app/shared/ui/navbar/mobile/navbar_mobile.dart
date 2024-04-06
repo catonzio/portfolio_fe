@@ -11,7 +11,8 @@ class NavbarMobile extends StatelessWidget {
     final PagesController controller = PagesController.to;
     return BottomNavigationBar(
         currentIndex: controller.currentIndex.clamp(0, Routes.numRoutes - 1),
-        onTap: (value) => changePage(context, controller, null, null, value),
+        onTap: (value) =>
+            changePage(context, controller, Offset.zero, null, value),
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'About'),
