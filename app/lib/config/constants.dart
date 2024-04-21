@@ -126,53 +126,45 @@ Feel free to reach out to me using the form below.
     Project(
       id: 0,
       name: "Portfolio",
-      description: "A Flutter web application showcasing my work and skills.",
-      imagePath: "assets/images/skills/architect.png",
+      description:
+          "This site, a Flutter web application showcasing my work and skills.",
+      imagePath: "assets/images/projects/portfolio.png",
       url: "https://danilocatone.com/eight-puzzle",
       githubUrl: "https://github.com/catonzio/eight_puzzle",
     ),
     Project(
       id: 1,
-      name: "Weather App",
+      name: "AI Projects",
       description:
-          "A Flutter mobile application that displays the current weather.",
-      imagePath: "assets/images/skills/developer.png",
+          "A collection of AI projects I developed using Python, showcasing my skills in machine learning and data analysis.",
+      imagePath: "assets/images/projects/notebooks.png",
       url: "https://danilocatone.com/eight-puzzle",
       githubUrl: "https://github.com/catonzio/eight_puzzle",
     ),
     Project(
       id: 2,
-      name: "Chat App",
+      name: "Small games",
       description:
-          "A Flutter web application that allows users to chat with each other.",
-      imagePath: "assets/images/myself.png",
+          "A collection of small games I developed using Flutter, showcasing AI algorithms like A* and Min-Max solutions.",
+      imagePath: "assets/images/projects/a_star.png",
       url: "https://danilocatone.com/eight-puzzle",
       githubUrl: "https://github.com/catonzio/eight_puzzle",
     ),
     Project(
       id: 3,
-      name: "E-Commerce App",
+      name: "ShaLi",
       description:
-          "A Flutter mobile application that allows users to buy and sell products.",
-      imagePath: "assets/images/backgrounds/work_experience_bg.png",
+          "A full-stack web app that allows users to create and share each kind of list.",
+      imagePath: "assets/images/projects/shali.png",
       url: "https://danilocatone.com/eight-puzzle",
       githubUrl: "https://github.com/catonzio/eight_puzzle",
     ),
     Project(
       id: 4,
-      name: "Blog App",
+      name: "RapEdit",
       description:
-          "A Flutter web application that allows users to write and publish blog posts.",
-      imagePath: "assets/images/logos/logo.png",
-      url: "https://danilocatone.com/eight-puzzle",
-      githubUrl: "https://github.com/catonzio/eight_puzzle",
-    ),
-    Project(
-      id: 5,
-      name: "Social Media App",
-      description:
-          "A Flutter mobile application that allows users to connect with each other.",
-      imagePath: "assets/images/skills/developer.png",
+          "A Flutter mobile application that allows users to create and share rap lyrics.",
+      imagePath: "assets/images/projects/rapedit.png",
       url: "https://danilocatone.com/eight-puzzle",
       githubUrl: "https://github.com/catonzio/eight_puzzle",
     ),

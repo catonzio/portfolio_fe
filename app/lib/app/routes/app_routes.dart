@@ -11,12 +11,20 @@ abstract class Routes {
   static const projects = _Paths.projects;
   static const contact = _Paths.contact;
   static const unknown = _Paths.unknown;
+  static const projectDetail = _Paths.projectDetail;
+
+  static const navbar = [
+    about,
+    projects,
+    contact,
+  ];
 
   static const all = [
     home,
     about,
     projects,
     contact,
+    projectDetail,
   ];
 }
 
@@ -27,4 +35,5 @@ abstract class _Paths {
   static const projects = '/projects';
   static const contact = '/contact';
   static const unknown = '/404';
+  static const projectDetail = '/project-detail';
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:portfolio/app/modules/project_detail/controllers/project_detail_controller.dart';
 import 'package:portfolio/app/modules/projects/project_model.dart';
 import 'package:portfolio/app/shared/ui/widgets/social_buttons.dart';
 import 'package:portfolio/config/colors.dart';
@@ -116,6 +117,9 @@ class ExpandedProjectBox extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(
+                      onTap: () {
+                        goToProjectDetail(context, project);
+                      },
                       child: Container(
                         height: expandedHeight! * 0.12,
                         width: expandedWidth != null

@@ -28,8 +28,9 @@ class App extends StatelessWidget {
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
       unknownRoute: AppPages.unknownRoute,
-      routingCallback: (value) =>
-          PagesController.to.changePage(Routes.all.indexOf(value!.current)),
+      routingCallback: (value) => value?.current == Routes.projectDetail
+          ? PagesController.to.changePage(Routes.all.indexOf(Routes.projects))
+          : PagesController.to.changePage(Routes.all.indexOf(value!.current)),
     );
   }
 }

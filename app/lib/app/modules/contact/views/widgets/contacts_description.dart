@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio/config/constants.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class ContactsDescription extends StatelessWidget {
   const ContactsDescription({
@@ -48,8 +49,30 @@ class ContactsDescriptionRow extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: icon,
         ),
-        Text(text)
+        InkWell(onTap: launch, child: SelectableText(text))
       ],
     );
+  }
+
+  void launch() {
+    if (text.contains("@")) {
+      canLaunchUrlString("mailto:$text").then((value) {
+        if (value) {
+          launchUrlString("mailto:$text");
+        }
+      });
+    } else if (text.contains("+39")) {
+      canLaunchUrlString("tel:$text").then((value) {
+        if (value) {
+          launchUrlString("tel:$text");
+        }
+      });
+    } else if (text.contains("Italy")) {
+      canLaunchUrlString("https://goo.gl/maps/7Q4Qg3QJ9zQ2").then((value) {
+        if (value) {
+          launchUrlString("https://goo.gl/maps/7Q4Qg3QJ9zQ2");
+        }
+      });
+    }
   }
 }

@@ -25,11 +25,11 @@ class NavbarDesktop extends StatelessWidget implements PreferredSizeWidget {
           child: TitleWidget(controller: controller)),
       toolbarHeight: preferredSize.height,
       actions: [
-        for (int i = 1; i < Routes.numRoutes; i++)
+        for (int i = 0; i < Routes.navbar.length; i++)
           NavbarButtonDesktop(
             controller: controller,
-            text: AppPages.routes[i].name.replaceAll("/", "").toUpperCase(),
-            index: i,
+            text: Routes.navbar[i].replaceAll("/", "").toUpperCase(),
+            index: i + 1,
           ),
         SizedBox(
           width: context.width * 0.1,
