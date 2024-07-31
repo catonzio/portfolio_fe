@@ -8,8 +8,11 @@ import 'package:portfolio/config/colors.dart';
 import 'package:portfolio/config/themes.dart';
 
 class ProjectBoxMobile extends StatelessWidget {
+  final int index;
   final Project project;
-  const ProjectBoxMobile({super.key, required this.project});
+
+  const ProjectBoxMobile(
+      {super.key, required this.index, required this.project});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +21,8 @@ class ProjectBoxMobile extends StatelessWidget {
     final double collapsedHeight = context.height * 0.07;
 
     return InkWell(
-      onTap: () => controller.onTap(project.id!),
-      onHover: (value) => controller.onHover(project.id!, value),
+      onTap: () => controller.onTap(index),
+      onHover: (value) => controller.onHover(index, value),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Container(
@@ -37,7 +40,7 @@ class ProjectBoxMobile extends StatelessWidget {
             child: Obx(() {
               return ExpandablePanel(
                 theme: Themes.expandableTheme,
-                controller: controller.expandableControllers[project.id!],
+                controller: controller.expandableControllers[index],
                 collapsed: CollapsedProjectBox(
                   collapsedHeight: collapsedHeight,
                   isDesktop: false,

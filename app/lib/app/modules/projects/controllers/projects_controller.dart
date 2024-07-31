@@ -2,7 +2,8 @@ import 'dart:ui';
 
 import 'package:expandable/expandable.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/config/constants.dart';
+import 'package:portfolio/app/modules/projects/project_model.dart';
+import 'package:portfolio/app/modules/projects/providers/project_provider.dart';
 
 class ProjectsController extends GetxController {
   static ProjectsController get to => Get.find<ProjectsController>();
@@ -11,18 +12,37 @@ class ProjectsController extends GetxController {
   int get currentIndex => _currentIndex.value;
   set currentIndex(int value) => _currentIndex.value = value;
 
-  final RxList<bool> isHovering =
-      List.generate(Constants.projects.length, (index) => false).obs;
+  final RxList<bool> isHovering = <bool>[].obs;
 
-  final RxList<ExpandableController> expandableControllers = List.generate(
-    Constants.projects.length,
-    (index) => ExpandableController(),
-  ).obs;
+  final RxList<ExpandableController> expandableControllers =
+      <ExpandableController>[].obs;
+
+  final ProjectProvider provider;
+
+  final RxList<Project> projects = <Project>[].obs;
+  final List<Project> fakeProjects = List.generate(4, (index) => Project());
+  final RxBool isFetchingProjects = false.obs;
+
+  ProjectsController({required this.provider});
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
+    await fetchProjects();
+    expandableControllers.addAll(List.generate(
+      projects.length,
+      (index) => ExpandableController(),
+    ));
+    print("${projects.length} ${expandableControllers.length}");
+    isHovering.addAll(List.generate(projects.length, (index) => false));
     updateExpanded();
     super.onInit();
+  }
+
+  Future<void> fetchProjects() async {
+    isFetchingProjects.value = true;
+    final projects = await provider.getAllProjects();
+    this.projects.addAll(projects);
+    isFetchingProjects.value = false;
   }
 
   void updateExpanded() {

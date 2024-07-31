@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:portfolio/config/colors.dart';
 
@@ -14,10 +15,20 @@ class GlobalAnimations {
         duration: 250.ms),
   ];
 
-  static final titleShimmer = <Effect>[
+  static final darkTitleShimmer = <Effect>[
     ShimmerEffect(
       delay: 1500.ms,
-      color: AppColors.lightGrey,
+      // color: Colors.black,
+      colors: [AppColors.darkWhite, AppColors.lightGrey, AppColors.darkWhite],
+      duration: 2000.ms,
+    ),
+  ];
+
+  static final lightTitleShimmer = <Effect>[
+    ShimmerEffect(
+      delay: 1500.ms,
+      // color: Colors.black,
+      colors: [AppColors.darkBackground, AppColors.lightGrey, AppColors.darkBackground],
       duration: 2000.ms,
     ),
   ];

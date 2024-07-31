@@ -13,27 +13,35 @@ class MyPage extends StatelessWidget {
   final Widget body;
   final bool Function(Offset scrollOffset) isScrollEnabled;
   final void Function()? onChangePage;
+  final bool extendBodyBehindAppBar;
+  final bool hasBackButton;
 
   const MyPage(
       {super.key,
       required this.body,
       required this.isScrollEnabled,
+      this.extendBodyBehindAppBar = true,
+      this.hasBackButton = false,
       this.onChangePage});
 
   @override
   Widget build(BuildContext context) {
     final PagesController controller = PagesController.to;
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: extendBodyBehindAppBar,
       appBar: context.isMobile
-          ? null
+          ? (hasBackButton ? AppBar(leading: const MBackButton()) : null)
           : const NavbarDesktop(), // AppBar().animate(target: context.isMobile ? 0 : 1).fade(),
       bottomNavigationBar: context.isMobile ? const NavbarMobile() : null,
       backgroundColor: context.theme.colorScheme.surface,
       body: GestureDetector(
         onTap: () => print('tap'),
         onHorizontalDragEnd: (details) => print('horizontal drag end'),
+        onVerticalDragUpdate: (details) {
+          print(details);
+        },
         onVerticalDragEnd: (DragEndDetails details) {
+          print("Gesture");
           Offset event = -details.velocity.pixelsPerSecond;
           if (!controller.isAnimating && isScrollEnabled(event)) {
             changePage(context, controller, event, onChangePage, null);
@@ -41,6 +49,7 @@ class MyPage extends StatelessWidget {
         },
         child: Listener(
           onPointerSignal: (event) {
+            print("Listener");
             if (event is PointerScrollEvent &&
                 !controller.isAnimating &&
                 (event.scrollDelta.direction == pi / 2 ||
@@ -53,6 +62,19 @@ class MyPage extends StatelessWidget {
           child: body,
         ),
       ),
+    );
+  }
+}
+
+class MBackButton extends StatelessWidget {
+  const MBackButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () => Navigator.of(context).pop(),
+      icon: const Icon(Icons.arrow_back_ios_new),
+      padding: const EdgeInsets.all(0),
     );
   }
 }

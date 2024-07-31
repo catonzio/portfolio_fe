@@ -5,6 +5,8 @@ import 'package:portfolio/app/shared/models/social_data.dart';
 import 'package:portfolio/config/colors.dart';
 
 class Constants {
+  static const String baseApiUrl = "http://localhost:1500/portfolio/api";
+
   static const Duration pageTransitionDuration = Duration(milliseconds: 400);
   static const Duration navbarTransitionDuration = Duration(milliseconds: 300);
 
@@ -129,8 +131,8 @@ Feel free to reach out to me using the form below.
       description:
           "This site, a Flutter web application showcasing my work and skills.",
       imagePath: "assets/images/projects/portfolio.png",
-      url: "https://danilocatone.com/eight-puzzle",
-      githubUrl: "https://github.com/catonzio/eight_puzzle",
+      url: "https://danilocatone.com/portfolio",
+      githubUrl: "https://github.com/catonzio/portfolio_fe",
     ),
     Project(
       id: 1,
@@ -138,8 +140,8 @@ Feel free to reach out to me using the form below.
       description:
           "A collection of AI projects I developed using Python, showcasing my skills in machine learning and data analysis.",
       imagePath: "assets/images/projects/notebooks.png",
-      url: "https://danilocatone.com/eight-puzzle",
-      githubUrl: "https://github.com/catonzio/eight_puzzle",
+      // url: "https://danilocatone.com/eight-puzzle",
+      // githubUrl: "https://github.com/catonzio/eight_puzzle",
     ),
     Project(
       id: 2,
@@ -147,8 +149,8 @@ Feel free to reach out to me using the form below.
       description:
           "A collection of small games I developed using Flutter, showcasing AI algorithms like A* and Min-Max solutions.",
       imagePath: "assets/images/projects/a_star.png",
-      url: "https://danilocatone.com/eight-puzzle",
-      githubUrl: "https://github.com/catonzio/eight_puzzle",
+      url: "https://danilocatone.com/small-games",
+      githubUrl: "https://github.com/catonzio/small_games/tree/small_games",
     ),
     Project(
       id: 3,
@@ -156,8 +158,8 @@ Feel free to reach out to me using the form below.
       description:
           "A full-stack web app that allows users to create and share each kind of list.",
       imagePath: "assets/images/projects/shali.png",
-      url: "https://danilocatone.com/eight-puzzle",
-      githubUrl: "https://github.com/catonzio/eight_puzzle",
+      url: "https://danilocatone.com/shali",
+      githubUrl: "https://github.com/catonzio/shali_fe",
     ),
     Project(
       id: 4,
@@ -165,8 +167,8 @@ Feel free to reach out to me using the form below.
       description:
           "A Flutter mobile application that allows users to create and share rap lyrics.",
       imagePath: "assets/images/projects/rapedit.png",
-      url: "https://danilocatone.com/eight-puzzle",
-      githubUrl: "https://github.com/catonzio/eight_puzzle",
+      url: "https://danilocatone.com/rapedit",
+      githubUrl: "https://github.com/catonzio/rap_edit",
     ),
   ];
 }

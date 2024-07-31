@@ -9,9 +9,12 @@
             "type": "dart",
             "request": "launch",
             "program": "app/lib/main.dart",
+            "flutterMode": "debug",
             "args": [
                 "-d",
-                "chrome"
+                "chrome",
+                "--web-renderer",
+                "html"
             ]
         },
         {
@@ -22,7 +25,9 @@
             "flutterMode": "profile",
             "args": [
                 "-d",
-                "chrome"
+                "chrome",
+                "--web-renderer",
+                "html"
             ]
         },
         {
@@ -33,7 +38,9 @@
             "flutterMode": "release",
             "args": [
                 "-d",
-                "chrome"
+                "chrome",
+                "--web-renderer",
+                "html"
             ]
         }
     ]

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:portfolio/app/modules/projects/controllers/projects_controller.dart';
 import 'package:portfolio/app/modules/projects/views/desktop/widgets/projects_box_desktop.dart';
 import 'package:portfolio/app/modules/projects/views/mobile/widgets/projects_column.dart';
-import 'package:portfolio/config/constants.dart';
+import 'package:portfolio/config/colors.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
-class ProjectsRow extends StatelessWidget {
+class ProjectsRow extends GetView<ProjectsController> {
   const ProjectsRow({super.key});
 
   @override
@@ -15,15 +17,34 @@ class ProjectsRow extends StatelessWidget {
       height: height,
       child: ScrollConfiguration(
         behavior: MyScrollBehavior(),
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          children: Constants.projects
-              .map((e) => ProjectBox(project: e, height: height,))
-              .toList()
-              .animate(delay: 500.ms, interval: 500.ms)
-              .fade()
-              .moveX(begin: -200, end: 0),
-        ),
+        child: Obx(() {
+          print(controller.projects.isEmpty);
+          return Skeletonizer(
+            enabled: controller.isFetchingProjects.value,
+            child: controller.projects.isEmpty
+                ? Text(
+                    "There are no projects",
+                    style: context.textTheme.headlineLarge
+                        ?.copyWith(color: AppColors.onDarkBackground),
+                  )
+                : ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: (controller.isFetchingProjects.value
+                            ? controller.fakeProjects
+                            : controller.projects)
+                        .indexed
+                        .map((e) => ProjectBox(
+                              index: e.$1,
+                              project: e.$2,
+                              height: height,
+                            ))
+                        .toList()
+                        .animate(delay: 500.ms, interval: 500.ms)
+                        .fade()
+                        .moveX(begin: -200, end: 0),
+                  ),
+          );
+        }),
       ),
     );
   }

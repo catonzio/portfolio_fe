@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:portfolio/app/modules/project_detail/controllers/project_detail_controller.dart';
 import 'package:portfolio/app/modules/projects/project_model.dart';
 import 'package:portfolio/app/shared/ui/widgets/social_buttons.dart';
 import 'package:portfolio/config/colors.dart';
@@ -117,9 +116,11 @@ class ExpandedProjectBox extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: InkWell(
-                      onTap: () {
-                        goToProjectDetail(context, project);
-                      },
+                      onTap: project.hasGithub
+                          ? () {
+                              _goToProjectDetail(context, project);
+                            }
+                          : null,
                       child: Container(
                         height: expandedHeight! * 0.12,
                         width: expandedWidth != null
@@ -132,13 +133,15 @@ class ExpandedProjectBox extends StatelessWidget {
                         padding: const EdgeInsets.all(8),
                         alignment: Alignment.center,
                         child: Text(
-                          "More info".toUpperCase(),
+                          project.hasGithub
+                              ? "More info".toUpperCase()
+                              : "Building...",
                           style: buttonStyle,
                         ),
                       ),
                     ),
                   ),
-                  if (project.githubUrl != null)
+                  if (project.hasGithub)
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: LinkButton(
@@ -153,5 +156,12 @@ class ExpandedProjectBox extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _goToProjectDetail(BuildContext context, Project project) {
+    Navigator.of(context).pushNamed('/project-detail', arguments: project);
+    // Get.toNamed('/project-detail', arguments: project);
+    // Future.delayed(Constants.pageTransitionDuration,
+    //     () => ProjectDetailController.to.setProject(project));
   }
 }

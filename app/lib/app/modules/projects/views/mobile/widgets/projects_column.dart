@@ -3,10 +3,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:portfolio/app/modules/projects/controllers/projects_controller.dart';
 import 'package:portfolio/app/modules/projects/views/mobile/widgets/project_box_mobile.dart';
-import 'package:portfolio/config/constants.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
-class ProjectsColumn extends StatelessWidget {
+class ProjectsColumn extends GetView<ProjectsController> {
   const ProjectsColumn({super.key});
 
   @override
@@ -15,15 +16,21 @@ class ProjectsColumn extends StatelessWidget {
       height: context.height * 0.5,
       child: ScrollConfiguration(
         behavior: MyScrollBehavior(),
-        child: ListView(
-          scrollDirection: Axis.vertical,
-          children: Constants.projects
-              .map((e) => ProjectBoxMobile(project: e))
-              .toList()
-              .animate(delay: 500.ms, interval: 500.ms)
-              .fade()
-              .moveX(begin: -200, end: 0),
-        ),
+        child: Obx(() => Skeletonizer(
+              enabled: controller.isFetchingProjects.value,
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                children: (controller.isFetchingProjects.value
+                        ? controller.fakeProjects
+                        : controller.projects)
+                    .indexed
+                    .map((e) => ProjectBoxMobile(index: e.$1, project: e.$2))
+                    .toList()
+                    .animate(delay: 500.ms, interval: 500.ms)
+                    .fade()
+                    .moveX(begin: -200, end: 0),
+              ),
+            )),
       ),
     );
   }

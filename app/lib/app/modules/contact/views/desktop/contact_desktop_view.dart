@@ -36,7 +36,7 @@ class ContactDesktopView extends StatelessWidget {
                           effects: GlobalAnimations.titleAppearence,
                         )
                         .animate(
-                            effects: GlobalAnimations.titleShimmer,
+                            effects: GlobalAnimations.darkTitleShimmer,
                             onPlay: (controller) =>
                                 controller.repeat(reverse: false)),
                     Text(Constants.contactInfoString.trim()),

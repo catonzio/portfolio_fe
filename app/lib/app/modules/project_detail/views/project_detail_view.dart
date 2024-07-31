@@ -14,6 +14,8 @@ class ProjectDetailView extends GetView<ProjectDetailController> {
   @override
   Widget build(BuildContext context) {
     return MyPage(
+        extendBodyBehindAppBar: false,
+        hasBackButton: true,
         body: const Responsive(
           mobile: ProjectDetailMobile(),
           desktop: ProjectDetailDesktop(),

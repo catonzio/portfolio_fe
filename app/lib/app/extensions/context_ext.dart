@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:portfolio/config/constants.dart';
 
 extension ResponsiveContext on BuildContext {
-  double get width => MediaQuery.of(this).size.width;
-  double get height => MediaQuery.of(this).size.height;
+  // double get width => MediaQuery.of(this).size.width;
+  // double get height => MediaQuery.of(this).size.height;
   TextScaler get textScaleFactor => MediaQuery.of(this).textScaler;
   bool get isMobile => width < Constants.mobileWidth;
   bool get isTablet =>

@@ -33,9 +33,9 @@ class PagesController extends GetxController {
     }
     int newIndex = currentIndex;
 
-    if (movement.dy > 80) {
+    if (movement.dy > 8) {
       newIndex += 1;
-    } else if (movement.dy < -80) {
+    } else if (movement.dy < -8) {
       newIndex -= 1;
     }
 

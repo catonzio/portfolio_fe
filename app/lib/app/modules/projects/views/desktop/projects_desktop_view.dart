@@ -29,7 +29,7 @@ class ProjectsDesktopView extends StatelessWidget {
                     effects: GlobalAnimations.titleAppearence,
                   )
                   .animate(
-                      effects: GlobalAnimations.titleShimmer,
+                      effects: GlobalAnimations.darkTitleShimmer,
                       onPlay: (controller) =>
                           controller.repeat(reverse: false)),
               DefaultTextStyle(

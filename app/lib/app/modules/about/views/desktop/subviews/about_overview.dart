@@ -45,7 +45,7 @@ class AboutTitleDesktop extends StatelessWidget {
           effects: GlobalAnimations.titleAppearence,
         )
         .animate(
-            effects: GlobalAnimations.titleShimmer,
+            effects: GlobalAnimations.lightTitleShimmer,
             onPlay: (controller) => controller.repeat(reverse: false));
   }
 }
