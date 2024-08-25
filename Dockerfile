@@ -20,7 +20,7 @@ COPY ./app /app/
 WORKDIR /app/
 RUN flutter clean
 RUN flutter pub get
-RUN flutter build web --base-href "/portfolio/"
+RUN flutter build web --base-href "/portfolio/" --web-renderer html
 # --no-tree-shake-icons
 # WORKDIR /app/build/web
 # WORKDIR /app/build/web
