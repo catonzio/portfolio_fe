@@ -36,18 +36,32 @@ class MyPage extends StatelessWidget {
       backgroundColor: context.theme.colorScheme.surface,
       body: GestureDetector(
         onTap: () => print('tap'),
-        onHorizontalDragEnd: (details) => print('horizontal drag end'),
-        onVerticalDragUpdate: (details) {
-          print(details);
-        },
-        onVerticalDragEnd: (DragEndDetails details) {
-          print("Gesture");
-          Offset event = -details.velocity.pixelsPerSecond;
-          if (!controller.isAnimating && isScrollEnabled(event)) {
-            changePage(context, controller, event, onChangePage, null);
-          }
-        },
+        // onHorizontalDragEnd: (details) => print('horizontal drag end'),
+        // onVerticalDragStart: (details) => print('start'),
+        // onPanEnd: (details) => print("pan eend"),
+        // onVerticalDragUpdate: (details) {
+        //   print(details);
+        // },
+        // onVerticalDragEnd: (DragEndDetails details) {
+        //   print("Gesture");
+        //   Offset event = -details.velocity.pixelsPerSecond;
+        //   if (!controller.isAnimating && isScrollEnabled(event)) {
+        //     changePage(context, controller, event, onChangePage, null);
+        //   }
+        // },
         child: Listener(
+          onPointerMove: (PointerMoveEvent event) {
+            print("Pointer move");
+            print(event);
+
+            if (!controller.isAnimating &&
+                (event.delta.direction == pi / 2 ||
+                    event.delta.direction == -pi / 2) &&
+                isScrollEnabled(event.delta.scale(1, -1))) {
+              changePage(context, controller, event.delta.scale(1, -1),
+                  onChangePage, null);
+            }
+          },
           onPointerSignal: (event) {
             print("Listener");
             if (event is PointerScrollEvent &&

@@ -55,17 +55,15 @@ class ContactsForm extends StatelessWidget {
   }
 }
 
-class SendEmailButton extends StatelessWidget {
+class SendEmailButton extends GetView<ContactController> {
   const SendEmailButton({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final ContactController controller = ContactController.to;
-
     return InkWell(
-      onTap: controller.sendEmail,
+      onTap: () => _onSend(context),
       child: Container(
           decoration: BoxDecoration(
             color: AppColors.lightGrey,
@@ -90,6 +88,25 @@ class SendEmailButton extends StatelessWidget {
             ],
           )),
     );
+  }
+
+  _onSend(BuildContext context) async {
+    String message = await controller.sendEmail();
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          action: SnackBarAction(
+            label: 'OK',
+            onPressed: () {
+              // Code to execute when the button is pressed.
+              // It will simply dismiss the snackbar.
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            },
+          ),
+        ),
+      );
+    }
   }
 }
 

@@ -24,7 +24,7 @@ abstract class Routes {
     about,
     projects,
     contact,
-    projectDetail,
+    // projectDetail,
   ];
 }
 

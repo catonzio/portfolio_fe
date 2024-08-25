@@ -5,7 +5,7 @@ import 'package:portfolio/app/shared/models/social_data.dart';
 import 'package:portfolio/config/colors.dart';
 
 class Constants {
-  static const String baseApiUrl = "http://localhost:1500/portfolio/api";
+  static const String baseApiUrl = "https://danilocatone.com/portfolio/api";
 
   static const Duration pageTransitionDuration = Duration(milliseconds: 400);
   static const Duration navbarTransitionDuration = Duration(milliseconds: 300);

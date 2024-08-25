@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/app/modules/projects/project_model.dart';
+import 'package:portfolio/app/routes/app_pages.dart';
 import 'package:portfolio/app/shared/ui/widgets/social_buttons.dart';
 import 'package:portfolio/config/colors.dart';
 import 'package:portfolio/config/constants.dart';
@@ -159,7 +160,7 @@ class ExpandedProjectBox extends StatelessWidget {
   }
 
   void _goToProjectDetail(BuildContext context, Project project) {
-    Navigator.of(context).pushNamed('/project-detail', arguments: project);
+    Navigator.of(context).pushNamed(Routes.projectDetail, arguments: project);
     // Get.toNamed('/project-detail', arguments: project);
     // Future.delayed(Constants.pageTransitionDuration,
     //     () => ProjectDetailController.to.setProject(project));

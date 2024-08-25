@@ -16,7 +16,7 @@ class ProjectProvider extends GetConnect {
   }
 
   Future<List<Project>> getAllProjects() async {
-    return get('/projects').then((response) {
+    return get('/projects/').then((response) {
       return response.body == null
           ? <Project>[]
           : (response.body as List).map((e) => Project.fromJson(e)).toList();

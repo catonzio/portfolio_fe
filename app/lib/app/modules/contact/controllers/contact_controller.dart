@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:portfolio/app/modules/contact/email_model.dart';
+import 'package:portfolio/app/modules/contact/providers/email_provider.dart';
 
 class ContactController extends GetxController {
   static ContactController get to => Get.find<ContactController>();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isHovering = false;
+
+  final EmailProvider provider;
+
+  ContactController({required this.provider});
 
   late final Map<String, String? Function(String?)> validators;
   final Map<String, String> fieldsText = {
@@ -50,9 +56,18 @@ class ContactController extends GetxController {
     return null;
   }
 
-  void sendEmail() {
+  Future<String> sendEmail() async {
     if (formKey.currentState!.validate()) {
-      // TODO send email
+      Email email = Email(
+        subject: fieldsText["Subject"] ?? "",
+        senderName: fieldsText["Name"] ?? "",
+        senderEmail: fieldsText["Email"] ?? "",
+        body: fieldsText["Message"] ?? "",
+      );
+      Response<Map>? response = await provider.sendEmail(email);
+      return response?.bodyString ?? "";
+    } else {
+      return "Validazione fallita";
     }
   }
 

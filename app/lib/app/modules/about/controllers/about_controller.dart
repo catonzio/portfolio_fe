@@ -10,8 +10,8 @@ class AboutController extends GetxController {
   @override
   void onInit() {
     scrollController.addListener(() {
-      final off = scrollController.offset;
-      print((off / scrollController.position.maxScrollExtent) * 100);
+      // final off = scrollController.offset;
+      // print((off / scrollController.position.maxScrollExtent) * 100);
     });
     super.onInit();
   }
