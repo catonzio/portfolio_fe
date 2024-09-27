@@ -1,36 +1,38 @@
-# Stage 1
-FROM debian:latest AS build-env
+# Base Stage: Flutter setup (cached separately)
+FROM debian:latest AS flutter-base
 
-RUN apt-get update 
-RUN apt-get install -y curl git wget unzip libgconf-2-4 gdb libstdc++6 libglu1-mesa fonts-droid-fallback lib32stdc++6 python3
-RUN apt-get clean
+RUN apt-get update && apt-get install -y \
+    curl git wget unzip libgconf-2-4 gdb libstdc++6 libglu1-mesa fonts-droid-fallback lib32stdc++6 python3 \
+    && apt-get clean
 
+# Clone Flutter SDK (this layer is cached unless the Flutter repo is updated)
 RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
 
+# Set Flutter environment path
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
+# Pre-cache Flutter dependencies
 RUN flutter doctor -v
-
 RUN flutter channel stable
-# RUN flutter upgrade
 RUN flutter config --enable-web
 
+# Build Stage: App setup and build
+FROM flutter-base AS build-env
+
+# Create and copy the app into the container
 RUN mkdir /app/
 COPY ./app /app/
 WORKDIR /app/
+
+# Install Flutter dependencies
 RUN flutter clean
 RUN flutter pub get
+
+# Build the Flutter web app
 RUN flutter build web --base-href "/portfolio/" --web-renderer html
-# --no-tree-shake-icons
-# WORKDIR /app/build/web
-# WORKDIR /app/build/web
-# CMD ["flutter", "run", "web-server", "--web-port", "80", "--web-hostname", "0.0.0.0"]
-# Stage 2
+
+# Final Stage: Nginx setup to serve the app
 FROM nginx:1.21.1-alpine
+
+# Copy built app from the build-env stage
 COPY --from=build-env /app/build/web /usr/share/nginx/html
-
-# COPY --from=build-env /app/build/web /usr/share/nginx/html/portfolio
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
-# RUN sed -i 's/<base href="\/">/<base href="\/portfolio\/">/g' /usr/share/nginx/html/portfolio/index.html
-
-# CMD ["flutter", "run", "-d", "web-server", "--web-port", "80", "--web-hostname", "0.0.0.0"]
